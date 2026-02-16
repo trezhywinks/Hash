@@ -35,8 +35,8 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
         const html = await res.text();
         document.getElementById("loginBtn").style.display = "none";
         document.getElementById("msg").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
-        document.getElementById("dashboard").innerHTML = html;
+        //document.getElementById("dashboard").style.display = "block";
+        //document.getElementById("dashboard").innerHTML = html;
     } catch (err) {
         document.getElementById("msg").innerText = "Erro no servidor";
     }
