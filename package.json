@@ -1,0 +1,22 @@
+{
+  "name": "login-projeto",
+  "version": "1.0.0",
+  "description": "Exemplo de login protegido com Node.js, Express e bcrypt",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "login",
+    "express",
+    "bcrypt",
+    "nodejs"
+  ],
+  "author": "hash",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  }
+}
