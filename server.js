@@ -42,12 +42,12 @@ app.post("/api/login", (req, res) => {
     if (password !== user.password) return res.status(400).json({ error: "Senha incorreta" });
 
     res.cookie("username", username, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }); // 1 dia
-    res.redirect("/dashboard"); 
+    res.redirect("/u"); 
 
 });
 
 // Rota protegida para dashboard
-app.get("/dashboard", checkAuth, (req, res) => {
+app.get("/u", checkAuth, (req, res) => {
     const dashboardPath = path.join(__dirname, "u/dashboard.html");
     res.sendFile(dashboardPath);
 });
