@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "id": 666666,
+      "name": "trezhywinks",
+      "password": "$2b$10$7QJ8kjsdhf8sdhfkjsdhfkjsdhfksdf",
+      "bio": "",
+      "seguidores": "966666666",
+      "curtidas": "966666666",
+      "vizu": "999999999",
+      "projetos": "856000",
+      "imagem": "",
+      "banner": "",
+      "links": {
+        "github" : "https://github.com/trezhywinks"
+      }
+    }
+  ]
+}
