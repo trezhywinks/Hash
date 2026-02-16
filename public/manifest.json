@@ -1,0 +1,20 @@
+{
+  "name": "FourDeep",
+  "short_name": "FourDeep",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#25D366",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_5096.jpeg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_5096.jpeg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
