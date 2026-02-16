@@ -2,8 +2,10 @@ const express = require("express");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
