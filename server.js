@@ -22,6 +22,15 @@ function checkAuth(req, res, next) {
     }
 }
 
+app.get("/login", (req, res) => {
+    if (req.cookies.username) {
+
+        return res.redirect("/u");
+    }
+
+    res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
 // Login
 app.post("/api/login", (req, res) => {
     const { username, password } = req.body;
