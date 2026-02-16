@@ -1,50 +1,26 @@
 const express = require("express");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
-const session = require("express-session");
 const bodyParser = require("body-parser");
 
 const app = express();
-
-// Configurações
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
-app.use(session({
-    secret: "segredo-super-seguro",
-    resave: false,
-    saveUninitialized: false
-}));
-
 // Rota de login
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
     const { username, password } = req.body;
-
     const usersData = JSON.parse(fs.readFileSync("users.json"));
     const user = usersData.data.find(u => u.name === username);
 
-    if (!user) {
-        return res.send("Usuário não existe!");
-    }
+    if (!user) return res.status(400).json({ error: "Usuário não existe" });
 
-    const senhaValida = await bcrypt.compare(password, user.password);
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) return res.status(400).json({ error: "Senha incorreta" });
 
-    if (!senhaValida) {
-        return res.send("Senha incorreta!");
-    }
-
-    req.session.user = user.name;
-    res.redirect("/dashboard.html");
+    // Login válido → envia conteúdo do dashboard
+    const dashboard = fs.readFileSync("public/dashboard.html", "utf-8");
+    res.send(dashboard);
 });
 
-// Proteção da dashboard
-app.get("/dashboard.html", (req, res, next) => {
-    if (!req.session.user) {
-        return res.redirect("/login.html");
-    }
-    next();
-});
-
-app.listen(3000, () => {
-    console.log("Servidor rodando em http://localhost:3000");
-});
+app.listen(3000, () => console.log("Rodando em http://localhost:3000"));
