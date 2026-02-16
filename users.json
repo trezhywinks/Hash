@@ -4,16 +4,38 @@
       "id": 666666,
       "name": "trezhywinks",
       "password": "nzjejdjfjfjf",
-      "bio": "",
+      "bio": "Sé el bien, permanece en el camino de la luz y ningún mal te alcanzará",
       "seguidores": "966666666",
       "curtidas": "966666666",
       "vizu": "999999999",
       "projetos": "856000",
       "imagem": "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5167.jpeg",
-      "banner": "",
+      "banner": "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/33B290D6-0A7B-4738-8B46-DC0F16B3895A.gif",
       "links": {
         "github" : "https://github.com/trezhywinks"
       }
+    },
+    {
+      "id": 666,
+      "name": "FourDeep Suport",
+      "bio": "Sé el bien, permanece en el camino de la luz y ningún mal te alcanzará",
+      "seguidores": "999999999",
+      "curtidas": "999999999",
+      "vizu": "999999999",
+      "projetos": "756000",
+      "imagem": "https://raw.githubusercontent.com/trezhywinks/em-si/refs/heads/main/IMG_5168.jpeg",
+      "banner": "https://raw.githubusercontent.com/trezhywinks/em-si/refs/heads/main/33B290D6-0A7B-4738-8B46-DC0F16B3895A.gif"
+    },
+    {
+      "id": 999,
+      "name": "FourDeep",
+      "bio": "",
+      "seguidores": "900000000",
+      "curtidas": "900000000",
+      "vizu": "900000000",
+      "projetos": "756000",
+      "imagem": "https://raw.githubusercontent.com/trezhywinks/em-si/refs/heads/main/IMG_5096.jpeg",
+      "banner": "https://raw.githubusercontent.com/trezhywinks/em-si/refs/heads/main/33B290D6-0A7B-4738-8B46-DC0F16B3895A.gif"
     }
   ]
 }
