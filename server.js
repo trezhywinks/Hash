@@ -3,6 +3,7 @@ const fs = require("fs");
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const cors = require('cors');
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
@@ -25,4 +26,5 @@ app.post("/api/login", async (req, res) => {
     res.send(dashboard);
 });
 
-app.listen(3000, () => console.log("Rodando em http://localhost:3000"));
+app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
+//app.listen(3000, () => console.log("Rodando em http://localhost:3000"));
