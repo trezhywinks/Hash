@@ -10,7 +10,7 @@
     "login",
     "express",
     "bcrypt",
-    "nodejs",
+    "nodejs"
   
   ],
   "author": "hash",
