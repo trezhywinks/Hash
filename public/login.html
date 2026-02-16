@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<input type="text" id="username" placeholder="Usuário"><br><br>
+<input type="password" id="password" placeholder="Senha"><br><br>
+<button id="loginBtn">Entrar</button>
+<p id="msg" style="color:red;"></p>
+
+<div id="dashboard" style="display:none;"></div>
+
+<script>
+document.getElementById("loginBtn").addEventListener("click", async () => {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        const res = await fetch("/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
+
+        if (!res.ok) {
+            const err = await res.json();
+            document.getElementById("msg").innerText = err.error;
+            return;
+        }
+
+        const html = await res.text();
+        document.getElementById("loginBtn").style.display = "none";
+        document.getElementById("msg").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("dashboard").innerHTML = html;
+    } catch (err) {
+        document.getElementById("msg").innerText = "Erro no servidor";
+    }
+});
+</script>
+
+</body>
+</html>
