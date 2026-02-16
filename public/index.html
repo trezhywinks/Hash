@@ -370,9 +370,10 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     
     const html = await res.text();
 //    document.getElementById("loginBtn").style.display = "none";
-   // document.getElementById("msg").style.display = "none";
+   document.getElementById("msg").style.display = "none";
     //document.getElementById("dashboard").style.display = "block";
     //document.getElementById("dashboard").innerHTML = html;
+    window.location.href = "/u"
   } catch (err) {
     document.getElementById("msg").innerText = "Erro no servidor";
   }
