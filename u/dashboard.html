@@ -1,0 +1,3010 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="I creat and destroy when I want, just for fun like a God, but I'm not God" />
+  <meta name="og:description" content="I creat and destroy when I want, just for fun like a God, but I'm not God<" />
+  <meta name="og:url" content="" />
+  <meta name="og:title" content="FourDeep" />
+  <meta name="og:image" content="https://avatars.githubusercontent.com/u/205466886?v=4" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/205466886?v=4" />
+  <meta property="og:image:secure_url" content="https://avatars.githubusercontent.com/u/205466886?v=4" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="400" />
+  <meta property="og:image:height" content="300" />
+  <meta property="og:image:alt" content="Not for Drugs" />
+     <!--https://trezhy.onrender.com/imagens/67e9d82c4ac37113eca9cb9b.png-->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/trezhywinks/trezhyImage/refs/heads/main/trezhy/pay/image/favicon_2x.png" sizes="32x32">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/trezhywinks/trezhyImage/refs/heads/main/trezhy/pay/image/favicon.png" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <title>FourDeep</title>
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+  }
+  body{
+    color: #fff;
+    background: #101010;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+        html, body {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+  
+  body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: #0C0C0CDB;
+  z-index: 999;
+  display: none;
+}
+  
+  .top{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: #101010;
+  
+  min-height: calc(56px + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  transition: 0.5s;
+  z-index: 30;
+}
+
+.top::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * env(safe-area-inset-top));
+  left: 0;
+  right: 0;
+  
+  height: env(safe-area-inset-top);
+  background: #0C0C0CDB;
+  backdrop-filter: blur(25px);
+  z-index: -1;
+}
+
+.top.ativo{
+  top: -840px;
+  transition: 0.8s;
+  z-index: 30;
+}
+
+   
+  .as{
+   display: flex;
+   justify-content: center;
+  }
+  .lines {
+  width: 50px;
+  margin-top: -4px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-left: 20px;
+}
+  .line{
+  background: #6D6D6D;
+  width: 100%;
+  margin-top: 7px;
+  height: 4px;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+}
+
+.lines.ativo .line1 {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.lines.ativo .line2 {
+  opacity: 0;
+  display: none;
+}
+
+.lines.ativo .line3 {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.ver{
+ background: #000;
+ overflow: hidden;
+ overflow-y: auto;
+ height: 100vh;
+ position: fixed;
+ top: -950px;
+ z-index: 12;
+ left: 0;
+ right: 0;
+ transition: 0.5s;
+}
+
+.ver.ativo{
+  top: 0;
+}
+.slider {
+  width: 90%;
+  height: 24vh;
+  border-radius: 20px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+  z-index: 7;
+}
+
+.slides {
+  display: flex;
+  gap: 20px;
+  animation: slide 9s ease-in-out infinite;
+}
+
+.slides img {
+  min-width: 100%;
+  height: 24vh;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@keyframes slide {
+
+  0%,
+  20% {
+    transform: translateX(0);
+  }
+  
+  25%,
+  45% {
+    transform: translateX(calc(-100% - 20px));
+  }
+  
+  50%,
+  70% {
+    transform: translateX(calc(-200% - 40px));
+  }
+  
+  75%,
+  95% {
+    transform: translateX(calc(-300% - 60px));
+  }
+  
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.selc{
+  display: flex;
+  width: 100%;
+}
+.linha-two{
+  margin-top: -6px;
+  width: 100%;
+}
+.o{
+  margin-top: -40px;
+  position: relative;
+  z-index: 8;
+}
+
+.flexd, .recbottom, .recbottom-for{
+  text-align: center;
+  background: #0C0C0CB5;
+  backdrop-filter: blur(25px);
+  border-top: 1px solid #6D6D6D5E;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 0;
+  inset: auto 0 0 0;
+min-height: 80px;
+height: 100px;
+padding-bottom: calc(10px + env(safe-area-inset-bottom));
+}
+
+.recbottom-for{
+  justify-content: space-between;
+}
+
+.textware{
+  color: #fff;
+  width: 100%;
+  height: 4vh;
+  padding: 5px;
+  border: none;
+  border-radius: 50px;
+  font-size: 17px;
+}
+
+.inoxjeb{
+  width: 100%;
+  font-size: 17px;
+  padding: 5px;
+  padding-top: 20px;
+}
+
+.mxnenfn{
+  background: transparent;
+  border: none;
+  padding: 5px;
+  padding-top: 20px;
+}
+.recbottom, .recbottom-for{
+  border-radius: 0;
+  display: none;
+}
+
+.rectop, .rectop-for, .rectop-for-user{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: -450px;
+  height: 56px;
+  background: #101010;
+  
+  min-height: calc(56px + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  transition: 0.5s;
+  z-index: 40;
+}
+
+.rectop.ativo, .rectop-for.ativo, .rectop-for-user.ativo{
+  top: 0;
+  transition: 0.5s;
+  z-index: 40;
+}
+
+.top-master{
+    position: fixed;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: #101010;
+  border-bottom: 1px solid #6D6D6D5E;
+  
+  min-height: calc(56px + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  transition: 0.5s;
+  z-index: 10;
+}
+
+.suport-deep, .suport-deep-for {
+  position: fixed;
+  height: 100vh;
+  top: -950px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: #101010;
+  transition: 0.5s;
+  z-index: 9;
+}
+
+
+.suport-deep.ativo, .suport-deep-for.ativo {
+  top: 0;
+  z-index: 9;
+  transition: 0.5s;
+}
+
+.fh{
+  border-radius: 40px;
+  text-align:  center;
+  margin: 0 auto 10px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  width: 100%;
+}
+
+.games{
+  margin: 5px;
+}
+.games ion-icon{
+  color: #6D6D6D;
+}
+
+.j1{
+  color: #fff;
+}
+   /*.flexd{width: 100%;margin: 0 auto 10px;}*/
+      .pagcarr {overflow: hidden;width: 80%;margin: 0 auto 10px;}
+p{
+  color: #6D6D6D;
+  font-size: 13px;
+}
+i{
+font-size: 14px !important;
+}
+
+.texty,
+.textes,
+.texty i,
+.textes i {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.texty, .textes {
+  white-space: nowrap;
+  padding-right: 50px;
+  color: #6D6D6D;
+}
+
+.linha-two {
+  display: flex;
+  width: 100%;
+  width: max-content;
+  animation: mov 10s linear infinite;
+}
+    @keyframes mov {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    } 
+    
+    .linksd{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+    .clicks{
+      overflow: hidden;
+    }
+    .files{
+      animation: -gale 0.5s ease-in;
+     /* transform: translateX(250px);*/
+      display:none;
+      transition: 0.5s;
+    }
+    
+    @keyframes -gale {
+      from{
+        transform: translateX(450px);
+        transition: 0.5s;
+      }
+      to{
+        transform: translateX(0);
+        transition: 0.5s;
+      }
+    }
+   
+    .games{
+      width:80%;
+      padding: 8px;
+     border-radius: 10px
+    }
+   
+    #derf{
+      margin: 10px;
+      letter-spacing: -1px;
+    }
+  
+        .baz {
+          position: relative;
+      height: 110vh;
+      z-index: 6;
+    }
+    
+    .git{
+      transition: 0.5s;
+      position: relative;
+      z-index: 10;
+      animation: --git 0.5s ease-out;
+      
+    }
+    @keyframes --git{
+      from{
+        transform: translateY(10px);
+      }
+      to{
+      transform: translateY(0);
+      }
+    }
+    .re, .clicks{
+      display:;
+    }
+    .sedq{
+      border-radius: 100px;
+      width: 40px;
+      height: 40px;
+    }
+    
+    .qik{
+      display: flex;
+      margin-right: 10px;
+      justify-content: space-between;
+      width: 120px;
+    }
+    .nefs {
+      margin-top: 10px;
+    }
+    
+    .buscar-user{
+      margin-top: 7px;
+    }
+            .banner-suport{
+          background-image: url("./1DB25C7F-91CE-4B2E-AE18-28724BB55A80.gif");
+          width: 100%;
+         height: 140px;
+         background-position: center center;
+         background-size: cover;
+         background-repeat: no-repeat;
+         box-shadow: inset 0 -10px 20px #101010;
+        }
+.edf{
+  padding: 10px;
+  width: 150px;
+  border: none;
+  color: #3193e4;
+  background: #3193E42E;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.edit-ser{
+  position: fixed;
+  overflow-y: auto;
+  top: -950px;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: #101010;
+  transition: 0.5s;
+}
+.edit-ser.ativo{
+  top: 0;
+  transition: 0.5s;
+}
+
+.pint {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: aparecer 0.4s ease forwards;
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typing {
+  display: flex;
+  gap: 5px;
+}
+
+.typing span {
+  width: 8px;
+  height: 8px;
+  background: #999;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+</style>
+<body>
+
+  <div class="top">
+    <div class="conn" style="display: none; margin-left: 10px;">
+    <h2 style="font-size: 25px; letter-spacing: -1px;">Conversas</h2>  
+    </div>
+    <div class="lines" id="menu">
+  <div class="line line1"></div>
+  <div class="line line2"></div>
+  <div class="line line3"></div>
+</div>
+
+   <div class="qik">
+     <div class="buscar-user">
+       <ion-icon style="color: #6D6D6D; font-size: 25px;"  name="search-circle-outline"></ion-icon>
+     </div>
+     <div class="nefs">
+      <ion-icon style="color: #6D6D6D; font-size: 20px;" name="newspaper-outline"></ion-icon> 
+     </div>
+     <div class="perfs">
+      <img class="" class="sedq" src="https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_4994.jpeg" />
+      </div>
+           <div class="io" style="text-align: center; margin-right:10px; display: none;">
+        <img src="https://count.getloli.com/@Trezhywinks?name=Trezhywinks&theme=booru-lisu&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto" width="150" /><br>
+      </div>
+   </div> 
+  </div>
+  <div class="baz">
+  <div class="ver">
+        <br>
+    <br><br>
+    <br><br>
+  <br>
+  <br>
+  <br>
+
+<div class="perfil" id="perfil">
+  <h2>Carregando perfil...</h2>
+</div>
+
+<script>
+  const username = "trezhywinks"; 
+  const apiurl = `https://api.github.com/users/${username}`;
+  
+  fetch(apiurl)
+    .then(res => res.json())
+    .then(user => {
+      const container = document.getElementById("perfil");
+      container.innerHTML = `
+        <h2>${user.name ?? user.login}</h2>
+        <p><strong>Bio:</strong> ${user.bio ?? "Sem bio"}</p>
+        <p><strong>Repositórios:</strong> ${user.public_repos}</p>
+        <p><strong>Seguidores:</strong> 666.17...</p>
+        <p><strong>Seguindo:</strong> ${user.following}</p>
+        <p><strong>Localização:</strong> ${user.location ?? "Não informado"}</p>
+        <p><strong>Site:</strong> ${user.blog ? `<a href="${user.blog}" style="color:#3193e4;" target="_blank">${user.blog}</a>` : "Não informado"}</p>
+      `;
+    })
+    .catch(err => {
+      document.getElementById("perfil").innerHTML = `<p>Erro ao carregar perfil.</p>`;
+      console.error(err);
+    });
+</script>
+   </div>
+  <script>
+  const btn = document.querySelector(".lines");
+  const ver = document.querySelector(".ver");
+  const lines = document.querySelector(".lines");
+  
+           btn.addEventListener("click", () => {
+             ver.classList.toggle("ativo");
+             lines.classList.toggle("ativo");
+            // if (perf.classList.contains("ativo")) {          }
+           })
+  </script>
+<div class="re">
+               <div class="cl"><br><br><br><br>
+  <div class="selc">
+    <div class="iop" style="margin-left: 10px;">
+       <ion-icon style="font-size: 15px; color: #6D6D6D;" name="logo-github"></ion-icon>
+      <ion-icon style="font-size: 15px; color: #6D6D6D;" name="logo-reddit"></ion-icon>
+          </div>
+          <div class="pagcarr">
+      <div class="linha-two">
+        <div class="textes">
+        </div>
+        <div class="texty">
+        </div>
+        <script>
+          const texty = document.querySelector('.texty');
+          const textes = document.querySelector('.textes');
+          texty.innerHTML = "<i> <ion-icon style='font-size: 20px;' name='logo-npm'></ion-icon> Hola usuario, comparte nuestro sitio con tus amigos, crea un perfil de divulgación.</i>";
+          textes.innerHTML = "<i> <ion-icon style='font-size: 20px;' name='logo-npm'></ion-icon> Hola usuario, comparte nuestro sitio con tus amigos, crea un perfil de divulgación.</i>";
+
+        </script>
+      </div>
+    </div>
+  </div>
+                   <div class="slider">
+      <div class="slides">
+        <!--https://raw.githubusercontent.com/trezhywinks/cripwinks/refs/heads/main/IMG_4352.jpeg-->
+        <img src="https://raw.githubusercontent.com/trezhywinks/cripwinks/refs/heads/main/IMG_4356.jpeg" class="" />
+        <img src="https://raw.githubusercontent.com/trezhywinks/cripwinks/refs/heads/main/IMG_4355.webp" class="" />
+        <img src="https://raw.githubusercontent.com/trezhywinks/cripwinks/refs/heads/main/IMG_4352.jpeg" class="" />
+        <img src="https://raw.githubusercontent.com/trezhywinks/cripwinks/refs/heads/main/IMG_4354.jpeg" class="" />
+      </div>
+    </div>
+               </div>
+               </div>
+    <div class="god" style="width:100%; margin: 0 auto 10px;">
+    </div>
+    <div class="flexd">
+      <div class="fh">
+             <div class="games" id="home">
+               <ion-icon class="leaf" name="leaf" style="font-size: 25px; color: #fff;"></ion-icon>
+       <p class="j1" style="font-size: 14px;">Início</p>
+     </div>
+              <div class="games" id="chat">
+        <ion-icon class="chat" name="chatbubbles-outline" style="font-size: 25px;"></ion-icon>
+        <p class="j5" style="font-size: 14px;">Conversas</p>
+      </div>
+             <div class="games" id="game">
+          <ion-icon class="contro" name="add-outline" style="font-size: 55px; margin-top: -5px;"></ion-icon>
+          <p hidden class="j2" style="font-size: 14px; ">Games</p>
+        </div>
+
+        <div class="games" id="gale">
+          <ion-icon class="leas" name="library-outline" style="font-size: 25px;"></ion-icon>
+        <p class="j3"  style="font-size: 14px;">Biblioteca</p>
+        </div>
+         <div class="games" id="xc">
+           <ion-icon class="sparkles" name="sparkles-outline" style="font-size: 25px;"></ion-icon>
+   <p id="creat" class="j4" style="font-size: 14px;">Você</p>
+ </div>
+      </div>
+    </div>
+   
+    
+    <div class="server">
+      <style>
+        .server{
+          position:;
+          top: 0;
+          text-align: center;
+          /*height: 100vh;*/
+         min-height: calc(56px + env(safe-area-inset-top));
+padding-top: env(safe-area-inset-top);
+/*background: #0C0C0CDB;*/
+z-index: 999;
+display: none;
+        }
+        .server::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * env(safe-area-inset-top));
+  left: 0;
+  right: 0;
+  
+  height: env(safe-area-inset-top);
+  /*background: #0C0C0CDB;
+  backdrop-filter: blur(25px);*/
+  
+  z-index: -1;
+}
+        .banner, .banner-for{
+          position: ; top: 0;
+          left: 0; right: 0;
+          background-image: url("./1DB25C7F-91CE-4B2E-AE18-28724BB55A80.gif");
+          background-position: center center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          overflow: hidden;
+          height:20vh;
+        }
+        .ipo{
+          display: flex;
+        }
+        .snixx{
+          margin-left: 5px;
+          margin-top: 1px;
+        }
+        
+        .jejdd{
+          color: #fff;
+        }
+        #ds{
+          font-size: 17px;
+        }
+        .like{
+          position: fixed;
+          bottom: 25%;
+          right: 20px;
+        }
+        
+        .initchat{
+          position: fixed;
+          left: 0;
+          right: 0;
+          display: none;
+          transition: 0.4s;
+          z-index: 6;
+        }
+        .initchat.ativo{
+         left: -450px;
+         transition: 5s;
+        }
+        
+        .shows{
+          width:250px;
+          margin-top: -32px;
+          background: #12121285;
+          padding: 2px;
+          border-radius: 10px;
+          margin-left: 38px;
+          border: 1px solid #6D6D6D5E;
+        }
+        .mxjsnxnd{
+          overflow-y: auto;
+          height: 100vh;
+        }
+        .balions{
+          overflow: hidden;
+        }
+        .sedqa{
+          margin-top: -10px;
+          margin-left: 15px;
+        }
+        .suport{
+          position:fixed;
+          overflow:hidden ;
+          background-image: url("./IMG_5132.jpeg");
+          background-size: cover;
+          background-repeat: no-repeat;
+          box-shadow: inset 100vh 100vh #000000C2;
+          height: 100vh;
+          display: none;
+          transition: 0.3s;
+          z-index:6;
+        }
+        
+        .suport.ativo, .suport-for.ativo{
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 100vh;
+          transition: 0.3s;
+          z-index: 6;
+          display: block;
+          overflow-y: auto;
+        }
+        
+        .suport-for{
+          position:fixed;
+          overflow:hidden ;
+          background-image: url("./IMG_5132.jpeg");
+          box-shadow: inset 100vh 100vh #000000C2;
+          background-size: cover;
+          background-repeat: no-repeat;
+          height: 100vh;
+          display: none;
+          transition: 0.3s;
+          z-index:6;
+        }
+        
+
+        .trqwe{
+        }
+              </style>
+     <div class="logo">
+       <div class="banner">
+       </div>
+       <div class="perfect" style="position: relative;margin-top: -25px;  background: #101010; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+      <div class="trqwe">
+     <img class="git-imagem" src="https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_4994.jpeg" style="margin-top: -40px; border: 5px solid #101010;" width="90" height="90"/>
+       <br>
+       <h3 class="git-name"></h3>
+       <div class="cute" style="display: flex; width: 80%; margin: 10px auto 10px; justify-content: space-around;">
+               <div class="ipo">
+            <div class="iponi">
+            <ion-icon style="font-size: 20px; color: #6D6D6D;" name="eye-outline"></ion-icon>
+            </div>
+             <div class="snixx">
+               <p id="ds">0</p>
+             </div> 
+          </div>
+        <div class="ipo" id="like">
+  <div class="iponi">
+    <ion-icon id="" style="font-size:20px; color: #6D6D6D;" name="heart-outline"></ion-icon>
+  </div>
+  <div class="snixx">
+    <p id="ds">0</p>
+  </div>
+</div>
+
+          <div class="ipo" id="">
+            <div class="iponi">
+            <ion-icon style="font-size:20px; color: #6D6D6D;" name="people-outline"></ion-icon>
+            </div>
+             <div class="snixx">
+               <p id="ds">0</p>
+             </div> 
+          </div>
+                  <div class="ipo">
+            <div class="iponi">
+            <ion-icon style="font-size:20px; color: #6D6D6D;" name="earth-outline"></ion-icon>
+            </div>
+             <div class="snixx">
+               <p id="ds">0</p>
+             </div> 
+          </div>
+      </div>
+       </div>
+       <div class="recado" style="width: 80%; margin: 0 auto 10px;">
+        <p class="git-bio">Me encanta usar FourDeep</p> 
+       </div>
+       <div class="botoesr" style="display: flex; justify-content: space-between; width: 90%; margin: 0 auto 10px;">
+      <div class="edit-perfil">
+        <button class="edf">Editar perfil</button>
+           <script>
+            document.querySelector(".edit-perfil").addEventListener("click", () => {
+             document.querySelector(".edit-ser").classList.toggle("ativo");
+            });
+          </script>
+
+      </div>   
+            <div class="edit-perfil">
+        <button class="edf">Compartilhar</button>
+      </div>
+       </div>
+      <div id="resultado">
+        <span>Conexões</span>
+        <p>outras plataformas</p>
+        <div class="to-user">
+          <box-icon type='solid' name='invader'></box-icon>
+          <a href="">FourDeep</a>
+        </div>
+      </div>
+       </div>
+       
+       <div class="edit-ser">
+         <div class="top-master">
+           <div class="esback-two">
+             <box-icon style="width: 50px; height: 50px; fill: #3193e4;" name='chevron-left'></box-icon> 
+          <script>
+            document.querySelector(".esback-two").addEventListener("click", () => {
+             document.querySelector(".edit-ser").classList.toggle("ativo");
+            });
+          </script>
+           </div>
+           <div class="megk" style="margin-right: 20px;">
+             <span>Editar Perfil</span>
+           </div>
+         </div>
+         <br>
+         <br>
+         <br>
+         <style>
+           .ledsa{
+             width: 95%;
+             display: flex;
+             text-align: left;
+             justify-content: space-around;
+           }
+           
+           .meta{
+             background:#131313;
+             font-size: 15px;
+             border: none;
+             width:250px;
+             padding: 5px;
+             color: #fff;
+             outline: none;
+            border-bottom: 1px solid #6D6D6D;
+           }
+           
+           .filesd{
+             background:#101010;
+             margin-top: -25px;
+             border-top-left-radius: 35px;
+             border-top-right-radius: 35px;
+           }
+           
+          .lkg{
+             width: 50px;
+           }
+             textarea {
+    width: 250px;
+    height: 100px;
+    padding: 5px;
+    background:#131313;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 14px
+  color:#3193e4;
+    border-bottom: 1px solid #6D6D6D;
+    z-index:4;
+  }
+
+  .contador {
+    text-align: right;
+    font-size: 12px;
+    margin-right:60px;
+    color: #555;
+  }
+  
+  .conections{
+    text-align: left;
+    width: 95%;
+   margin: 0 auto 10px;
+  }
+  
+  box-icon{
+    fill: #6D6D6D;
+  }
+  .meta {
+  border: 2px solid #ccc;
+  padding: 8px;
+  border-radius: 6px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.meta.valido {
+  border-color: #2ecc71;
+}
+
+.meta.invalido {
+  border-color: #e74c3c;
+}
+
+#resultado{
+  background: #121212;
+  text-align: left;
+  width: 95%;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 auto 10px;
+}
+
+#resultado div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+#resultado a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+#resultado a:hover {
+  color: #0077ff;
+}
+.mod-cam{
+  padding: 10px;
+  background: #0000005C;
+  backdrop-filter: blur(3px)
+}
+         </style>
+                <div class="banner" id="bannet" style="margin-top:; text-align: right;">
+                  <div class="mod-cam">
+                    <label for="ban-banner">
+              <box-icon name='camera' style="fill: #3193e4;" type='solid' ></box-icon>  
+                    </label>
+                    <input hidden type="file" name="" id="ban-banner">
+                       <script>
+        document.getElementById('ban-banner').addEventListener("change", function(event) {
+  const figs = document.getElementById('bannet');
+  let filer = event.target.files[0];
+  
+  if (filer) {
+    let reader = new FileReader();
+    
+    reader.onload = function(e) {
+      figs.style.backgroundImage = `url(${e.target.result})`;
+      console.log(filer);
+    }
+    
+    reader.readAsDataURL(filer);
+  }
+});
+
+       </script>
+                  </div>
+       </div>
+         <div class="filesd">
+           <label for="file">
+     <img class="firmar" src="https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_4994.jpeg" style="margin-top: -40px; border: 5px solid #101010;" width="90" height="90"/>
+          <p style="color: #3193e4; font-size: 15px;">Editar foto de perfil</p>
+           </label>
+       <input type="file" id="file" hidden />
+       <script>
+         document.getElementById('file').addEventListener("change", function(event) {
+         const input = document.getElementById('file').value;
+         const fig = document.querySelector('.firmar');
+         let file = event.target.files[0];
+          if (file) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+              //console.log(e.target.result);
+             fig.src = e.target.result
+              //gin.src = e.target.result;
+              console.log(file);
+            }
+            reader.readAsDataURL(file);
+          }
+       } )
+
+       </script>
+         <br>
+         <div class="metadados">
+          <div class="ledsa">
+           <label class="lkg">Nome</label>
+           <input class="meta" maxlength="30" type="text"/>
+          </div> <br>
+                  <div class="ledsa">
+          <label class="lkg">Bio</label>
+          
+  <textarea 
+    id="mensagem" 
+    maxlength="45"
+    oninput="atualizarContador()"
+    placeholder="Digite até 100 caracteres...">
+  </textarea>
+
+<script>
+  function atualizarContador() {
+    const textarea = document.getElementById("mensagem");
+    const contador = document.getElementById("contador");
+    contador.textContent = textarea.value.length;
+  }
+</script>
+        </div>
+          <div class="contador">
+    <span id="contador">0</span>/45
+  </div>
+  <div class="conections">
+   <label class="lkg">Conexões</label>
+   <p>Preencha os campos com os links de outras plataformas</p>
+   <br>
+   <div class="ledsa">
+     <label class="lkg">
+       <box-icon type='logo' name='instagram'></box-icon>
+     </label>
+     <input class="meta" data-platform="instagram" maxlength="" type="text"/>
+     <br>
+   </div>
+   <br>
+      <div class="ledsa">
+     <label class="lkg">
+       <box-icon type='logo' name='tiktok'></box-icon>
+     </label>
+     <input class="meta" data-platform="tiktok" maxlength="" type="text"/>
+     <br>
+   </div>
+   <br>
+ <div class="ledsa">
+     <label class="lkg">
+       <box-icon type='logo' name='facebook-circle'></box-icon>
+     </label>
+     <input class="meta" data-platform="facebook" maxlength="" type="text"/>
+     <br>
+   </div>
+   <br>
+ <div class="ledsa">
+     <label class="lkg">
+       <box-icon name='whatsapp' type='logo' ></box-icon>
+     </label>
+     <input class="meta" data-platform="whatsapp" maxlength="" type="text"/>
+     <br>
+   </div>
+   <br>
+    <div class="ledsa">
+     <label class="lkg">
+       <box-icon name='pinterest' type='logo' ></box-icon>
+     </label>
+     <input class="meta" data-platform="pinterest" maxlength="" type="text"/>
+     <br>
+   </div>
+   <br>
+<div class="ledsa">
+     <label class="lkg">
+       <box-icon name='github' type='logo' ></box-icon>
+     </label>
+     <input class="meta" data-platform="github" maxlength="" type="text"/>
+     <br>
+   </div>
+  </div>
+ 
+ <script>
+  const inputs = document.querySelectorAll(".meta");
+  const resultado = document.getElementById("resultado");
+  
+  const dominios = {
+    instagram: "instagram.com",
+    tiktok: "tiktok.com",
+    facebook: "facebook.com",
+    pinterest: "pinterest.com",
+    github: "github.com"
+  };
+  
+  inputs.forEach(input => {
+    input.addEventListener("input", function() {
+      const url = input.value.trim();
+      const platform = input.dataset.platform;
+      
+      if (!url) {
+        input.classList.remove("valido", "invalido");
+        removerLink(platform);
+        return;
+      }
+      
+      if (platform === "whatsapp") {
+        processarWhatsApp(url, input);
+      } else {
+        const username = extrairUsername(url, platform);
+        
+        if (username) {
+          input.classList.add("valido");
+          input.classList.remove("invalido");
+          criarLink(platform, username);
+        } else {
+          input.classList.add("invalido");
+          input.classList.remove("valido");
+          removerLink(platform);
+        }
+      }
+    });
+  });
+  
+  function extrairUsername(url, platform) {
+    try {
+      const urlObj = new URL(url);
+      const host = urlObj.hostname;
+      
+      if (!host.includes(dominios[platform])) return null;
+      
+      const path = urlObj.pathname.split("/").filter(p => p !== "");
+      return path[0] || null;
+      
+    } catch {
+      return null;
+    }
+  }
+  
+  function criarLink(platform, username) {
+    
+    removerLink(platform);
+    
+    const div = document.createElement("div");
+    div.id = "container-" + platform;
+    
+    const icon = document.createElement("box-icon");
+    icon.setAttribute("type", "logo");
+    icon.setAttribute("name", platform);
+    
+    const a = document.createElement("a");
+    a.href = `https://${platform}.com/${username}`;
+    a.textContent = username;
+    a.target = "_blank";
+    a.id = platform;
+
+    
+    div.appendChild(icon);
+    div.appendChild(a);
+    
+    resultado.appendChild(div);
+  }
+  
+  function processarWhatsApp(url, input) {
+    try {
+      const urlObj = new URL(url);
+      
+      if (!urlObj.hostname.includes("wa.me") &&
+        !urlObj.hostname.includes("whatsapp.com")) {
+        throw new Error();
+      }
+      
+      let numero = urlObj.pathname.replace("/", "");
+      if (!numero) throw new Error();
+      
+      input.classList.add("valido");
+      input.classList.remove("invalido");
+      
+      removerLink("whatsapp");
+      
+      const div = document.createElement("div");
+      div.id = "container-whatsapp";
+      
+      const icon = document.createElement("box-icon");
+      icon.setAttribute("type", "logo");
+      icon.setAttribute("name", "whatsapp");
+      
+      const a = document.createElement("a");
+      a.href = `https://wa.me/${numero}`;
+      a.textContent = numero;
+      a.target = "_blank";
+      a.id = "whatsapp";
+
+      
+      div.appendChild(icon);
+      div.appendChild(a);
+      
+      resultado.appendChild(div);
+      
+    } catch {
+      input.classList.add("invalido");
+      input.classList.remove("valido");
+      removerLink("whatsapp");
+
+    }
+  }
+  
+  function removerLink(platform) {
+    const antigo = document.getElementById("container-" + platform);
+    if (antigo) antigo.remove();
+  }
+</script>       
+</div>
+         </div>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+
+       </div>
+       
+     </div>
+     
+    </div>
+    
+          <div class="rectop">
+        <div class="backtop">
+         <box-icon style="width: 50px; height: 50px; fill: #3193e4;" name='chevron-left'></box-icon> 
+        </div>
+           <div class="namesclow" style="text-align: center; width: 50%;">
+        <p style="color:#fff;" class="kskend">...</p>
+        <p>Cuenta oficial de FourDeep</p>
+      </div>
+      <div class="clowr" style="">
+     <img class="kdnendnd" src="" width="40" height="40" style="border-radius: 100px; margin-right:3px ;"/>
+     <script>
+       document.querySelector(".clowr").addEventListener("click", () => {
+         document.querySelector(".suport-deep").classList.toggle("ativo");
+       });
+     </script>
+      </div>
+
+      </div>
+
+           <div class="suport-deep">
+             <br>
+             <br>
+             <br>
+           <div class="logo">
+       <div class="banner">
+       </div>
+       <div class="perfectD" style="position:;margin-top: -25px;  background: #101010; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+      <div class="trqwe">
+     <img class="kdnendnd" src="https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_5110.jpeg" style="margin-top: -40px; border: 5px solid #101010;" width="90" height="90"/>
+       <br>
+       <h3 class="kskend">...</h3>
+       <div class="cute" style="display: flex; width: 80%; margin: 10px auto 10px; justify-content: space-around;">
+               <div class="ipo">
+            <div class="iponi">
+            <ion-icon style="font-size: 20px; color: #6D6D6D;" name="eye-outline"></ion-icon>
+            </div>
+             <div class="snixx">
+               <p id="ds">569 K</p>
+             </div> 
+          </div>
+        <div class="ipo" id="like">
+  <div class="iponi">
+    <ion-icon id="likeIcon" style="font-size:20px; color: #6D6D6D;" name="heart-outline"></ion-icon>
+  </div>
+  <div class="snixx">
+    <p id="ds">579 K</p>
+  </div>
+</div>
+
+          <div class="ipo" id="like">
+            <div class="iponi">
+            <ion-icon style="font-size:20px; color: #6D6D6D;" name="people-outline"></ion-icon>
+            </div>
+             <div class="snixx">
+               <p id="ds">579 K</p>
+             </div> 
+          </div>
+                  <div class="ipo">
+            <div class="iponi">
+            <ion-icon style="font-size:20px; color: #6D6D6D;" name="earth-outline"></ion-icon>
+            </div>
+             <div class="snixx">
+               <p id="ds">46</p>
+             </div> 
+          </div>
+      </div>
+       </div>
+       <div class="recado" style="width: 80%; margin: 0 auto 10px;">
+        <p>Perfil de creador, soy uno de los creadores del sitio winks</p> 
+       </div>
+       </div>
+     </div>
+    </div>
+    
+    <div class="suport-deep-for">
+      <br>
+      <br>
+      <br>
+      <div class="logo">
+        <div class="banner-for">
+          <style>
+          .banner-for{
+          position: ; top: 0;
+          left: 0; right: 0;
+          background-image: url("./1DB25C7F-91CE-4B2E-AE18-28724BB55A80.gif");
+          background-position: center center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          overflow: hidden;
+          height:20vh;
+        }
+
+          </style>
+        </div>
+        <div class="perfectD" style="position:;margin-top: -25px;  background: #101010; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+          <div class="trqwe">
+            <img class="ksmendnd" src="" style="margin-top: -40px; border: 5px solid #101010;" width="90" height="90" />
+            <br>
+            <h3 class="amornxjejd">...</h3>
+            <div class="cute" style="display: flex; width: 80%; margin: 10px auto 10px; justify-content: space-around;">
+              <div class="ipo">
+                <div class="iponi">
+                  <ion-icon style="font-size: 20px; color: #6D6D6D;" name="eye-outline"></ion-icon>
+                </div>
+                <div class="snixx">
+                  <p class="ds ds-ver" id="ds"></p>
+                </div>
+              </div>
+              <div class="ipo" id="like">
+                <div class="iponi">
+                  <ion-icon id="likeIcon" style="font-size:20px; color: #6D6D6D;" name="heart-outline"></ion-icon>
+                </div>
+                <div class="snixx">
+                  <p class="ds ds-like" id="ds"></p>
+                </div>
+              </div>
+              
+              <div class="ipo" id="like">
+                <div class="iponi">
+                  <ion-icon style="font-size:20px; color: #6D6D6D;" name="people-outline"></ion-icon>
+                </div>
+                <div class="snixx">
+                  <p class="ds" id="ds" data-value="999999999"></p>
+                </div>
+              </div>
+              <div class="ipo">
+                <div class="iponi">
+                  <ion-icon style="font-size:20px; color: #6D6D6D;" name="earth-outline"></ion-icon>
+                </div>
+                <div class="snixx">
+                  <p class="ds ds-for" id="ds" data-value=""></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="recado" style="width: 80%; margin: 0 auto 10px;">
+            <p class="ds-bio">...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+        <div class="suport-deep-for-user">
+      <br>
+      <br>
+      <br>
+      <div class="logo">
+        <div class="banner-for-user">
+          <style>
+            .banner-for-user {
+              position: ;
+              top: 0;
+              left: 0;
+              right: 0;
+              background-image: url("./1DB25C7F-91CE-4B2E-AE18-28724BB55A80.gif");
+              background-position: center center;
+              background-size: cover;
+              background-repeat: no-repeat;
+              overflow: hidden;
+              height: 20vh;
+            }
+            
+            .suport-deep-for-user {
+  display: none;
+  animation: aparecerPerfil 0.4s ease;
+}
+
+@keyframes aparecerPerfil {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ndennd{
+  text-align: center;
+  width: 85%;
+  margin:0 auto 10px ;
+ display: flex;
+}
+.ndjrt{
+  margin-top: 35px;
+  text-align: left
+}
+          </style>
+        </div>
+        <div class="perfectD" style="position:;margin-top: -25px;  background: #101010; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+          <div class="trqwe">
+            <center>
+            <img class="ksmendnd-user" src="" style="margin-top: -40px; border: 5px solid #101010;" width="90" height="90" />
+            <br>
+            <h3 class="amornxjejd-user">...</h3>
+            </center>
+            <div class="cute" style="display: flex; width: 80%; margin: 10px auto 10px; justify-content: space-around;">
+              <div class="ipo">
+                <div class="iponi">
+                  <ion-icon style="font-size: 20px; color: #6D6D6D;" name="eye-outline"></ion-icon>
+                </div>
+                <div class="snixx">
+                  <p class="ds ds-ver-user" id="ds"></p>
+                </div>
+              </div>
+              <div class="ipo" id="like">
+                <div class="iponi">
+                  <ion-icon id="likeIcon" style="font-size:20px; color: #6D6D6D;" name="heart-outline"></ion-icon>
+                </div>
+                <div class="snixx">
+                  <p class="ds ds-like-like" id="ds"></p>
+                </div>
+              </div>
+              
+              <div class="ipo" id="like">
+                <div class="iponi">
+                  <ion-icon style="font-size:20px; color: #6D6D6D;" name="people-outline"></ion-icon>
+                </div>
+                <div class="snixx">
+                  <p class="dsas" id="ds" data-value="999999999"></p>
+                </div>
+              </div>
+              <div class="ipo">
+                <div class="iponi">
+                  <ion-icon style="font-size:20px; color: #6D6D6D;" name="earth-outline"></ion-icon>
+                </div>
+                <div class="snixx">
+                  <p class="ds-fora" id="ds" data-value=""></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="recado" style="width: 80%; margin: 0 auto 10px;">
+            <p class="ds-bio-user">...</p>
+          </div>
+          <div class="ndennd">
+            <div class="filesgif">
+              <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5180.gif" width="120"/>
+            </div>
+            <div class="ndjrt">
+              <span>Conta comercial</span>
+              <p>Conta comercial de <span style="color: #3193e4;" class="amornxjejd-user-per"></span></p>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+           
+           <div class="rectop-for">
+        <div class="backtop-for">
+         <box-icon style="width: 50px; height: 50px; fill: #3193e4;" name='chevron-left'></box-icon> 
+        </div>
+           <div class="namesclow" style="text-align: center; width: 50%;">
+        <p style="color:#fff;" class="amornxjejd">...</p>
+        <p>Cuenta oficial de FourDeep</p>
+      </div>
+      <div class="clowre" style="">
+     <img class="ksmendnd" src="" width="40" height="40" style="border-radius: 100px; margin-right:3px ;"/>
+     <script>
+       document.querySelector(".clowre").addEventListener("click", () => {
+         document.querySelector(".suport-deep-for").classList.toggle("ativo");
+       });
+     </script>
+      </div>
+
+      </div>
+      <div class="rectop-for-user">
+        <div class="backtop-for-user">
+         <box-icon style="width: 50px; height: 50px; fill: #3193e4;" name='chevron-left'></box-icon> 
+        </div>
+           <div class="namesclow" style="text-align: center; width: 50%;">
+        <p style="color:#fff;" id="amornxjejd-user" class="amornxjejd-user"></p>
+        <p>Cuenta oficial de FourDeep</p>
+      </div>
+      <div class="clowre" style="">
+     <img class="ksmendnd-user" id="kdnendnd-user" src="" width="40" height="40" style="border-radius: 100px; margin-right:3px ;"/>
+     <script>
+           </script>
+      </div>
+
+      </div>
+
+    
+    <div class="initchat" id="kxkenckf">
+      
+      <br>
+      <br>
+      <br>
+      <br>
+      
+  
+      
+      <!--div class="sertrezhy item" id="" style="display: flex; padding-left: 10px; width: 100%; z-index: 9;">
+     -->
+     <style>
+       #searchInput{
+         background: #121212;
+         border-radius: 20px;
+         font-size: 14px;
+         padding: 8px;
+         color: #fff;
+         width: 95%;
+         margin: 0 auto 10px;
+         outline:none;
+       }
+       .ndnendne{
+         text-align: center;
+       }
+       .sertrezhy {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: aparecerUser 0.4s ease forwards;
+}
+
+@keyframes aparecerUser {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+     </style>
+     <div class="ndnendne">
+ <input type="text" id="searchInput" placeholder="Buscar usuário..." onfocus="this.placeholder=''" onblur="this.placeholder='Buscar usuário...'"/>
+     </div>
+
+<div id="resultadoss"></div>
+<br>
+<br>
+<script>
+class NumberFormatter {
+  static format(num) {
+    num = Number(num) || 0;
+
+    if (num >= 1_000_000_000) return Math.floor(num / 1_000_000_000) + "B";
+    if (num >= 1_000_000) return Math.floor(num / 1_000_000) + "M";
+    if (num >= 1_000) return Math.floor(num / 1_000) + "K";
+    return num.toString();
+  }
+}
+
+
+  let usuarios = [];
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    
+    const input = document.getElementById("searchInput");
+    const resultadosDiv = document.getElementById("resultadoss");
+    
+    fetch("https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/users.json")
+      .then(response => response.json())
+      .then(data => {
+        usuarios = data.data;
+        input.disabled = false;
+        input.placeholder = "Buscar usuário...";
+      })
+      .catch(error => {
+        console.error("Erro ao carregar JSON:", error);
+      });
+    
+    input.addEventListener("input", function() {
+      
+      const valor = this.value.toLowerCase();
+      resultadosDiv.innerHTML = "";
+      
+      if (!valor) return;
+      
+      const filtrados = usuarios.filter(user =>
+        user.name.toLowerCase().includes(valor)
+      );
+      
+      if (filtrados.length === 0) {
+        resultadosDiv.innerHTML = "<p style='margin-left:20px;'>Nenhum usuário encontrado</p>";
+        return;
+      }
+      
+      filtrados.forEach((user, index) => {
+        
+        const imagem = user.imagem && user.imagem !== "" ?
+          user.imagem :
+          "https://via.placeholder.com/60";
+        
+        const div = document.createElement("div");
+        div.className = "sertrezhy item";
+        div.style.animationDelay = `${index * 0.1}s`;
+        
+        div.innerHTML = `
+        <div class="user-imagem">
+          <img class="kdnendnd" src="${imagem}" width="60" height="60" style="border-radius:100px;">
+        </div>
+
+        <div class="user-name" style="display:flex; justify-content:space-between; padding-left:10px; padding-bottom:10px; border-bottom:1px solid #6D6D6D5E; width:100%;">
+          <div class="fes">
+            <h3 class="kskend">${user.name}</h3>
+            <p>${user.bio || "Sem bio"}</p>
+          </div>
+        </div>
+      `;
+        
+        div.addEventListener("click", () => {
+          carregarPerfil(user);
+          document.querySelector(".rectop-for-user").classList.toggle("ativo");
+          document.querySelector(".initchat").style.display = "none";
+          document.querySelector(".flexd").style.display = "none";
+          document.querySelector(".top").style.display = "none"
+          //0.classList.toggle("ativo");
+         // .style.display = "none";
+        });
+
+            
+        resultadosDiv.appendChild(div);
+        const snennd = document.getElementById("amornxjejd-user")
+        const jdjrjf = document.getElementById("kdnendnd-user")
+        const amornxjejd = document.querySelector(".amornxjejd-user-per")
+        snennd.innerText = user.name;
+        amornxjejd.innerText = user.name;
+       jdjrjf.src = imagem;
+      });
+      
+    });
+    document.querySelector(".backtop-for-user").addEventListener("click", () => {
+         document.querySelector(".suport-deep-for-user").style.display = "none";
+         //document.querySelector(".top").classList.toggle("ativo");
+         document.querySelector(".rectop-for-user").classList.toggle("ativo");
+          document.querySelector(".initchat").style.display = "inline";
+          document.querySelector(".flexd").style.display = "flex";
+          document.querySelector(".top").style.display = "flex"
+       });
+
+    
+  });
+  
+  function atualizarNumero(elemento, valor) {
+  if (!elemento) return;
+  const numeroReal = Number(valor) || 0;
+  elemento.dataset.value = numeroReal;
+  elemento.textContent = NumberFormatter.format(numeroReal);
+}
+
+  // 🔥 FUNÇÃO FORA DO DOMContentLoaded
+  
+  function carregarPerfil(user) {
+  
+  const perfil = document.querySelector(".suport-deep-for-user");
+  if (!perfil) return;
+  
+  perfil.style.display = "block";
+  
+  // 🔥 Banner
+  const banner = document.querySelector(".banner-for-user");
+  if (banner) {
+    banner.style.backgroundImage =
+      user.banner && user.banner !== "" ?
+      `url(${user.banner})` :
+      "url('https://via.placeholder.com/800x300')";
+  }
+  
+  const img = document.querySelector(".ksmendnd-user");
+  if (img) {
+    img.src =
+      user.imagem && user.imagem !== "" ?
+      user.imagem :
+      "https://via.placeholder.com/90";
+  }
+  
+  // 🔥 Nome
+  const nome = document.querySelector(".amornxjejd-user");
+  if (nome) nome.textContent = user.name;
+  
+  // 🔥 Bio
+  const bio = document.querySelector(".ds-bio-user");
+  if (bio) bio.textContent = user.bio || "Sem bio";
+  
+  atualizarNumero(document.querySelector(".ds-ver-user"), user.vizu);
+  atualizarNumero(document.querySelector(".ds-like-like"), user.curtidas);
+  atualizarNumero(document.querySelector(".dsas"), user.seguidores);
+  atualizarNumero(document.querySelector(".ds-fora"), user.projetos);
+
+  
+
+}
+  
+ </script>
+<div class="sertrezhy item" style="display: none;" id="floes">
+        <div class="user-imagem">
+  <img class="kdnendnd" src="https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_5110.jpeg" width="60" height="60" style="border-radius: 100px;"/>
+        </div>
+        <div class="user-name" style=" display: flex; justify-content: space-between; padding-left: 10px; padding-bottom: 10px; border-bottom: 1px solid #6D6D6D5E; width: 100%;">
+        <div class="fes">
+        <h3 class="kskend">...</h3>
+        <p>Ver próximas actualizaciones</p>
+        </div>
+        </div>
+      </div>
+      <br>
+            <!--div class="sertrezhy item" id="" style="display: flex; padding-left: 10px; width: 100%; z-index: 9;">
+        -->
+        <div class="sertrezhy item" style="display: none;" id="for-bem">
+        <div class="user-imagem">
+          <img class="ksmendnd" src="https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_5110.jpeg" width="60" height="60" style="border-radius: 100px;" />
+        </div>
+        <div class="user-name" style=" display: flex; justify-content: space-between; padding-left: 10px; padding-bottom: 10px; border-bottom: 1px solid #6D6D6D5E; width: 100%;">
+          <div class="fes">
+            <h3 class="amornxjejd">...</h3>
+            <p>Ver próximas actualizaciones</p>
+          </div>
+          
+        </div>
+        <script>
+  //fetch("https://raw.githubusercontent.com/trezhywinks/em-si/refs/heads/main/api/package.json")
+ //   .then(res => res.json())
+   // .then(data => {
+  //    const container = document.getElementById("kxkenckf");
+  //    const ksmendnd = document.getElementById("ksmendnd");
+//const amornxjejd = document.getElementById("amornxjejd");
+      
+     // data.data.forEach((user, index) => {
+      //  ksmendnd.src = user.imagem;
+   //     amornxjejd.innerText = user.name;
+        
+        //     setTimeout(() => {
+        //    div.classList.add("show");
+        //   }, index * 250); 
+    //  });
+ //   })
+    
+ </script>
+      </div>
+      <br>
+    
+      <style>
+.item {
+  display: flex;
+  padding-left: 10px;
+  width: 100%;
+  z-index: 9;
+  margin-bottom: 15px;
+  
+  opacity: 0;
+  transform: translateX(-120px);
+  transition: all 0.6s ease;
+}
+
+.item.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+      </style>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const items = document.querySelectorAll("#kxkenckf .item");
+    
+    items.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add("show");
+      }, index * 250);
+    });
+  });
+</script>
+    </div>
+    
+    <div class="suport">
+      <div class="mxjsnxnd">
+      <br>
+      <br>
+      <div style="display: none;" class="banner-suport">
+        <!--img src="./1DB25C7F-91CE-4B2E-AE18-28724BB55A80.gif" width="100%"/-->
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="pint">
+      <div class="convers" style="display: flex; padding: 10px;">
+      <div class="clow">
+     <img class="kdnendnd" src="https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_5110.jpeg" width="40" height="40" style="border-radius: 100px;"/>
+      </div>
+      <div class="namesclow" style="margin-left: 5px;">
+       <p class="kskend" style="color:#fff;">...</p> 
+       <p>verificado</p>
+      </div>
+      </div>
+      <div class="sedqa">
+        <h2 style="color: #6D6D6D;">└</h2>
+      </div>
+      <div class="shows">
+      <div class="balions">
+       <img src="./IMG_5047.jpeg" style="border-top-right-radius: 10px; border-top-left-radius: 10px;" width="100%"/>
+      </div>
+      <div class="dclow" style="padding: 5px;">
+      <span>FourDeep- web</span>
+      <p>Próxima actualización próximamente, se añadirán correcciones de errores, ediciones y nuevas características</p>
+     </div>
+      </div>
+      </div>
+      <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+    
+</div>
+      <div class="recbottom">
+        <br>
+        <p style="font-size: 15px;">Solo FourDeep puede enviar mensajes.</p>
+      </div>
+      </div>
+      
+          <div class="suport-for">
+      <div class="mxjsnxnd">
+        <br>
+        <br>
+        <div style="display: none;" class="banner-suport">
+          <!--img src="./1DB25C7F-91CE-4B2E-AE18-28724BB55A80.gif" width="100%"/-->
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="chating" style=""></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div class="pint" hidden>
+          <div class="convers" style="display: flex; padding: 10px;">
+            <div class="clow">
+              <img class="ksmendnd" src="https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_5110.jpeg" width="40" height="40" style="border-radius: 100px;" />
+            </div>
+            <div class="namesclow" style="margin-left: 5px;">
+              <p class="amornxjejd" style="color:#fff;">...</p>
+              <p>verificado</p>
+            </div>
+          </div>
+          <div class="sedqa">
+            <h2 style="color: #6D6D6D;">└</h2>
+          </div>
+          <div class="shows">
+            <div class="balions">
+              <img class="kio" src="./IMG_5047.jpeg" style="border-top-right-radius: 10px; border-top-left-radius: 10px;" width="100%" />
+            </div>
+            <br>
+            <div class="dclow" style="padding: 5px;">
+              <span>FourDeep- web</span>
+              <p>Me desculpa mas nao posso ajudar</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+      </div>
+      <div class="recbottom-for">
+        <br>
+        <div class="inoxjeb">
+        <textarea class="textware"></textarea>  
+        </div>
+        <button class="mxnenfn">
+          <ion-icon style="color: #fff; width:30px; height: 30px;" name="send"></ion-icon>
+        </button>
+      </div>
+      <stule></stule>
+<script>
+
+fetch("https://raw.githubusercontent.com/trezhywinks/em-si/refs/heads/main/api/package.json")
+  .then(res => res.json())
+  .then(data => {
+ const user1 = data.data[0]; 
+
+
+  const botao = document.querySelector(".mxnenfn");
+  const textarea = document.querySelector(".textware");
+  const chating = document.getElementById("chating");
+  
+  botao.addEventListener("click", enviarMensagem);
+  
+  function enviarMensagem() {
+    const texto = textarea.value.trim();
+    if (texto === "") return;
+    
+    criarMensagem(texto, true);
+    textarea.value = "";
+    
+    //setTimeout(() => {
+    //  const digitando = criarDigitando();
+   // }, 500);
+
+      setTimeout(() => {
+       // digitando.remove();
+        criarMensagem("Lo siento, no puedo ayudarte ahora, tal vez el año que viene", false, "IMG_5086.jpeg");
+      }, 2000);
+      
+  }
+  
+
+//const mostrarDataHora = () => {
+    //const agora = new Date();
+    //return agora.toLocaleDateString('pt-BR') + " - " + agora.toLocaleTimeString('pt-BR');
+//  };
+
+  //console.log(mostrarDataHora());
+  
+   // const dataHora = () => {
+    const agora = new Date();
+
+    const dia = String(agora.getDate()).padStart(2, '0');
+    const mes = String(agora.getMonth() + 1).padStart(2, '0');
+    const ano = agora.getFullYear();
+
+    const hora = String(agora.getHours()).padStart(2, '0');
+    const minuto = String(agora.getMinutes()).padStart(2, '0');
+
+    const ahora = `${dia}/${mes}/${ano} • ${hora}:${minuto}`;
+ 
+
+  
+  // função para criar uma mensagem (balão completo)
+  function criarMensagem(texto, usuario, imagem = null) {
+    const nova = document.createElement("div");
+    nova.classList.add("pint");
+    
+    // Convers
+    const convers = document.createElement("div");
+    convers.className = "convers";
+    convers.style.display = "flex";
+    convers.style.padding = "10px";
+    
+    const clow = document.createElement("div");
+    clow.className = "clow";
+    
+    const img = document.createElement("img");
+    img.className = "ksmendnd";
+    img.src = usuario? "IMG_4994.jpeg": user1.imagem;
+    img.width = 40;
+    img.height = 40;
+    img.style.borderRadius = "100px";
+    clow.appendChild(img);
+    
+    const names = document.createElement("div");
+    names.className = "namesclow";
+    names.style.marginLeft = "5px";
+    
+    const nome = document.createElement("p");
+    nome.className = "amornxjejd";
+    nome.style.color = "#fff";
+    nome.textContent = usuario ? "Você" : user1.name;
+    
+    
+    const verificado = document.createElement("p");
+    verificado.textContent = usuario ? ahora :  "verificado";
+    
+    names.appendChild(nome);
+    names.appendChild(verificado);
+    
+    convers.appendChild(clow);
+    convers.appendChild(names);
+    
+    // Setinha do balão
+    const sedqa = document.createElement("div");
+    sedqa.className = "sedqa";
+    const h2 = document.createElement("h2");
+    h2.style.color = "#6D6D6D";
+    h2.textContent = "└";
+    sedqa.appendChild(h2);
+    
+    // Shows (imagem + texto)
+    const shows = document.createElement("div");
+    shows.className = "shows";
+    
+if (imagem) {
+  const balions = document.createElement("div");
+  balions.className = "balions";
+  
+  const imgBal = document.createElement("img");
+  imgBal.src = imagem;
+  imgBal.style.borderTopRightRadius = "10px";
+  imgBal.style.borderTopLeftRadius = "10px";
+  imgBal.style.width = "100%"; // corrigido
+  
+  imgBal.onerror = function() {
+    console.log("Erro ao carregar imagem:", imagem);
+    alert("erro");
+  };
+  
+  balions.appendChild(imgBal);
+  shows.appendChild(balions);
+  //shows.appendChild(document.createElement("br"));
+}
+    
+    const dclow = document.createElement("div");
+    dclow.className = "dclow";
+    dclow.style.padding = "5px";
+    
+    const span = document.createElement("span");
+    span.textContent = "";
+    
+    const p = document.createElement("p");
+    p.className = "jejdd";
+    adicionarTextoComLinks(p, texto); 
+    
+    dclow.appendChild(span);
+    dclow.appendChild(p);
+    shows.appendChild(dclow);
+ 
+    nova.appendChild(convers);
+    nova.appendChild(sedqa);
+    nova.appendChild(shows);
+    
+    chating.appendChild(nova);
+const rolou = scrollParaBaixo();
+
+if (rolou) {
+}
+  }
+  
+  function adicionarTextoComLinks(elemento, texto) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const partes = texto.split(urlRegex);
+    
+    partes.forEach(parte => {
+      if (urlRegex.test(parte)) {
+        const link = document.createElement("a");
+        link.href = parte;
+        link.textContent = parte;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.style.color = "#4da6ff";
+        link.style.textDecoration = "underline";
+        elemento.appendChild(link);
+      } else {
+        elemento.appendChild(document.createTextNode(parte));
+      }
+    });
+  }
+  
+
+function scrollParaBaixo() {
+  // tolerância de 50px para considerar "final do chat"
+  const scrollProximoDoFim = chating.scrollHeight - chating.scrollTop - chating.clientHeight < 30;
+  
+  if (scrollProximoDoFim) {
+    chating.scrollTo({ top: chating.scrollHeight, behavior: 'smooth' });
+    return true; // sinaliza que rolou para baixo
+  }
+  return false; // usuário não estava no fim, não rolou
+}
+
+  // "Digitando..." animado
+  function criarDigitando() {
+    const digitando = document.createElement("div");
+    digitando.classList.add("pint");
+    
+    digitando.innerHTML = `
+    <div class="sedqa"><h2 style="color: #6D6D6D;">└</h2></div>
+    <div class="shows">
+      <div class="dclow" style="padding: 10px;">
+        <div class="typing">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  `;
+    
+  //  chating.appendChild(digitando);
+//scrollParaBaixo();
+ chating.appendChild(digitando);
+const rolou = scrollParaBaixo(); // só rola se usuário estiver no final
+    
+    return digitando;
+  }
+  })
+  .catch(err => console.error("Erro ao carregar usuários:", err));
+
+</script>    </div>
+        <script>
+    fetch("https://raw.githubusercontent.com/trezhywinks/em-si/refs/heads/main/api/package.json")
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("kxkenckf");
+    const dsfor = document.querySelector(".ds-for");
+    const dsver = document.querySelector(".ds-ver");
+    const dslike = document.querySelector(".ds-like");
+    const dsbio = document.querySelector(".ds-bio");
+    const ksmendnd = document.querySelectorAll(".ksmendnd");
+    const amornxjejd = document.querySelectorAll(".amornxjejd");
+    const kdnendnd = document.querySelectorAll(".kdnendnd");
+    const kskend = document.querySelectorAll(".kskend");
+    const banner_top = document.querySelector(".banner-for");
+   
+    const user1 = data.data[0]; 
+    const user2 = data.data[1]; 
+dsver.dataset.value = user1.vizu;
+dsfor.dataset.value = user1.projetos;
+dslike.dataset.value = user1.curtidas;
+dsbio.innerText = user1.bio;
+
+   kskend.forEach(el => {
+  el.innerText = user2.name;
+});
+
+if (banner_top) {
+  banner_top.style.backgroundImage = `url(${user1.banner})`;
+}
+
+ksmendnd.forEach(el => {
+ el.src = user1.imagem;
+});
+
+amornxjejd.forEach(el => {
+ el.innerText = user1.name;
+
+});
+kdnendnd.forEach(el => {
+ el.src = user2.imagem;
+
+});
+
+class NumberFormatter {
+  static format(num) {
+    if (num >= 1_000_000_000) {
+      return Math.floor(num / 1_000_000_000) + "B";
+    }
+    
+    if (num >= 1_000_000) {
+      return Math.floor(num / 1_000_000) + "M";
+    }
+    
+    if (num >= 1_000) {
+      return Math.floor(num / 1_000) + "K";
+    }
+    
+    return num.toString();
+  }
+}
+
+document.querySelectorAll(".ds").forEach(el => {
+  const value = parseInt(el.dataset.value);
+  el.textContent = NumberFormatter.format(value);
+ 
+});
+  })
+  .catch(err => console.error("Erro ao carregar usuários:", err));
+
+  </script>
+    <script>
+    document.querySelector(".backtop").addEventListener("click", () => {
+      document.querySelector(".rectop").classList.toggle("ativo");
+     // document.querySelector(".rectop-for").classList.toggle("ativo");
+      document.querySelector(".top").style.display = "flex";
+      document.querySelector(".flexd").style.display = "flex";
+      document.querySelector(".recbottom").style.display = "none";
+      document.querySelector(".top").classList.toggle("ativo");
+      if (document.querySelector(".suport-deep").classList.contains("ativo")) {
+    document.querySelector(".suport-deep").classList.toggle("ativo");
+}
+
+if (document.querySelector(".suport").classList.contains("ativo")) {
+    document.querySelector(".suport").classList.toggle("ativo");
+}
+
+
+    } );
+    
+    document.querySelector(".backtop-for").addEventListener("click", () => {
+      document.querySelector(".rectop-for").classList.toggle("ativo");
+      document.querySelector(".top").style.display = "flex";
+      document.querySelector(".flexd").style.display = "flex";
+      document.querySelector(".recbottom-for").style.display = "none";
+      document.querySelector(".top").classList.toggle("ativo");
+if (document.querySelector(".suport-for").classList.contains("ativo")) {
+    document.querySelector(".suport-for").classList.toggle("ativo");
+}
+
+if (document.querySelector(".suport-deep-for").classList.contains("ativo")) {
+    document.querySelector(".suport-deep-for").classList.toggle("ativo");
+}
+
+    } );
+
+    
+    
+      document.getElementById("floes").addEventListener("click", () =>{
+      document.querySelector(".rectop").classList.toggle("ativo");
+      document.querySelector(".suport").classList.toggle("ativo");
+      document.querySelector(".flexd").style.display = "none";
+      document.querySelector(".recbottom").style.display = "inline";
+      document.querySelector(".top").classList.toggle("ativo");
+     
+      } );
+      document.getElementById("for-bem").addEventListener("click", () =>{
+      document.querySelector(".rectop-for").classList.toggle("ativo");
+      document.querySelector(".suport-for").classList.toggle("ativo");
+      document.querySelector(".flexd").style.display = "none";
+      document.querySelector(".recbottom-for").style.display = "flex";
+      document.querySelector(".top").classList.toggle("ativo");
+     
+      } );
+
+    </script>
+     
+<div class="gamesd">
+    <div class="endnrn">
+        <style>
+    .endnrn{
+      display: flex;
+      width: 90%;
+      padding: 8px;
+      justify-content: center;
+      margin: 0 auto 10px;
+    }
+    
+    .gamesd{
+      text-align: center;
+      display: none;
+      padding: 10px;
+    }
+    
+    .mekdnrf{
+      text-align: center;
+      width: 90%;
+      margin: 0 auto 10px;
+    }
+    .viral {
+      padding: 8px;
+      background: #121212;
+      color: #fff;
+      font-size: 17px;
+      width: 100%;
+      border-radius: 5px;
+      height: 110px;
+    }
+    .digites-algo{
+      margin: 10px;
+      text-align: left;
+    }
+    .fierrof{
+      text-align: center;
+    }
+    .mdeknfnr{
+      padding: 8px 40px;
+      width: 90%;
+      font-size: 17px;
+      border-radius: 5px;
+      color: #000;
+      background: #3193e4;
+      border: none;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+  </style>
+    <div class="fierrof">
+      <label for="figendnr">
+   <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5138.png" class="dkjejff" width="140" height="140" />
+   <video class="dkjejff-video" controls style="display:none;" width="140" height="140"></video>
+   <p style="color: #3193e4;">selecionar mídia</p>
+      </label>
+      <input type="file" id="figendnr" hidden accept="video/mp4, image/*"/>
+
+<script>
+  document.getElementById('figendnr').addEventListener('change', function(event) {
+    const imgPreview = document.querySelector('.dkjejff');
+    const videoPreview = document.querySelector('.dkjejff-video');
+    const file = event.target.files[0];
+    
+    if (file) {
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        if (file.type.startsWith('image/')) {
+          imgPreview.src = e.target.result;
+          imgPreview.style.display = "block";
+          videoPreview.style.display = "none";
+        }
+        else if (file.type === "video/mp4") {
+          videoPreview.src = e.target.result;
+          videoPreview.style.display = "block";
+          imgPreview.style.display = "none";
+        }
+      };
+      
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+    </div>
+    <div class="digites-algo">
+      <label for="viral">Título da mídia</label><br>
+     <textarea name="" cols="" rows="" class="viral" id="viral" type="text">
+     </textarea>
+    </div>
+   </div>
+   <div class="mekdnrf">
+   <p>Sus medios se publicarán en el mundo tan pronto como haga clic en el botón  </p>
+  <button class="mdeknfnr">Publicar Mídia</button>
+   </div>
+
+  </div>
+  
+  <div class="homeclick">
+    <style>
+      .usermamxmd{
+       display: flex;
+       margin: 10px;
+      }
+    .mxmencnf{
+      margin-left: 10px;
+    }
+    .senxmenf{
+      margin-left: 10px;
+    }
+    </style>
+    <div id="api-vid" style="display: none;">
+      <img src="./IMG_4994.jpeg" width="100%"/>
+      <h3 class="senxmenf">Hello user, my video</h3>
+      <div class="usermamxmd">
+        <div class="jdjjdjjd">
+          <img src="./IMG_4994.jpeg" style="border-radius: 100px;" width="45" height="45"/>
+        </div>
+        <div class="mxmencnf">
+          <span>username</span>
+          <p>sab 14 de fev</p>
+        </div>
+      </div>
+    </div>
+  <br>
+  </div>
+  <div class="files">
+  <h2 id="derf">Galeria de Imagens</h2>
+  <p style="font-size: 16px; color: #6D6D6D; margin-left: 10px;">Uma <a style="text-decoration: none; color: #3193e4;" href="https://raw.githubusercontent.com/trezhywinks/api-jpeg/refs/heads/main/data.json">API</a> simples com mais de 100 imagens de garotas aleatórias do <span style=" color: #3193e4;">Pinterest</span></p>
+  <br>
+  <div class="view">
+ <button class="vb" onclick="bv();">ver todas as imagens</button>
+ <button class="url" onclick="vb();">URL</button>
+    </div>
+    <div id="galeria" style="display: none;"></div>
+       <div class="imagem-menos" style="display: none;">
+  <button class="view" style="font-size: 20px; color: #3193e4;">ver menos</button>  
+  </div>
+ <br>
+
+  <h2 id="derf">Makima Cosplay</h2>
+  <p style="font-size: 16px; color: #6D6D6D; margin-left: 10px;">Uma <a style="text-decoration: none; color: #3193e4;" href="https://raw.githubusercontent.com/trezhywinks/API-Makima/refs/heads/main/makima.json">API</a> simples com mais de 100 imagens de Cosplay da Makima & Power</p>
+ <br>
+  <div class="view">
+ <button class="vb" onclick="cv();">ver todas as imagens</button>
+ <button class="url" onclick="vc();">URL</button>
+ </div>
+ 
+  <div id="makima" style="display: none;"></div>
+  <div class="makima-menos" style="display: none;">
+  <button class="view" style="font-size: 20px; color: #3193e4;">ver menos</button>  
+ <br>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div id="overlay" class="overlay"></div>
+     <script>
+   const makinb = document.querySelector(".makima-menos");
+   function vc() {
+     window.location.href = "https://raw.githubusercontent.com/trezhywinks/API-Makima/refs/heads/main/makima.json";
+   }
+   
+     function cv(){
+    document.getElementById("makima").style.display = "inline";
+    document.querySelector(".makima-menos").style.display = "inline";
+    document.getElementById("galeria").style.display = "none";
+    document.querySelector(".imagem-menos").style.display = "none";
+  } 
+  
+  makinb.addEventListener("click", () => {
+    document.getElementById("makima").style.display = "none";
+    document.querySelector(".makima-menos").style.display = "none";
+  });
+  
+    </script>
+    
+ <script>
+   function vb() {
+     window.location.href = "https://raw.githubusercontent.com/trezhywinks/api-jpeg/refs/heads/main/data.json";
+   }
+   
+   function bv() {
+     document.getElementById("makima").style.display = "none";
+     document.querySelector(".imagem-menos").style.display = "inline";
+     document.getElementById("galeria").style.display = "inline";
+     document.querySelector(".makima-menos").style.display = "none";
+   }
+   document.querySelector(".imagem-menos").addEventListener("click", ()  =>{
+     document.querySelector(".imagem-menos").style.display = "none";
+     document.getElementById("galeria").style.display = "none";
+   } )
+ </script>
+  <style>
+  #galeria{
+   text-align: center;
+  }
+  .url{
+    background: #1A6B1B;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 1px;
+    font-size: 17px;
+  }
+  .vb{
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    background: transparent;
+    color: #fff;
+  }
+  .view{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    border: 1px solid #6D6D6D5E;
+    background: #121212;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+  }
+        .imagem-container, .makima-container {
+      display: inline-block;
+      justify-content: center;
+      text-align: center;
+    }
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  display: none;
+}
+.btn-fechar, .btn-fechar-makima {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  background: #fff;
+  border: none;
+  font-size: 20px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dow, .dow-makima{
+  position: fixed;
+top: 20px;
+left: 20px;
+width: 70%;
+z-index: 99999;
+background: #3193e4;
+color: #000;
+letter-spacing: -1px;
+font-weight: 800;
+border: none;
+font-size: 20px;
+padding: 8px 12px;
+cursor: pointer;
+border-radius: 5px;
+text-decoration: none;
+}
+    .trezhy-image, .makima-image{
+     cursor: pointer;
+       height:25vh;
+      border-radius: 20px;
+      width: 180px;
+      margin: 10px;
+      transition: all 0.1s ease-out;
+    }
+    
+    .imagem-ativa, .makima-ativa {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /*transform: translate(-50%, -50%);*/
+  transform: translate(-50%, -50%) scale(1);
+  transition: 0.5s;
+  border-radius: 1px;
+  width: 80%;
+  margin: 0 auto 10px;
+  height: auto;
+  
+  z-index: 1001;
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+
+    #text-image, .makima-text{
+      font-size: 17px;
+    }
+  </style>
+  <script>
+   //https://raw.githubusercontent.com/trezhywinks/API-Makima/refs/heads/main/makima.json
+    fetch("https://raw.githubusercontent.com/trezhywinks/api-jpeg/refs/heads/main/data.json")
+  .then(res => res.json())
+  .then(dados => {
+    const galeria = document.getElementById("galeria");
+    const overlay = document.getElementById("overlay");
+    
+    dados.trezhywinks.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "imagem-container";
+      
+      const img = document.createElement("img");
+      img.src = item.url;
+      img.alt = item.text;
+      img.className = "trezhy-image";
+      
+      const p = document.createElement("p");
+      p.textContent = item.text;
+      p.id = "text-image";
+      
+      img.addEventListener("click", () => {
+  document
+    .querySelectorAll(".imagem-ativa")
+    .forEach(el => el.classList.remove("imagem-ativa"));
+  
+  img.classList.add("imagem-ativa");
+  overlay.style.display = "block";
+  document.querySelector(".top").style.display = "none";
+  
+  const btn = document.createElement("button");
+  const dow = document.createElement("a");
+  btn.textContent = "✖";
+  btn.className = "btn-fechar";
+ dow.textContent = "Salvar";
+dow.className = "dow";
+dow.download 
+dow.href = item.url;
+  btn.addEventListener("click", () => {
+    img.classList.remove("imagem-ativa");
+    overlay.style.display = "none";
+    document.querySelector(".top").style.display = "flex";
+    btn.remove();
+    dow.remove();
+  });
+  
+  document.body.appendChild(btn);
+  document.body.appendChild(dow);
+});
+     
+      div.appendChild(img);
+      div.appendChild(p);
+      galeria.appendChild(div);
+    });
+  })
+  .catch(err => console.error("Erro ao carregar imagens:", err));
+  
+  // API da Makima
+fetch("https://raw.githubusercontent.com/trezhywinks/API-Makima/refs/heads/main/makima.json")
+  .then(res => res.json())
+  .then(dados => {
+    const galeriaMakima = document.getElementById("makima");
+    const overlayMakima = document.getElementById("overlay");
+    
+    dados.makima.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "makima-container";
+      
+      const img = document.createElement("img");
+      img.src = item.imagem;
+      img.alt = item.text || "Makima";
+      img.className = "makima-image";
+      
+      const p = document.createElement("p");
+      p.textContent = item.text || "Makima";
+      p.className = "makima-text";
+      
+      img.addEventListener("click", () => {
+        document
+          .querySelectorAll(".makima-ativa")
+          .forEach(el => el.classList.remove("makima-ativa"));
+        
+        img.classList.add("makima-ativa");
+        overlayMakima.style.display = "block";
+        document.querySelector(".top").style.display = "none";
+        
+        const btn = document.createElement("button");
+        const dow = document.createElement("a");
+        
+        btn.textContent = "✖";
+        btn.className = "btn-fechar-makima";
+        
+        dow.textContent = "Salvar";
+        dow.className = "dow-makima";
+        dow.href = item.imagem;
+        dow.download = "makima.webp";
+        
+        btn.addEventListener("click", () => {
+          img.classList.remove("makima-ativa");
+          overlayMakima.style.display = "none";
+          document.querySelector(".top").style.display = "flex";
+          btn.remove();
+          dow.remove();
+        });
+        
+        document.body.appendChild(btn);
+        document.body.appendChild(dow);
+      });
+      
+      div.appendChild(img);
+      div.appendChild(p);
+      galeriaMakima.appendChild(div);
+    });
+  })
+  .catch(err => console.error("Erro ao carregar Makima:", err));
+  </script>
+  </div>
+</div>
+<script>
+//clicks
+  const gale = document.getElementById("gale");
+  const removc = document.querySelector(".top");
+  const redf = document.querySelector(".re");
+  const reds = document.querySelector(".clicks");
+  const ho = document.getElementById("home");
+  const game = document.getElementById("game");
+  const chat = document.getElementById("chat");
+  const chati = document.querySelector(".chat");
+  const files = document.querySelector(".files");
+  const games = document.querySelector(".gamesd");
+  const hclick = document.querySelector(".homeclick");
+  const contro = document.querySelector(".contro");
+  const leaf = document.querySelector(".leaf");
+  const leas = document.querySelector(".leas");
+  const j1 = document.querySelector(".j1");
+  const j2 = document.querySelector(".j2");
+  const j3 = document.querySelector(".j3");
+  const j4 = document.querySelector(".j4");
+  const j5 = document.querySelector(".j5");
+const seri = document.querySelector(".server");
+const sparkles = document.querySelector(".sparkles");
+const xc = document.getElementById("xc");
+
+  
+  gale.addEventListener("click", () => {
+    document.querySelector(".initchat").style.display = "none";
+  document.querySelector(".conn").style.display = "none";
+    document.querySelector(".slider").style.display = "none";
+document.querySelector(".lines").style.display = "flex";
+gale.style.color = "#fff";
+j3.style.color = "#fff";
+leas.name = "library";
+leas.style.color = "#fff";
+chati.name = "chatbubbles-outline";
+chati.style.color = "#6D6D6D";
+j5.style.color = "#6D6D6D";
+
+deidne();
+     } );
+  
+  function deidne(){
+    ho.style.color = "#6D6D6D";
+    game.style.color = "#6D6D6D";
+    files.style.display = "inline";
+    hclick.style.display = "none";
+    games.style.display = "none";
+    contro.name = "add-outline";
+    contro.style.color = "#6D6D6D";
+    j2.style.color = "#6D6D6D";
+    leaf.name = "leaf-outline";
+    leaf.style.color = "#6D6D6D";
+    j1.style.color = "#6D6D6D";
+    j4.style.color = "#6D6D6D";
+    seri.style.display = "none";
+    removc.style.display = "flex";
+    redf.style.display = "inline";
+    sparkles.name = "sparkles-outline";
+sparkles.style.color = "#6D6D6D";
+    reds.style.display = "inline";
+
+  }
+  
+    ho.addEventListener("click", () => {
+    gale.style.color = "#6D6D6D";
+    ho.style.color = "#fff";
+    game.style.color = "#6D6D6D";
+    files.style.display = "none";
+    hclick.style.display = "inline";
+    games.style.display = "none";
+    contro.name = "add-outline";
+    contro.style.color = "#6D6D6D";
+    j2.style.color = "#6D6D6D";
+    leaf.name = "leaf";
+    leaf.style.color = "#fff";
+    leas.name = "library-outline";
+    j3.style.color = "#6D6D6D";
+    j1.style.color = "#fff";
+    leas.style.color = "#6D6D6D";
+    j4.style.color = "#6D6D6D";
+    seri.style.display = "none";
+    removc.style.display = "flex";
+    redf.style.display = "inline"
+sparkles.name = "sparkles-outline";
+sparkles.style.color = "#6D6D6D";
+chati.name = "chatbubbles-outline";
+    j5.style.color = "#6D6D6D";
+    chati.style.color = "#6D6D6D";
+document.querySelector(".lines").style.display = "flex";
+document.querySelector(".slider").style.display = "block";
+    document.querySelector(".conn").style.display = "none";
+    document.querySelector(".initchat").style.display = "none";
+
+    //files.classList.toggle("ativo");
+  });
+      game.addEventListener("click", () => {
+      gale.style.color = "#6D6D6D";
+      ho.style.color = "#6D6D6D";
+      game.style.color = "#fff";
+      files.style.display = "none";
+      hclick.style.display = "none";
+      games.style.display = "inline";
+      contro.name = "add";
+      contro.style.color = "#fff";
+      j2.style.color = "#fff";
+    leaf.name = "leaf-outline";
+    leas.name = "library-outline";
+    j3.style.color = "#6D6D6D";
+    leas.style.color = "#6D6D6D";
+    j1.style.color = "#6D6D6D";
+    leaf.style.color = "#6D6D6D";
+    j4.style.color = "#6D6D6D";
+    seri.style.display = "none";
+    removc.style.display = "flex";
+    redf.style.display = "inline";
+    sparkles.name = "sparkles-outline";
+    sparkles.style.color = "#6D6D6D";
+    chati.name = "chatbubbles-outline";
+    chati.style.color = "#6D6D6D";
+    j5.style.color = "#6D6D6D";
+    document.querySelector(".lines").style.display = "flex";
+    document.querySelector(".conn").style.display = "none";
+    document.querySelector(".slider").style.display = "none";
+    document.querySelector(".initchat").style.display = "none";
+
+
+    });
+  xc.addEventListener("click", () => {
+  seri.style.display = "inline";
+  sparkles.name = "sparkles";
+  sparkles.style.color = "#fff";
+  j4.style.color = "#fff";
+  gale.style.color = "#6D6D6D";
+ho.style.color = "#6D6D6D";
+game.style.color = "#6D6D6D";
+files.style.display = "none";
+hclick.style.display = "none";
+games.style.display = "none";
+contro.name = "add-outline";
+contro.style.color = "#6D6D6D";
+j2.style.color = "#6D6D6D";
+leaf.name = "leaf-outline";
+leaf.style.color = "#6D6D6D";
+leas.name = "library-outline";
+j3.style.color = "#6D6D6D";
+j1.style.color = "#6D6D6D";
+leas.style.color = "#6D6D6D";
+removc.style.display = "none";
+    redf.style.display = "none";
+    chati.name = "chatbubbles-outline";
+    chati.style.color = "#6D6D6D";
+    j5.style.color = "#6D6D6D";
+    document.querySelector(".initchat").style.display = "none";
+});
+
+  chat.addEventListener("click", () => {
+    abrirChat();
+   // document.querySelector(".initchat").style.display = "inline";
+    document.querySelector(".lines").style.display = "none";
+    document.querySelector(".conn").style.display = "inline";
+  seri.style.display = "none";
+  chati.style.color = "#fff";
+  chati.name = "chatbubbles";
+  j5.style.color = "#fff";
+  sparkles.name = "sparkles-outline";
+  sparkles.style.color = "#6D6D6D";
+  j4.style.color = "#6D6D6D";
+  gale.style.color = "#6D6D6D";
+ho.style.color = "#6D6D6D";
+game.style.color = "#6D6D6D";
+files.style.display = "none";
+hclick.style.display = "none";
+games.style.display = "none";
+contro.name = "add-outline";
+contro.style.color = "#6D6D6D";
+j2.style.color = "#6D6D6D";
+leaf.name = "leaf-outline";
+leaf.style.color = "#6D6D6D";
+leas.name = "library-outline";
+j3.style.color = "#6D6D6D";
+j1.style.color = "#6D6D6D";
+leas.style.color = "#6D6D6D";
+removc.style.display = "flex";
+    redf.style.display = "none";
+
+});
+
+function abrirChat() {
+  const chat = document.getElementById("kxkenckf");
+  chat.style.display = "block";
+
+  const items = chat.querySelectorAll(".item");
+
+  items.forEach((item, index) => {
+    item.classList.remove("show");
+
+    setTimeout(() => {
+      item.classList.add("show");
+    }, index * 300);
+  });
+}
+
+
+document.querySelector(".perfs").addEventListener("click", () => {
+  document.querySelector(".initchat").style.display = "none";
+  seri.style.display = "inline";
+  j5.style.color = "#6D6D6D";
+sparkles.name = "sparkles";
+chati.name = "chatbubbles-outline";
+    chati.style.color = "#6D6D6D";
+sparkles.style.color = "#fff";
+j4.style.color = "#fff";
+gale.style.color = "#6D6D6D";
+ho.style.color = "#6D6D6D";
+game.style.color = "#6D6D6D";
+files.style.display = "none";
+hclick.style.display = "none";
+games.style.display = "none";
+contro.name = "add-outline";
+contro.style.color = "#6D6D6D";
+j2.style.color = "#6D6D6D";
+leaf.name = "leaf-outline";
+leaf.style.color = "#6D6D6D";
+leas.name = "library-outline";
+j3.style.color = "#6D6D6D";
+j1.style.color = "#6D6D6D";
+leas.style.color = "#6D6D6D";
+removc.style.display = "none";
+redf.style.display = "none";
+if (ver.classList.contains("ativo")) {
+  ver.classList.remove("ativo");
+  lines.classList.toggle("ativo");
+}
+} );
+  
+</script>
+
+  </div>
+  <script>
+  const likeBtn = document.getElementById('like');
+  const likeIcon = document.getElementById('likeIcon');
+  const likeCount = document.getElementById('ds');
+  
+  const likeKey = 'userLiked';
+  
+  if (localStorage.getItem(likeKey)) {
+    likeIcon.setAttribute('name', 'heart');
+    likeIcon.style.color = '#e63946';
+  }
+  
+  likeBtn.addEventListener('click', () => {
+    if (localStorage.getItem(likeKey)) return;
+    
+    localStorage.setItem(likeKey, 'true');
+    
+    likeIcon.setAttribute('name', 'heart');
+    likeIcon.style.color = '#e63946';
+    
+    let currentLikes = parseInt(likeCount.innerText.replace(' K', ''));
+    likeCount.innerText = (currentLikes + 1) + ' K';
+  });
+</script>
+  <div class="cc"></div>
+  <div id="kxkenckf"></div>
+<script>
+  //const user_gg = localStorage.getItem("nomeUsuario");
+  //alert(`Bem-Vindo ${user_gg}`);
+  
+const user_gg = localStorage.getItem("nomeUsuario");
+
+const url = "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/users.json";
+
+fetch(url)
+  .then(response => {
+    if (!response.ok) throw new Error("Erro ao carregar JSON");
+    return response.json();
+  })
+  .then(data => {
+    // Procurando o usuário pelo nome
+    const usuario = data.data.find(u => u.name === user_gg);
+    const gitname = document.querySelector(".git-name");
+    const gitbio = document.querySelector(".git-bio");
+    const sedq = document.querySelector(".sedq");
+    const gitimg = document.querySelector(".git-imagem");
+    const bani = document.querySelector(".banner");
+    
+    if (usuario) {
+      //alert(`Bem-vindo ${usuario.name}! Você tem ${usuario.seguidores} seguidores.`);
+     // console.log("Bio:", usuario.bio);
+      //console.log("GitHub:", usuario.links.github);
+      gitbio.innerText = usuario.bio;
+      gitname.innerText = usuario.name;
+      gitimg.src = usuario.imagem;
+      sedq.innerText = usuario.name;
+      bani.style.backgroudnImagem = `url(${usuario.banner})`
+
+    } else {
+      alert("Usuário não encontrado.");
+    }
+  })
+  .catch(error => {
+    console.error("Erro ao buscar os dados:", error);
+  });
+</script>  
+</body>
+
+</html>
