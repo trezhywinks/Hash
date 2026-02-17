@@ -21,8 +21,7 @@
   <link rel="icon" href="nay_cat.gif" type="image/x-icon">
 
   <link rel="stylesheet" href="trezhy.css">
-     <link rel="manifest" href="manifest.json">
- <title>FourDeep</title>
+  <title>FourDeep</title>
 </head>
 
 <style>
@@ -87,19 +86,15 @@ font-weight: 500;
         margin-left: -7px;
       }
     </style>
-    <br>
     <img src="https://raw.githubusercontent.com/trezhywinks/Winks/refs/heads/main/IMG_4994.jpeg" style="margin-top: -40px; border: 5px solid #101010;" id="gin" width="90" height="90"/>
     <!--img src="./IMG_0871.jpeg" id="gin" style="border-radius: 100px; margin: 10px; width: 70px; height: 70px;"-->
     <br>
     <div class="sif">
       <div class="op">
     <h4 class="h4" style="display: flex;">Bem-vindo ao FourDeep</h4></div>
-    <br>
- <div class="op" id="myfiles"></div>
+    <div class="op" id="myfiles"></div>
     </div>
   </div>
-      <p id="msg" style="font-size: 13px; margin:5px; color:red;"></p>
-  
   <div class="pain">
 <div class="login">
 <div class="lab"><label id="nick">Nickname</label></div>
@@ -293,33 +288,21 @@ const sing = document.querySelector('.entrar');
     document.querySelector('.criar').addEventListener('click', () => {
         h4.style.opacity = "0.6";
         h4.innerText = "Tente mais tarde";
-  //create.style.transform = "translateY(-390px)";
-  //  create.style.transition = "0.5s";
-  //lop.style.transform = "translateY(0px)";
   lop.style.transition = "2s";
   rem.style.display = "none";
-  //setTimeout(remov, 400);
   sing.style.display = "inline";
       create.classList.toggle("ativo");
       lop.classList.toggle("ativo");
     });
 
 document.querySelector('.entrar').addEventListener('click', () => {
-  //setTimeout(black, 600)
   h4.style.opacity = "0.6";
   h4.innerText = "Bem-vindo ao FourDeep";
-  //create.style.transform = "translateY(-390px)";
-//  create.style.transition = "0.5s";
-  //lop.style.transform = "translateY(0px)";
   lop.style.transition = "2s";
    rem.style.display = "inline";
- // setTimeout(remov, 400);
   sing.style.display = "none";
   lop.classList.toggle("ativo");
   create.classList.toggle("ativo");
-
-  //lop.style.display = "inline"
-
 });
     
 
@@ -371,9 +354,10 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     
     const html = await res.text();
 //    document.getElementById("loginBtn").style.display = "none";
-   document.getElementById("msg").style.display = "none";
+    document.getElementById("msg").style.display = "none";
     //document.getElementById("dashboard").style.display = "block";
     //document.getElementById("dashboard").innerHTML = html;
+    localStorage.setItem("nomeUsuario", username);
     window.location.href = "/u"
   } catch (err) {
     document.getElementById("msg").innerText = "Erro no servidor";
