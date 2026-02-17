@@ -48,7 +48,7 @@ app.post("/api/login", (req, res) => {
 
 // Rota protegida para dashboard
 app.get("/u", checkAuth, (req, res) => {
-    const dashboardPath = path.join(__dirname, "u/dashboard.html");
+    const dashboardPath = path.join(__dirname, "u/index.html");
     res.sendFile(dashboardPath);
 });
 
