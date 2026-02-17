@@ -335,7 +335,7 @@ document.querySelector('.entrar').addEventListener('click', () => {
 <script src="main_java_cat.js"></script>
 </div>
 <script>
-document.getElementById("loginBtn").addEventListener("click", async () => {
+ document.getElementById("loginBtn").addEventListener("click", async () => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
   
@@ -346,23 +346,27 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
       body: JSON.stringify({ username, password })
     });
     
-    if (!res.ok) {
-      const err = await res.json();
-      document.getElementById("msg").innerText = err.error;
-      return;
-    }
+    //if (!res.ok) {
+   //   const err = await res.json();
+    //  document.getElementById("msg").innerText = err.error;
+   //   return;
+  //  }
+    
+    if (res.ok) {
+  localStorage.setItem("nomeUsuario", username);
+  window.location.href = "/u";
+} else {
+  const err = await res.json();
+  document.getElementById("msg").innerText = err.error;
+}
     
     const html = await res.text();
-//    document.getElementById("loginBtn").style.display = "none";
     document.getElementById("msg").style.display = "none";
-    //document.getElementById("dashboard").style.display = "block";
-    //document.getElementById("dashboard").innerHTML = html;
-    localStorage.setItem("nomeUsuario", username);
-    window.location.href = "/u"
   } catch (err) {
     document.getElementById("msg").innerText = "Erro no servidor";
   }
 });
+
 </script>
 </body>
 </html>
