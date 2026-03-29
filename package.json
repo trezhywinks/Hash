@@ -4,7 +4,8 @@
   "description": "Exemplo de login protegido com Node.js, Express e bcrypt",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "ws": "node ws.js"
   },
   "keywords": [
     "login",
