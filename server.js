@@ -145,4 +145,8 @@ app.get("/logout", (req, res) => {
     res.redirect("/index.html");
 });
 
-app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
+server.listen(PORT, () => {
+    console.log(`Rodando na porta ${PORT}`);
+});
+
+//app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
