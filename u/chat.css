@@ -262,9 +262,9 @@ z-index: 44;
          text-align: center;
        }
        .sertrezhy {
-  opacity: 0;
+ /* opacity: 0;
   transform: translateY(15px);
-  animation: aparecerUser 0.4s ease forwards;
+  animation: aparecerUser 0.4s ease forwards;*/
 }
 
 @keyframes aparecerUser {
