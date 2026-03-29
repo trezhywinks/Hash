@@ -1,6 +1,6 @@
 const WebSocket = require("ws");
 
-const wss = new WebSocket.Server({ port: 3000 });
+const wss = new WebSocket.Server({ port: 9090 });
 
 let online = 0;
 
@@ -26,4 +26,4 @@ function broadcast() {
   });
 }
 
-console.log("Servidor rodando na porta 3000");
+console.log("Servidor rodando na porta 9090");
