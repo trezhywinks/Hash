@@ -6,9 +6,41 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const http = require("http");
+const WebSocket = require("ws");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+
+const server = http.createServer(app);
+
+
+const wss = new WebSocket.Server({ server });
+
+let online = 0;
+
+wss.on("connection", (ws) => {
+    online++;
+    console.log("Online:", online);
+    broadcast();
+
+    ws.on("close", () => {
+        online--;
+        console.log("Online:", online);
+        broadcast();
+    });
+});
+
+function broadcast() {
+    const data = JSON.stringify({ online });
+
+    wss.clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(data);
+        }
+    });
+}
+
 
 app.use(cors());
 app.use(bodyParser.json());
