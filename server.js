@@ -61,6 +61,32 @@ function checkAuth(req, res, next) {
     }
 }
 
+const GITHUB_JSON = "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/users.json";
+
+app.post("/check-user", async (req, res) => {
+  const { nome } = req.body;
+
+  try {
+    const response = await fetch(GITHUB_JSON);
+    const json = await response.json();
+
+
+    const existe = json.users.find(u => 
+      u.nome.toLowerCase() === nome.toLowerCase()
+    );
+
+    if (existe) {
+      return res.json({ status: "existe" });
+    }
+
+    return res.json({ status: "ok" });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ status: "erro" });
+  }
+});
+
 app.get("/login", (req, res) => {
     if (req.cookies.username) {
 
