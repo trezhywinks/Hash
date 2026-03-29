@@ -1,5 +1,7 @@
 const express = require("express");
 const fs = require("fs");
+const axios = require("axios");
+const cheerio = require("cheerio");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require('cors');
@@ -56,6 +58,41 @@ app.get("/css", checkAuth, (req, res) => {
     const dashboardPath = path.join(__dirname, "u/chat.css");
     res.sendFile(dashboardPath);
 });
+
+
+app.get("/preview", async (req, res) => {
+  const url = req.query.url;
+
+  if (!url) return res.json({ error: "URL missing" });
+
+  try {
+    const { data } = await axios.get(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0"
+      }
+    });
+
+    const $ = cheerio.load(data);
+
+    const getMeta = (name) =>
+      $(`meta[property="${name}"]`).attr("content") ||
+      $(`meta[name="${name}"]`).attr("content");
+
+    const preview = {
+      title: getMeta("og:title") || $("title").text(),
+      description: getMeta("og:description"),
+      image: getMeta("og:image"),
+      site: getMeta("og:site_name"),
+      url
+    };
+
+    res.json(preview);
+
+  } catch (err) {
+    res.json({ error: "Failed to fetch" });
+  }
+});
+
 
 app.get("/graffity", checkAuth, (req, res) => {
     const dashboardPath = path.join(__dirname, "u/graffity.ttf");
