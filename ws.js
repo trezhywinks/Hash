@@ -1,29 +1,23 @@
-const WebSocket = require("ws");
+import express from "express";
+import http from "http";
+import { WebSocketServer } from "ws";
 
-const wss = new WebSocket.Server({ port: 9090 });
+const app = express();
+const server = http.createServer(app);
 
-let online = 0;
+const wss = new WebSocketServer({ server });
 
 wss.on("connection", (ws) => {
-  online++;
-
-  // envia pra todos
-  broadcast();
-
-  ws.on("close", () => {
-    online--;
-    broadcast();
+  ws.on("message", (msg) => {
+    wss.clients.forEach(client => {
+      if (client.readyState === 1) {
+        client.send(msg.toString());
+      }
+    });
   });
 });
 
-function broadcast() {
-  const data = JSON.stringify({ online });
-
-  wss.clients.forEach(client => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(data);
-    }
-  });
-}
-
-console.log("Servidor rodando na porta 9090");
+const PORT = process.env.PORT || 8080;
+server.listen(PORT, () => {
+  console.log("Rodando na porta", PORT);
+});
