@@ -246,20 +246,27 @@ const int = document.getElementById('nicks').value; if (int) {
 <script>
 document.getElementById("registerForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-  
-  const nome = document.getElementById("nicks").value.trim();
+
+  let nome = document.getElementById("nicks").value.trim();
   const file = document.getElementById("file").files[0];
-  
+
   if (!nome || !file) {
     alert("Preenche tudo 😑");
     return;
   }
-  
+
+  const regex = /^[a-zA-Z0-9_ ]+$/;
+
+  if (!regex.test(nome)) {
+    alert("Nome inválido 😑");
+    return;
+  }
+
   const reader = new FileReader();
-  
+
   reader.onload = async function(ev) {
     const imagemBase64 = ev.target.result;
-    
+
     const res = await fetch("/check-user", {
       method: "POST",
       headers: {
@@ -267,20 +274,20 @@ document.getElementById("registerForm").addEventListener("submit", async functio
       },
       body: JSON.stringify({ nome })
     });
-    
+
     const data = await res.json();
-    
+
     if (data.status === "existe") {
       alert("Esse nome já existe 😑");
       return;
     }
-    
+
     localStorage.setItem("nomeUsuario", nome);
     localStorage.setItem("fotoUsuario", imagemBase64);
-    
+
     window.location.href = "/u";
   };
-  
+
   reader.readAsDataURL(file);
 });
 </script>
