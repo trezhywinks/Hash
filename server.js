@@ -21,15 +21,20 @@ let online = 0;
 
 wss.on("connection", (ws) => {
     online++;
-    console.log("Online:", online);
+
+    console.log("🔥 Entrou:", online);
+
+    ws.send(JSON.stringify({ online }));
+
     broadcast();
 
     ws.on("close", () => {
         online--;
-        console.log("Online:", online);
+        console.log("❌ Saiu:", online);
         broadcast();
     });
 });
+
 
 function broadcast() {
     const data = JSON.stringify({ online });
