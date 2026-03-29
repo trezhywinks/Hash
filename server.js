@@ -57,6 +57,14 @@ app.get("/css", checkAuth, (req, res) => {
     res.sendFile(dashboardPath);
 });
 
+app.get("/graffity", checkAuth, (req, res) => {
+    const dashboardPath = path.join(__dirname, "u/graffity.ttf");
+    res.sendFile(dashboardPath);
+});
+
+
+//graffity.ttf
+
 // Logout
 app.get("/logout", (req, res) => {
     res.clearCookie("username");
