@@ -1,23 +1,16 @@
-import express from "express";
-import http from "http";
 import { WebSocketServer } from "ws";
 
-const app = express();
-const server = http.createServer(app);
-
-const wss = new WebSocketServer({ server });
+const wss = new WebSocketServer({ port: 8080 });
 
 wss.on("connection", (ws) => {
-  ws.on("message", (msg) => {
-    wss.clients.forEach(client => {
+  ws.on("message", (message) => {
+
+
+    wss.clients.forEach((client) => {
       if (client.readyState === 1) {
-        client.send(msg.toString());
+        client.send(message.toString());
       }
     });
-  });
-});
 
-const PORT = process.env.PORT || 8080;
-server.listen(PORT, () => {
-  console.log("Rodando na porta", PORT);
+  });
 });
