@@ -118,7 +118,7 @@ app.get("/u", checkAuth, (req, res) => {
 });
 
 app.get("/salvas", checkAuth, (req, res) => {
-    const dashboardPath = path.join(__dirname, "u/chat.html?id=123");
+    const dashboardPath = path.join(__dirname, "u/chat.html");
     res.sendFile(dashboardPath);
 });
 
