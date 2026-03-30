@@ -70,14 +70,14 @@ app.post("/check-user", async (req, res) => {
     const response = await fetch(GITHUB_JSON);
     const json = await response.json();
 
-
-    const existe = json.users.find(u => 
-      u.nome.toLowerCase() === nome.toLowerCase()
-    );
+      const existe = json?.data?.find(u => 
+  u.name?.toLowerCase() === nome?.toLowerCase()
+);
 
     if (existe) {
       return res.json({ status: "existe" });
     }
+
 
     return res.json({ status: "ok" });
 
