@@ -2,30 +2,63 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+        -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
 }
 
 :root {
   --purple: #9D74FB;
   --ndjejd: #3193e4;
   --dark: #101010;
-  --white: #fff;
   --red: red;
+  --white: #fff;
   --wer: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   
 }
 
+
   .bodyf, body{
     color: var(--white);
-  background: #000;
   font-family: var(--wer);
+  background:#000;
   font-weight: 500;
-  height: 100vh;
+  width: 100vw;
+  overflow-y:scroll;
    /* font-family: Arial, Helvetica, sans-serif;*/
   }
   
-  body{
-    overflow-y:scroll;
-  }
+  
+  body::before{
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: env(safe-area-inset-top);
+  background-color: #0C0C0CDB;
+  /* cor de fundo do seu site */
+  z-index: -1;
+}
+  
+/*body::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top);
+  background: #0C0C0CDB;
+  background: red;
+  backdrop-filter: blur(25px);
+  z-index: -1;
+}
+*/
 
 
 .slaIMG{
@@ -192,6 +225,7 @@ z-index:45;
           height: 40px;
           background: #131313;
           border: none;
+          transition: 0.5s ease-in-out;
         }
         
         .mxnenfnTT, .mxnenfnTTS, .mxnenfn, #start, #stop, #PNG{
@@ -288,13 +322,15 @@ z-index: 44;
   bottom: 0;
   height: 100vh;
   overflow: hidden;
+  box-shadow: inset 100vh 400vh #000000B0;
   background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5604.jpeg");
+
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
-box-shadow: inset 0 100px 100vh #000;
   z-index:20;
 }
+
 .backFir{
   background-size: cover;
   background-position: center center;
@@ -414,19 +450,6 @@ select {
     color: #656565;
   }
 
-  
-  body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: #0C0C0CDB;
-  z-index: 999;
-  display: none;
-}
-  
   .top{
   position: fixed;
   top: 0;
@@ -434,11 +457,8 @@ select {
   right: 0;
   height: 56px;
   background: #000;
-  border-bottom: 1px solid #6D6D6D69;
-  
   min-height: calc(56px + env(safe-area-inset-top));
   padding-top: env(safe-area-inset-top);
-  
   display: flex;
   align-items:center;
   justify-content: space-between;
@@ -446,7 +466,7 @@ select {
   z-index: 30;
 }
 
-.top::before {
+/*.tofp::before {
   content: "";
   position: absolute;
   top: calc(-1 * env(safe-area-inset-top));
@@ -460,10 +480,11 @@ select {
 }
 
 .top.ativo{
-  top: -840px;
+  top: -940px;
   transition: 0.8s;
+  background: transparent;
   z-index: 30;
-}
+}*/
 
 .top.remove{
   top: -840px;
@@ -665,7 +686,7 @@ padding-bottom: calc(10px + env(safe-area-inset-bottom));
   right: 0;
   top: -450px;
   height: 56px;
-  background: #000;
+  background: transparent;
   
   min-height: calc(56px + env(safe-area-inset-top));
   padding-top: env(safe-area-inset-top);
