@@ -96,6 +96,23 @@ app.get("/login", (req, res) => {
     res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
+app.get("/api/ip", async (req, res) => {
+  try {
+    const response = await fetch("http://ip-api.com/json/");
+    const data = await response.json();
+
+    res.json({
+      country: data.country,
+      city: data.city,
+      ip: data.query
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: "Erro ao buscar IP" });
+  }
+});
+
+
 // Login
 app.post("/api/login", (req, res) => {
     const { username, password } = req.body;
