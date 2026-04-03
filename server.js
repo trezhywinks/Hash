@@ -100,20 +100,24 @@ app.get("/login", (req, res) => {
 
 app.get("/api/ip", async (req, res) => {
   try {
-    const response = await fetch("http://ip-api.com/json/");
+    const ip =
+      req.headers["x-forwarded-for"]?.split(",")[0] ||
+      req.socket.remoteAddress;
+
+    const response = await fetch(`http://ip-api.com/json/${ip}`);
     const data = await response.json();
 
     res.json({
       country: data.country,
       city: data.city,
-      ip: data.query
+      ip: ip
     });
 
   } catch (err) {
-    console.log(err);
     res.status(500).json({ error: "Erro ao buscar dados" });
   }
 });
+
 
 
 // Login
