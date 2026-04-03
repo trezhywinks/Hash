@@ -1,5 +1,7 @@
 const express = require("express");
 const fs = require("fs");
+const fetch = require("node-fetch");
+const cors = require("cors");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const path = require("path");
@@ -11,7 +13,7 @@ const WebSocket = require("ws");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
-
+app.use(cors());
 const server = http.createServer(app);
 
 
@@ -108,7 +110,8 @@ app.get("/api/ip", async (req, res) => {
     });
 
   } catch (err) {
-    res.status(500).json({ error: "Erro ao buscar IP" });
+    console.log(err);
+    res.status(500).json({ error: "Erro ao buscar dados" });
   }
 });
 
