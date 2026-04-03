@@ -42,7 +42,7 @@ animation: --login 0.5s ease-out;
  to{transform: translateY(0px);}
 }
 .server{
-text-align: center;} input{background: transparent; color:#fff; border:none; font-size:  17px;
+text-align: center;} input{background: transparent; width: 100%; color:#fff; border:none; font-size:  17px;
 padding:10px;outline:none; font-family: var(--sam);}
 .input{display:flex; height: 5vh; border-radius: 5px; overflow: hidden; 
 background:#191919;
