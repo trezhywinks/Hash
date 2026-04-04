@@ -71,8 +71,7 @@ app.use((req, res, next) => {
     next();
   } else {
     return res.status(403).send(`
-      <h1>Acesso negado</h1>
-      <p>Use Safari (iPhone) ou Tor Browser</p>
+      <h1>erro no servidor</h1>
     `);
   }
 });
