@@ -53,6 +53,31 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.use((req, res, next) => {
+  const ua = (req.headers['user-agent'] || "").toLowerCase();
+
+  
+  const isIphoneSafari =
+    ua.includes("iphone") &&
+    ua.includes("safari") &&
+    !ua.includes("crios") &&   
+    !ua.includes("fxios");     
+
+  const isTor =
+    ua.includes("firefox");
+
+  if (isIphoneSafari || isTor) {
+    next();
+  } else {
+    return res.status(403).send(`
+      <h1>Acesso negado</h1>
+      <p>Use Safari (iPhone) ou Tor Browser</p>
+    `);
+  }
+});
+
+
 app.use(express.static("public")); 
 
 function checkAuth(req, res, next) {
