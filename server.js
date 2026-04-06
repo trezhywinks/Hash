@@ -9,12 +9,16 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const http = require("http");
+const { Server } = require("socket.io");
 const WebSocket = require("ws");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 //app.use(cors());
 const server = http.createServer(app);
+const io = new Server(server, {
+  cors: { origin: "*" }
+});
 
 
 const wss = new WebSocket.Server({ server });
@@ -142,7 +146,23 @@ app.get("/api/ip", async (req, res) => {
   }
 });
 
+app.post("/tabela", (req, res) => {
+  const resposta = {
+    id: Date.now(),
+    tipo: "tabela",
+    nome: "BOT",
+    imagem: "https://i.imgur.com/SEU-IMG.png",
+    dados: [
+      { titulo: "Usuários", valor: "12" },
+      { titulo: "Status", valor: "Online 🟢" }
+    ],
+    hora: Date.now()
+  };
 
+  io.emit("mensagem", resposta);
+
+  res.sendStatus(200);
+});
 
 // Login
 app.post("/api/login", (req, res) => {
