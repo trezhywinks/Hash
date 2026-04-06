@@ -149,13 +149,15 @@ app.get("/api/ip", async (req, res) => {
 app.post("/tabela", (req, res) => {
   const resposta = {
     id: Date.now(),
-    tipo: "tabela",
-    nome: "BOT",
-    imagem: "https://i.imgur.com/SEU-IMG.png",
-    dados: [
-      { titulo: "Usuários", valor: "12" },
-      { titulo: "Status", valor: "Online 🟢" }
-    ],
+    tipo: "texto",
+    mensagem: `📊 Servidor Whmer
+
+👥 Usuários: 12
+💬 Mensagens: 340
+🟢 Status: Online`,
+    
+    nome: "Whmer",
+    foto: "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg",
     hora: Date.now()
   };
 
