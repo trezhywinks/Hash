@@ -147,6 +147,7 @@ app.get("/api/ip", async (req, res) => {
 });
 
 app.post("/tabela", (req, res) => {
+  console.log("🔥 servidor recebeu /tabela");
   const resposta = {
     id: Date.now(),
     tipo: "texto",
