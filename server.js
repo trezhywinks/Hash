@@ -26,31 +26,81 @@ const wss = new WebSocket.Server({ server });
 let online = 0;
 
 wss.on("connection", (ws) => {
-    online++;
+  online++;
 
-    console.log("🔥 Entrou:", online);
+  console.log("🔥 Entrou:", online);
 
-    ws.send(JSON.stringify({ online }));
+  ws.send(JSON.stringify({
+    tipo: "online",
+    online
+  }));
 
-    broadcast();
+  broadcastOnline();
 
-    ws.on("close", () => {
-        online--;
-        console.log("❌ Saiu:", online);
-        broadcast();
-    });
+  ws.on("message", (msg) => {
+    try {
+      const data = JSON.parse(msg);
+
+      console.log("📩 Recebido:", data);
+
+      if (data.mensagem && data.mensagem.toLowerCase() === ".tabela") {
+        console.log("📊 Comando .tabela recebido!");
+
+        const resposta = {
+          id: Date.now(),
+          tipo: "texto",
+          mensagem: `📊 Servidor Whmer
+
+👥 Online: ${online}
+🟢 Status: Ativo`,
+          nome: "Servidor",
+          foto: "https://i.imgur.com/SEU-IMG.png",
+          hora: Date.now()
+        };
+
+        broadcast(resposta);
+        return;
+      }
+
+      broadcast(data);
+
+    } catch (err) {
+      console.log("❌ Erro:", err);
+    }
+  });
+
+  ws.on("close", () => {
+    online--;
+    console.log("❌ Saiu:", online);
+    broadcastOnline();
+  });
 });
 
-
-function broadcast() {
-    const data = JSON.stringify({ online });
-
-    wss.clients.forEach(client => {
-        if (client.readyState === WebSocket.OPEN) {
-            client.send(data);
-        }
-    });
+function broadcast(data) {
+  wss.clients.forEach(client => {
+    if (client.readyState === 1) {
+      client.send(JSON.stringify(data));
+    }
+  });
 }
+
+function broadcastOnline() {
+  broadcast({
+    tipo: "online",
+    online
+  });
+}
+
+
+//function broadcast() {
+ //   const data = JSON.stringify({ online });
+
+//    wss.clients.forEach(client => {
+      //  if (client.readyState === WebSocket.OPEN) {
+        //    client.send(data);
+     //   }
+   // });
+//}
 
 
 app.use(cors());
@@ -146,25 +196,7 @@ app.get("/api/ip", async (req, res) => {
   }
 });
 
-app.post("/tabela", (req, res) => {
-  const resposta = {
-    id: Date.now(),
-    tipo: "texto",
-    mensagem: "📊 Dados do servidor...",
-    nome: "Servidor",
-    foto: "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg",
-    hora: Date.now()
-  };
 
-
-  wss.clients.forEach(client => {
-    if (client.readyState === 1) {
-      client.send(JSON.stringify(resposta));
-    }
-  });
-
-  res.sendStatus(200);
-});
 //https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg
 
 // Login
