@@ -54,7 +54,7 @@ wss.on("connection", (ws) => {
 👥 Online: ${online}
 🟢 Status: Ativo`,
           nome: "Servidor",
-          foto: "https://i.imgur.com/SEU-IMG.png",
+          foto: "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg",
           hora: Date.now()
         };
 
