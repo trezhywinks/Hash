@@ -147,25 +147,25 @@ app.get("/api/ip", async (req, res) => {
 });
 
 app.post("/tabela", (req, res) => {
-  console.log("🔥 servidor recebeu /tabela");
   const resposta = {
     id: Date.now(),
     tipo: "texto",
-    mensagem: `📊 Servidor Whmer
-
-👥 Usuários: 12
-💬 Mensagens: 340
-🟢 Status: Online`,
-    
-    nome: "Whmer",
+    mensagem: "📊 Dados do servidor...",
+    nome: "Servidor",
     foto: "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg",
     hora: Date.now()
   };
 
-  io.emit("mensagem", resposta);
+
+  wss.clients.forEach(client => {
+    if (client.readyState === 1) {
+      client.send(JSON.stringify(resposta));
+    }
+  });
 
   res.sendStatus(200);
 });
+//https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg
 
 // Login
 app.post("/api/login", (req, res) => {
