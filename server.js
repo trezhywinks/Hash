@@ -143,21 +143,22 @@ function checkAuth(req, res, next) {
 
 const GITHUB_JSON = "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/users.json";
 
+app.use(express.json()); 
+
 app.post("/check-user", async (req, res) => {
   const { nome } = req.body;
+
+  if (!nome) return res.status(400).json({ status: "erro", message: "Nome não fornecido" });
 
   try {
     const response = await fetch(GITHUB_JSON);
     const json = await response.json();
 
-      const existe = json?.data?.find(u => 
-  u.name?.toLowerCase() === nome?.toLowerCase()
-);
+    const existe = json.find(u => u.name?.toLowerCase() === nome?.toLowerCase());
 
     if (existe) {
       return res.json({ status: "existe" });
     }
-
 
     return res.json({ status: "ok" });
 
@@ -166,6 +167,7 @@ app.post("/check-user", async (req, res) => {
     res.status(500).json({ status: "erro" });
   }
 });
+
 
 app.get("/login", (req, res) => {
     if (req.cookies.username) {
