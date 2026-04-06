@@ -286,7 +286,7 @@ document.getElementById("registerForm").addEventListener("submit", async functio
   }
   
   try {
-    const res = await fetch("https://whmer-zcqv.onrender.com/check-user", {
+    const res = await fetch("/check-user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
