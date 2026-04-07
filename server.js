@@ -123,10 +123,13 @@ app.use((req, res, next) => {
   const isTor =
     ua.includes("android") &&
     ua.includes("firefox") &&
-    ua.includes("tor");
+  (
+    ua.includes("tor") ||
+    ua.includes("focus") ||
+    ua.includes("fennec")
     //ua.includes("firefox");
 
-  if (isIphoneSafari || isTor ) {
+  if (isIphoneSafari || isTor) {
     next();
   } else {
     return res.status(403).send(`
