@@ -118,12 +118,15 @@ app.use((req, res, next) => {
     !ua.includes("crios") &&   
     !ua.includes("fxios");     
 
-  const isAndroid = ua.includes("android");
+ // const isAndroid = ua.includes("android");
   
   const isTor =
-    ua.includes("firefox");
+    ua.includes("android") &&
+    ua.includes("firefox") &&
+    ua.includes("tor");
+    //ua.includes("firefox");
 
-  if (isIphoneSafari || isTor || isAndroid) {
+  if (isIphoneSafari || isTor ) {
     next();
   } else {
     return res.status(403).send(`
