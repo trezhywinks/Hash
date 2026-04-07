@@ -86,11 +86,11 @@ app.use((req, res, next) => {
 //app.use(express.static("public")); 
 
 function checkAuth(req, res, next) {
-    if (req.cookies.username) {
+    //if (req.cookies.username) {
         next();
-    } else {
-        res.redirect("/index.html");
-    }
+  //  } else {
+      //  res.redirect("/index.html");
+  //  }
 }
 
 const GITHUB_JSON = "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/users.json";
