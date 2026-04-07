@@ -111,33 +111,24 @@ app.use(cookieParser());
 app.use((req, res, next) => {
   const ua = (req.headers['user-agent'] || "").toLowerCase();
 
-  
   const isIphoneSafari =
     ua.includes("iphone") &&
     ua.includes("safari") &&
-    !ua.includes("crios") &&   
-    !ua.includes("fxios");     
+    !ua.includes("crios") &&
+    !ua.includes("fxios");
 
- // const isAndroid = ua.includes("android");
-  
-  const isTor =
-    ua.includes("android") &&
-    ua.includes("firefox") &&
-  (
-    ua.includes("tor") ||
-    ua.includes("focus") ||
-    ua.includes("fennec")
-    //ua.includes("firefox");
-);
-  if (isIphoneSafari || isTor) {
+  const isChrome =
+    ua.includes("chrome") || ua.includes("crios");
+
+  const isFirefox =
+    ua.includes("firefox");
+
+  if (isIphoneSafari || isChrome || isFirefox) {
     next();
   } else {
-    return res.status(403).send(`
-      <h1>erro no servidor</h1>
-    `);
+    return res.status(403).send("<h1>erro no servidor</h1>");
   }
 });
-
 
 app.use(express.static("public")); 
 
