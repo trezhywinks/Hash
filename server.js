@@ -15,6 +15,7 @@ const WebSocket = require("ws");
 const PORT = process.env.PORT || 3000;
 const app = express();
 //app.use(cors());
+//app.use(express.static("public")); 
 const server = http.createServer(app);
 //const io = new Server(server, {
 //  cors: { origin: "*" }
@@ -58,6 +59,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(express.static("public")); 
 
 app.use((req, res, next) => {
   const ua = (req.headers['user-agent'] || "").toLowerCase();
