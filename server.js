@@ -26,81 +26,32 @@ const wss = new WebSocket.Server({ server });
 let online = 0;
 
 wss.on("connection", (ws) => {
-  online++;
+    online++;
 
-  console.log("🔥 Entrou:", online);
+    console.log("🔥 Entrou:", online);
 
-  ws.send(JSON.stringify({
-    tipo: "online",
-    online
-  }));
+    ws.send(JSON.stringify({ online }));
 
-  broadcastOnline();
+    broadcast();
 
-  ws.on("message", (msg) => {
-    try {
-      const data = JSON.parse(msg);
-
-      console.log("📩 Recebido:", data);
-
-      if (data.mensagem && data.mensagem.toLowerCase() === ".tabela") {
-        console.log("📊 Comando .tabela recebido!");
-
-        const resposta = {
-          id: Date.now(),
-          tipo: "texto",
-          mensagem: `📊 Servidor Whmer
-
-👥 Online: ${online}
-🟢 Status: Ativo`,
-          nome: "Servidor",
-          foto: "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg",
-          hora: Date.now()
-        };
-
-        broadcast(resposta);
-        return;
-      }
-
-      broadcast(data);
-
-    } catch (err) {
-      console.log("❌ Erro:", err);
-    }
-  });
-
-  ws.on("close", () => {
-    online--;
-    console.log("❌ Saiu:", online);
-    broadcastOnline();
-  });
+    ws.on("close", () => {
+        online--;
+        console.log("❌ Saiu:", online);
+        broadcast();
+    });
 });
 
-function broadcast(data) {
-  wss.clients.forEach(client => {
-    if (client.readyState === 1) {
-      client.send(JSON.stringify(data));
-    }
-  });
+
+
+function broadcast() {
+    const data = JSON.stringify({ online });
+
+   wss.clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(data);
+       }
+    });
 }
-
-function broadcastOnline() {
-  broadcast({
-    tipo: "online",
-    online
-  });
-}
-
-
-//function broadcast() {
- //   const data = JSON.stringify({ online });
-
-//    wss.clients.forEach(client => {
-      //  if (client.readyState === WebSocket.OPEN) {
-        //    client.send(data);
-     //   }
-   // });
-//}
 
 
 app.use(cors());
