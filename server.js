@@ -81,7 +81,7 @@ app.use((req, res, next) => {
   }
 });
 
-app.use(express.static("public")); 
+//app.use(express.static("public")); 
 
 function checkAuth(req, res, next) {
     if (req.cookies.username) {
@@ -173,7 +173,7 @@ app.post("/api/login", (req, res) => {
     if (!user) return res.status(400).json({ error: "Usuário não existe" });
     if (password !== user.password) return res.status(400).json({ error: "Senha incorreta" });
 
-    res.cookie("username", username, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }); // 1 dia
+    res.cookie("username", username, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000, sameSite: "lax" }); // 1 dia
     res.redirect("/u"); 
 
 });
