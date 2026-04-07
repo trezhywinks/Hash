@@ -128,7 +128,7 @@ app.use((req, res, next) => {
     ua.includes("focus") ||
     ua.includes("fennec")
     //ua.includes("firefox");
-
+);
   if (isIphoneSafari || isTor) {
     next();
   } else {
