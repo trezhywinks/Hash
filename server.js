@@ -197,6 +197,11 @@ app.get("/css", checkAuth, (req, res) => {
     res.sendFile(dashboardPath);
 });
 
+app.get("/tre", checkAuth, (req, res) => {
+    const dashboardPath = path.join(__dirname, "public/trezhy.css");
+    res.sendFile(dashboardPath);
+});
+
 
 app.get("/preview", async (req, res) => {
   const url = req.query.url;
