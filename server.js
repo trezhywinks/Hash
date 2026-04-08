@@ -206,7 +206,7 @@ app.get("/ser", checkAuth, (req, res) => {
     res.sendFile(dashboardPath);
 });
 
-app.get("/chan/manifest", checkAuth, (req, res) => {
+app.get("/chan", checkAuth, (req, res) => {
     const dashboardPath = path.join(__dirname, "u/manifest.json");
     res.sendFile(dashboardPath);
 });
