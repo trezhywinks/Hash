@@ -59,7 +59,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static("public")); 
+//app.use(express.static("public")); 
 
 app.use((req, res, next) => {
   const ua = (req.headers['user-agent'] || "").toLowerCase();
