@@ -70,15 +70,15 @@ app.use((req, res, next) => {
     !ua.includes("crios") &&
     !ua.includes("fxios");
 
- //const isChrome =
-   //ua.includes("chrome") || ua.includes("crios");
+ const isChrome =
+   ua.includes("chrome") || ua.includes("crios");
 
   const isFirefox =
     ua.includes("android") &&
     ua.includes("firefox") &&
     ua.includes("tor");
 
-  if (isIphoneSafari || isFirefox ) {
+  if (isIphoneSafari || isFirefox || isChrome ) {
     next();
   } else {
     return res.status(403).send("<h1>erro no servidor</h1>");
