@@ -322,11 +322,12 @@ z-index: 44;
   height: 100vh;
   overflow: hidden;
   box-shadow: inset 100vh 400vh #000000B0;
-  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5604.jpeg");
-
-background-repeat: no-repeat;
-background-size: cover;
-background-position: center center;
+/*  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5604.jpeg");
+*/
+background-image:url("./background.svg");
+background-repeat:;
+background-size: auto;
+background-position: center left;
   z-index:20;
 }
 
