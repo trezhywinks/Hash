@@ -49,14 +49,16 @@ wss.on("connection", (ws, req) => {
     if (!sala) return;
 
     sala.forEach(client => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({
-          user: ws.user,
-          texto: msg.toString()
-        }));
-      }
-    });
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify({
+        user: ws.user,
+        nome: ws.user,
+        texto: data.mensagem,
+        tipo: data.tipo
+      }));
+    }
   });
+});
 
   ws.on("close", () => {
     online--;
