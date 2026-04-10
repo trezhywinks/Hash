@@ -50,54 +50,132 @@ const user = params.get("user");
 const to = params.get("to");
 
 if (!user || !to) {
-    alert("Link inválido");
-    throw new Error("sem user/to");
+alert("Link inválido");
+throw new Error("sem user/to");
 }
 
 const protocolo = location.protocol === "https:" ? "wss:" : "ws:";
 const ws = new WebSocket(`${protocolo}//chat-qr5y.onrender.com/?user=${user}&to=${to}`);
 
 const chat = document.getElementById("chat");
-
-ws.onmessage = (event) => {
-    const data = JSON.parse(event.data);
-
-
-    if (data.online !== undefined) {
-        console.log("Online:", data.online);
-        return;
-    }
-
-
-    if (data.erro) {
-        alert(data.erro);
-        return;
-    }
-
-    // mensagem
-    const div = document.createElement("div");
-    div.classList.add("msg");
-
-    if (data.user === user) {
-        div.classList.add("eu");
-    } else {
-        div.classList.add("outro");
-    }
-
-    div.textContent = `${data.user}: ${data.texto}`;
-
-    chat.appendChild(div);
-    chat.scrollTop = chat.scrollHeight;
-};
-
-function enviar() {
-    const input = document.getElementById("msg");
-
-    if (!input.value) return;
-
-    ws.send(input.value);
-    input.value = "";
+ws.onmessage = async (event) => {
+const data = JSON.parse(event.data);
+if (data.online !== undefined) {
+console.log("Online:", data.online);
+return;
 }
+
+// erro
+if (data.erro) {
+alert(data.erro);
+return;
+}
+await renderMensagem({
+user: data.user,
+nome: data.nome || data.user,
+mensagem: data.texto,
+tipo: data.tipo || "texto",
+hora: Date.now()
+});
+};
+function enviar() {
+const input = document.getElementById("msg");
+
+if (!input.value) return;
+
+ws.send(JSON.stringify({
+tipo: "texto",
+mensagem: input.value
+}));
+
+input.value = "";
+}
+async function renderMensagem(data) {
+const chat = document.getElementById("chat");
+const meuNome = localStorage.getItem("user_nome") || "Você";
+const minhaFoto = localStorage.getItem("user_foto") || "https://via.placeholder.com/40";
+
+const isEu = data.user === meuNome;
+
+const nomeFinal = isEu ? meuNome : (data.nome || data.user);
+const fotoFinal = isEu
+? minhaFoto
+: (data.foto || "https://via.placeholder.com/40");
+const msgBox = document.createElement("div");
+msgBox.style.margin = "10px 0";
+msgBox.innerHTML = `
+<div style="display:flex; align-items:center; gap:5px;">
+    <img src="${fotoFinal}" width="35" height="35" style="border-radius:100px;" />
+    <div>
+        <p style="color:#fff; margin:0; font-size:13px;">${nomeFinal}</p>
+        <p style="color:#aaa; margin:0; font-size:10px;">
+            ${formatarHora(data.hora)}
+        </p>
+    </div>
+</div>
+`;
+const body = document.createElement("div");
+body.style.marginLeft = "40px";
+body.style.marginTop = "5px";
+body.style.padding = "8px";
+body.style.borderRadius = "10px";
+body.style.maxWidth = "75%";
+body.style.wordBreak = "break-word";
+
+body.style.background = isEu ? "#005c4b" : "#1f1f1f";
+body.style.color = "#fff";
+if (data.tipo === "texto") {
+const linkRegex = /(https?:\/\/[^\s]+)/g;
+const parts = data.mensagem.split(linkRegex);
+
+parts.forEach(part => {
+if (linkRegex.test(part)) {
+const a = document.createElement("a");
+a.href = part;
+a.textContent = part;
+a.target = "_blank";
+a.style.color = "#00DA60";
+body.appendChild(a);
+} else {
+const span = document.createElement("span");
+span.textContent = part;
+span.style.whiteSpace = "pre-line";
+body.appendChild(span);
+}
+});
+}
+if (data.tipo === "media" && data.mime?.startsWith("image/")) {
+const img = document.createElement("img");
+img.src = data.arquivo;
+img.style.width = "100%";
+img.style.borderRadius = "10px";
+body.appendChild(img);
+}
+if (data.tipo === "media" && data.mime?.startsWith("video/")) {
+const video = document.createElement("video");
+video.src = data.arquivo;
+video.controls = true;
+video.style.width = "100%";
+body.appendChild(video);
+}
+
+if (data.tipo === "sticker") {
+const img = document.createElement("img");
+img.src = data.arquivo;
+img.style.width = "110px";
+body.appendChild(img);
+}
+msgBox.appendChild(body);
+chat.appendChild(msgBox);
+
+chat.scrollTop = chat.scrollHeight;
+}
+
+function formatarHora(ts) {
+const d = new Date(ts);
+return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
 </script>
 
 </body>
