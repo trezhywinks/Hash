@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Privado</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #111;
+    color: white;
+    font-size: 17px;
+}
+
+#chat {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #444;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.msg {
+    margin: 5px 0;
+}
+
+.eu {
+    color: #00ff88;
+}
+
+.outro {
+    color: #00aaff;
+}
+</style>
+</head>
+<body>
+
+<h3>Chat privado</h3>
+
+<div id="chat"></div>
+
+<input id="msg" placeholder="Digite..." />
+<button onclick="enviar()">Enviar</button>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+const user = params.get("user");
+const to = params.get("to");
+
+if (!user || !to) {
+    alert("Link inválido");
+    throw new Error("sem user/to");
+}
+
+const protocolo = location.protocol === "https:" ? "wss:" : "ws:";
+const ws = new WebSocket(`${protocolo}//chat-qr5y.onrender.com/?user=${user}&to=${to}`);
+
+const chat = document.getElementById("chat");
+
+ws.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+
+
+    if (data.online !== undefined) {
+        console.log("Online:", data.online);
+        return;
+    }
+
+
+    if (data.erro) {
+        alert(data.erro);
+        return;
+    }
+
+    // mensagem
+    const div = document.createElement("div");
+    div.classList.add("msg");
+
+    if (data.user === user) {
+        div.classList.add("eu");
+    } else {
+        div.classList.add("outro");
+    }
+
+    div.textContent = `${data.user}: ${data.texto}`;
+
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+};
+
+function enviar() {
+    const input = document.getElementById("msg");
+
+    if (!input.value) return;
+
+    ws.send(input.value);
+    input.value = "";
+}
+</script>
+
+</body>
+</html>
