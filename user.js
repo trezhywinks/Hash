@@ -43,6 +43,7 @@ wss.on("connection", (ws, req) => {
   }
 
   ws.on("message", (msg) => {
+    const data = JSON.parse(msg);
     if (!ws.chatId) return;
 
     const sala = salas[ws.chatId];
