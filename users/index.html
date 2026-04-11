@@ -322,12 +322,18 @@ hora: Date.now()
 });
 };
 
+function gerarId() {
+  return Date.now() + "_" + Math.random().toString(36).slice(2);
+}
+
+
 function enviar() {
 const input = document.getElementById("msg");
 
 if (!input.value.trim()) return;
 
 enviarSeguro({
+  id: gerarId(),
 tipo: "texto",
 mensagem: input.value,
 user: user,
@@ -335,11 +341,23 @@ nome: nomeUsuario,
 foto: fotoUsuario,
 hora: Date.now()
 });
+renderMensagem(data);
+enviarSeguro(data);
 
+  
 input.value = "";
 }
 
 function enviarSeguro(data) {
+  data.id = data.id || gerarId();
+  data.to = to; 
+  
+  mensagensMostradas.add(data.id); 
+  
+  if (ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify(data));
+  }
+
 if (ws.readyState === WebSocket.OPEN) {
 ws.send(JSON.stringify(data));
 } else {
@@ -486,6 +504,7 @@ keqs.addEventListener("click", function(e) {
 if (!e.target.classList.contains("gggggggg")) return;
 
 const data = {
+  id: gerarId(),
 tipo: "sticker",
 arquivo: e.target.src,
 user: user,
@@ -509,6 +528,7 @@ containyer.addEventListener("click", function(e) {
 if (!e.target.classList.contains("gggggggg")) return;
 
 const data = {
+  id: gerarId(),
 tipo: "sticker",
 arquivo: e.target.src,
 user: user,
@@ -536,6 +556,7 @@ const reader = new FileReader();
 
 reader.onload = function() {
 const data = {
+  id: gerarId(),
 tipo: "media",
 mime: file.type,
 arquivo: reader.result,
