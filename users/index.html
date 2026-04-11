@@ -342,7 +342,7 @@ function enviar() {
   
   mensagensMostradas.add(data.id);
   
-  renderMensagem(data);
+  //renderMensagem(data);
   enviarSeguro(data);
   
   input.value = "";
@@ -491,36 +491,35 @@ minute: "2-digit"
 });
 }
 
-const keqs = document.querySelector(".myfigs");
+//const keqs = document.querySelector(".myfigs");
 
-if (keqs) {
-keqs.addEventListener("click", function(e) {
-if (!e.target.classList.contains("gggggggg")) return;
+//if (keqs) {
+//keqs.addEventListener("click", function(e) {
+//if (!e.target.classList.contains("gggggggg")) return;
 
-const data = {
-  id: gerarId(),
-tipo: "sticker",
-arquivo: e.target.src,
-user: user,
-nome: nomeUsuario,
-foto: fotoUsuario,
-hora: Date.now()
-};
+//const data = {
+//  id: gerarId(),
+//tipo: "sticker",
+//arquivo: e.target.src,
+//user: user,
+//nome: nomeUsuario,
+//foto: fotoUsuario,
+//hora: Date.now()
+//};
 
-renderMensagem(data);
-enviarSeguro(data);
+//renderMensagem(data);
+//enviarSeguro(data);
 
-document.querySelector(".timmesty")?.classList.toggle("ativo");
-document.querySelector(".lery")?.classList.toggle("ativo");
-});
-}
+//document.querySelector(".timmesty")?.classList.toggle("ativo");
+//document.querySelector(".lery")?.classList.toggle("ativo");
+//});
+//}
 
 const containyer = document.getElementById("repogitu");
 
 if (containyer) {
 containyer.addEventListener("click", function(e) {
 if (!e.target.classList.contains("gggggggg")) return;
-
 const data = {
   id: gerarId(),
 tipo: "sticker",
@@ -531,7 +530,7 @@ foto: fotoUsuario,
 hora: Date.now()
 };
 
-renderMensagem(data);
+//renderMensagem(data);
 enviarSeguro(data);
 
 document.querySelector(".timmesty")?.classList.toggle("ativo");
@@ -560,7 +559,7 @@ foto: fotoUsuario,
 hora: Date.now()
 };
 
-renderMensagem(data);
+//renderMensagem(data);
 enviarSeguro(data);
 };
 
