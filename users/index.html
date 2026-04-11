@@ -277,11 +277,10 @@ msg.addEventListener("input", () => {
   }
 });
         </script>
-
         </div>
-
 <script>
 const params = new URLSearchParams(window.location.search);
+//const mensagensMostradas = new Set();
 
 const user = params.get("user");
 const to = params.get("to");
@@ -302,67 +301,62 @@ const fotoUsuario = localStorage.getItem("user_foto") || "https://via.placeholde
 const mensagensMostradas = new Set();
 
 ws.onmessage = async (event) => {
-const data = JSON.parse(event.data);
-
-if (data.online !== undefined) return;
-
-if (data.erro) {
-alert(data.erro);
-return;
-}
-
-renderMensagem({
-user: data.user,
-nome: data.nome || data.user,
-mensagem: data.mensagem || data.texto,
-tipo: data.tipo || "texto",
-arquivo: data.arquivo,
-mime: data.mime,
-hora: Date.now()
-});
+  const data = JSON.parse(event.data);
+  
+  if (data.online !== undefined) return;
+  if (data.erro) return alert(data.erro);
+  
+  if (mensagensMostradas.has(data.id)) return;
+  
+  mensagensMostradas.add(data.id);
+  
+  renderMensagem({
+    user: data.user,
+    nome: data.nome || data.user,
+    mensagem: data.mensagem || data.texto,
+    tipo: data.tipo || "texto",
+    arquivo: data.arquivo,
+    mime: data.mime,
+    hora: data.hora
+  });
 };
-
 function gerarId() {
   return Date.now() + "_" + Math.random().toString(36).slice(2);
 }
 
 
 function enviar() {
-const input = document.getElementById("msg");
-
-if (!input.value.trim()) return;
-
-enviarSeguro({
-  id: gerarId(),
-tipo: "texto",
-mensagem: input.value,
-user: user,
-nome: nomeUsuario,
-foto: fotoUsuario,
-hora: Date.now()
-});
-renderMensagem(data);
-enviarSeguro(data);
-
+  const input = document.getElementById("msg");
   
-input.value = "";
+  if (!input.value.trim()) return;
+  
+  const data = {
+    id: gerarId(),
+    tipo: "texto",
+    mensagem: input.value,
+    user: user,
+    nome: nomeUsuario,
+    foto: fotoUsuario,
+    hora: Date.now()
+  };
+  
+  mensagensMostradas.add(data.id);
+  
+  renderMensagem(data);
+  enviarSeguro(data);
+  
+  input.value = "";
 }
 
 function enviarSeguro(data) {
   data.id = data.id || gerarId();
-  data.to = to; 
-  
-  mensagensMostradas.add(data.id); 
+  data.to = to;
   
   if (ws.readyState === WebSocket.OPEN) {
     ws.send(JSON.stringify(data));
+  } else {
+    alert("Sem conexão");
   }
-
-if (ws.readyState === WebSocket.OPEN) {
-ws.send(JSON.stringify(data));
-} else {
-alert("Sem conexão");
-}
 }
 
 async function renderMensagem(data) {
@@ -556,7 +550,7 @@ const reader = new FileReader();
 
 reader.onload = function() {
 const data = {
-  id: gerarId(),
+id: gerarId(),
 tipo: "media",
 mime: file.type,
 arquivo: reader.result,
