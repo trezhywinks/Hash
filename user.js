@@ -44,20 +44,29 @@ wss.on("connection", (ws, req) => {
   }
 
   ws.on("message", (msg) => {
-    const data = JSON.parse(msg);
-    if (!ws.chatId) return;
+  let data;
 
-    const sala = salas[ws.chatId];
-    if (!sala) return;
+  try {
+    data = JSON.parse(msg);
+  } catch {
+    return;
+  }
 
-    sala.forEach(client => {
+  if (!ws.chatId) return;
+
+  const sala = salas[ws.chatId];
+  if (!sala) return;
+
+
+  data.user = ws.user;
+  data.nome = data.nome || ws.user;
+  data.id = data.id || Date.now() + "_" + Math.random().toString(36).slice(2);
+  data.hora = data.hora || Date.now();
+
+
+  sala.forEach(client => {
     if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify({
-        user: ws.user,
-        nome: ws.user,
-        texto: data.mensagem,
-        tipo: data.tipo
-      }));
+      client.send(JSON.stringify(data));
     }
   });
 });
