@@ -2,7 +2,8 @@
 <html lang="en-US">
 <head>
 <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <link rel="stylesheet" href="./chat.css">
 <link rel="stylesheet" href="../chat.css">
       <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -15,36 +16,48 @@
   margin: 0;
   padding: 0;
 }
-body {
-    font-family: Arial;
-       color: white;
-    font-size: 17px;
-    height: 100vh;
-    overflow: hidden;
-     background-position: center center;
-    box-shadow: inset 100vh 400vh #000000B0;
-/*  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5604.jpeg");
-*/
-background-image:url("https://raw.githubusercontent.com/trezhywinks/Hash/0821931a3cd898558d817b7ab4d1451819048a6d/discord/i.svg");
-background-size: auto;
 
-}
-.backeifrjjrppp{
+    body{
+      color: var(--white);
+      font-family: var(--wer);
+      font-weight: 500;
+      background: #000;
+      width: 100vw;
+      overflow-y: scroll;
+/*font-family: Arial, Helvetica, sans-serif;*/
+    }
+    
+    
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: env(safe-area-inset-top);
+      background-color: #0C0C0CDB;
+      /* cor de fundo do seu site */
+      z-index: -1;
+    }
+
+.joga{
   position: fixed;
- bottom: 0; left: 0; right: 0;
- box-shadow: inset 0px 100vh 100vh #0000007D;
- width: 100%;
-    background-size: cover;
-    overflow: hidden;
-    overflow: hidden;
-    background-position: bottom center;
-    height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: auto;
+  background-position: center center;
+  box-shadow: inset 100vh 400vh #000000B0;
+  background-image:url("https://raw.githubusercontent.com/trezhywinks/Hash/0821931a3cd898558d817b7ab4d1451819048a6d/discord/i.svg");
+  z-index: 10;
 }
-
 #chat {
-    overflow-y: auto;
+  position: sticky;
+     margin-top: 40px;
     padding: 10px;
     margin-bottom: 10px;
+    z-index: 99999999;
 }
 
 .msg {
@@ -67,8 +80,10 @@ background-size: auto;
 </style>
 </head>
 <body>
-
-<div class="chat" id="chat"></div>
+  <div class="joga"></div>
+<div id="chat">
+  <span>ok</span>
+</div>
 <div class="timmesty">
           <div class="figurinhas" style="text-align: center;">
             <div class="msmwmUuuu" style="display: flex; justify-content: space-between;">
