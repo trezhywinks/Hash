@@ -2,8 +2,8 @@
 <html lang="en-US">
 <head>
 <meta charset="UTF-8">
-  <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="stylesheet" href="./chat.css">
 <link rel="stylesheet" href="../chat.css">
       <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -12,52 +12,34 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Chat Privado</title>
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-    body{
-      color: var(--white);
-      font-family: var(--wer);
-      font-weight: 500;
-      background: #000;
-      width: 100vw;
-      overflow-y: scroll;
-/*font-family: Arial, Helvetica, sans-serif;*/
-    }
-    
-    
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: env(safe-area-inset-top);
-      background-color: #0C0C0CDB;
-      /* cor de fundo do seu site */
-      z-index: -1;
-    }
+html, body {
+  height: 100%;
+}
 
-.joga{
+body {
+  background: black;
+}
+
+.app {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-size: auto;
-  background-position: center center;
-  box-shadow: inset 100vh 400vh #000000B0;
-  background-image:url("https://raw.githubusercontent.com/trezhywinks/Hash/0821931a3cd898558d817b7ab4d1451819048a6d/discord/i.svg");
-  z-index: 10;
+  width: 100%;
+  height: 100dvh;
+
+  background: red;
+  padding-top: env(safe-area-inset-top);
 }
+
 #chat {
-  position: sticky;
-     margin-top: 40px;
-    padding: 10px;
-    margin-bottom: 10px;
-    z-index: 20;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .msg {
@@ -66,6 +48,19 @@
 
 .eu {
     color: #00ff88;
+}
+
+.joga{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: auto;
+  background-position: center center;
+  box-shadow: inset 100vh 400vh #000000B0;
+  z-index: 10;
 }
 
 .outro {
@@ -81,8 +76,7 @@
 </head>
 <body>
   <div class="joga"></div>
-<div id="chat">
-</div>
+  <div id="chat"></div>
 <div class="timmesty">
           <div class="figurinhas" style="text-align: center;">
             <div class="msmwmUuuu" style="display: flex; justify-content: space-between;">
