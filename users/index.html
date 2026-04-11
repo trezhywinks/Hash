@@ -295,62 +295,79 @@ const protocolo = location.protocol === "https:" ? "wss:" : "ws:";
 const ws = new WebSocket(`${protocolo}//chat-qr5y.onrender.com/?user=${user}&to=${to}`);
 
 const chat = document.getElementById("chat");
+
+const nomeUsuario = localStorage.getItem("user_nome") || user;
+const fotoUsuario = localStorage.getItem("user_foto") || "https://via.placeholder.com/40";
+
+const mensagensMostradas = new Set();
+
 ws.onmessage = async (event) => {
 const data = JSON.parse(event.data);
-if (data.online !== undefined) {
-console.log("Online:", data.online);
-return;
-}
 
-// erro
+if (data.online !== undefined) return;
+
 if (data.erro) {
 alert(data.erro);
 return;
 }
-await renderMensagem({
+
+renderMensagem({
 user: data.user,
 nome: data.nome || data.user,
-mensagem: data.texto,
+mensagem: data.mensagem || data.texto,
 tipo: data.tipo || "texto",
+arquivo: data.arquivo,
+mime: data.mime,
 hora: Date.now()
 });
 };
+
 function enviar() {
 const input = document.getElementById("msg");
 
-if (!input.value) return;
+if (!input.value.trim()) return;
 
-ws.send(JSON.stringify({
+enviarSeguro({
 tipo: "texto",
-mensagem: input.value
-}));
+mensagem: input.value,
+user: user,
+nome: nomeUsuario,
+foto: fotoUsuario,
+hora: Date.now()
+});
 
 input.value = "";
 }
+
+function enviarSeguro(data) {
+if (ws.readyState === WebSocket.OPEN) {
+ws.send(JSON.stringify(data));
+} else {
+alert("Sem conexão");
+}
+}
+
 async function renderMensagem(data) {
-const chat = document.getElementById("chat");
-const meuNome = localStorage.getItem("user_nome") || "Você";
-const minhaFoto = localStorage.getItem("user_foto") || "https://via.placeholder.com/40";
+const isEu = data.user === user;
 
-const isEu = data.user === meuNome;
+const nomeFinal = isEu ? nomeUsuario : (data.nome || data.user);
+const fotoFinal = isEu ? fotoUsuario : (data.foto || "https://via.placeholder.com/40");
 
-const nomeFinal = isEu ? meuNome : (data.nome || data.user);
-const fotoFinal = isEu
-? minhaFoto
-: (data.foto || "https://via.placeholder.com/40");
 const msgBox = document.createElement("div");
 msgBox.style.margin = "10px 0";
+
 msgBox.innerHTML = `
 <div style="display:flex; align-items:center; gap:5px;">
-    <img src="${fotoFinal}" width="35" height="35" style="border-radius:100px;" />
-    <div>
-        <p style="color:#fff; margin:0; font-size:13px;">${nomeFinal}</p>
-        <p style="color:#aaa; margin:0; font-size:10px;">
-            ${formatarHora(data.hora)}
-        </p>
-    </div>
+  <img src="${fotoFinal}" width="35" height="35" style="border-radius:100px;" />
+  <div>
+    <p style="color:#fff; margin:0; font-size:13px;">${nomeFinal}</p>
+    <p style="color:#aaa; margin:0; font-size:10px;">
+      ${formatarHora(data.hora)}
+    </p>
+  </div>
 </div>
 `;
+
 const body = document.createElement("div");
 body.style.marginLeft = "40px";
 body.style.marginTop = "5px";
@@ -358,67 +375,74 @@ body.style.padding = "8px";
 body.style.borderRadius = "10px";
 body.style.maxWidth = "75%";
 body.style.wordBreak = "break-word";
-
 body.style.background = isEu ? "#005c4b" : "#1f1f1f";
 body.style.color = "#fff";
 
 if (data.tipo === "texto") {
-  const linkRegex = /(https?:\/\/[^\s]+)/g;
-  const match = data.mensagem.match(linkRegex);
-  
-  const texto = document.createElement("span");
-  texto.textContent = data.mensagem;
-  texto.style.whiteSpace = "pre-line";
-  
-  body.appendChild(texto);
-  
-  if (match) {
-    const url = match[0];
-    
-    try {
-      const res = await fetch(`/preview?url=${encodeURIComponent(url)}`);
-      const prev = await res.json();
-      
-      if (!prev.erro) {
-        const preview = document.createElement("div");
-        preview.style.marginTop = "8px";
-        preview.style.borderRadius = "10px";
-        preview.style.overflow = "hidden";
-        preview.style.background = "#2a2a2a";
-        
-        if (prev.imagem) {
-          const img = document.createElement("img");
-          img.src = prev.imagem;
-          img.style.width = "100%";
-          preview.appendChild(img);
-        }
-        
-        const info = document.createElement("div");
-        info.style.padding = "8px";
-        
-        const titulo = document.createElement("p");
-        titulo.textContent = prev.titulo || "Sem título";
-        titulo.style.fontWeight = "bold";
-        titulo.style.margin = "0";
-        
-        const desc = document.createElement("p");
-        desc.textContent = prev.descricao || "";
-        desc.style.fontSize = "12px";
-        desc.style.color = "#aaa";
-        
-        info.appendChild(titulo);
-        info.appendChild(desc);
-        
-        preview.appendChild(info);
-        
-        body.appendChild(preview);
-      }
-    } catch (e) {
-      console.log("Erro preview");
-    }
-  }
+const linkRegex = /(https?:\/\/[^\s]+)/g;
+const parts = data.mensagem.split(linkRegex);
+
+for (const part of parts) {
+if (part.match(linkRegex)) {
+const a = document.createElement("a");
+a.href = part;
+a.textContent = part;
+a.target = "_blank";
+a.style.color = "#00DA60";
+a.style.display = "block";
+a.style.marginTop = "5px";
+body.appendChild(a);
+
+// preview
+try {
+const res = await fetch(`/preview?url=${encodeURIComponent(part)}`);
+const prev = await res.json();
+
+if (!prev.erro) {
+const preview = document.createElement("div");
+preview.style.marginTop = "6px";
+preview.style.borderRadius = "10px";
+preview.style.overflow = "hidden";
+preview.style.background = "#2a2a2a";
+preview.style.cursor = "pointer";
+
+preview.onclick = () => window.open(part, "_blank");
+
+if (prev.imagem) {
+const img = document.createElement("img");
+img.src = prev.imagem;
+img.style.width = "100%";
+preview.appendChild(img);
 }
 
+const info = document.createElement("div");
+info.style.padding = "8px";
+
+const titulo = document.createElement("p");
+titulo.textContent = prev.titulo || "Sem título";
+titulo.style.fontWeight = "bold";
+titulo.style.margin = "0";
+
+const desc = document.createElement("p");
+desc.textContent = prev.descricao || "";
+desc.style.fontSize = "12px";
+desc.style.color = "#aaa";
+
+info.appendChild(titulo);
+info.appendChild(desc);
+
+preview.appendChild(info);
+body.appendChild(preview);
+}
+} catch {}
+} else {
+const span = document.createElement("span");
+span.textContent = part;
+span.style.whiteSpace = "pre-line";
+body.appendChild(span);
+}
+}
+}
 
 if (data.tipo === "media" && data.mime?.startsWith("image/")) {
 const img = document.createElement("img");
@@ -427,6 +451,7 @@ img.style.width = "100%";
 img.style.borderRadius = "10px";
 body.appendChild(img);
 }
+
 if (data.tipo === "media" && data.mime?.startsWith("video/")) {
 const video = document.createElement("video");
 video.src = data.arquivo;
@@ -441,94 +466,92 @@ img.src = data.arquivo;
 img.style.width = "110px";
 body.appendChild(img);
 }
+
 msgBox.appendChild(body);
 chat.appendChild(msgBox);
-
 chat.scrollTop = chat.scrollHeight;
 }
 
 function formatarHora(ts) {
-const d = new Date(ts);
-return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+return new Date(ts).toLocaleTimeString([], {
+hour: "2-digit",
+minute: "2-digit"
+});
 }
-
 
 const keqs = document.querySelector(".myfigs");
 
+if (keqs) {
 keqs.addEventListener("click", function(e) {
-  if (!e.target.classList.contains("gggggggg")) return;
-  
-  const src = e.target.src;
-  
-  const data = {
-    id: Date.now(),
-    tipo: "sticker",
-    arquivo: src,
-    nome: nomeUsuario,
-    foto: fotoUsuario,
-    hora: Date.now()
-  };
-  
-  mensagensMostradas.add(data.id);
-  renderMensagem(data);
-  enviarSeguro(data);
-  document.querySelector(".timmesty").classList.toggle("ativo");
-  document.querySelector(".lery").classList.toggle("ativo");
-});
+if (!e.target.classList.contains("gggggggg")) return;
 
-//const url = "https://raw.githubusercontent.com/trezhywinks/sticker-R/refs/heads/main/sticker.json";
+const data = {
+tipo: "sticker",
+arquivo: e.target.src,
+user: user,
+nome: nomeUsuario,
+foto: fotoUsuario,
+hora: Date.now()
+};
+
+renderMensagem(data);
+enviarSeguro(data);
+
+document.querySelector(".timmesty")?.classList.toggle("ativo");
+document.querySelector(".lery")?.classList.toggle("ativo");
+});
+}
 
 const containyer = document.getElementById("repogitu");
 
+if (containyer) {
 containyer.addEventListener("click", function(e) {
-  if (!e.target.classList.contains("gggggggg")) return;
-  
-  const src = e.target.src;
-  
-  const data = {
-    id: Date.now(),
-    tipo: "sticker",
-    arquivo: src,
-    nome: nomeUsuario,
-    foto: fotoUsuario,
-    hora: Date.now()
-  };
-  
-  mensagensMostradas.add(data.id);
-  renderMensagem(data);
-  enviarSeguro(data);
+if (!e.target.classList.contains("gggggggg")) return;
 
-  document.querySelector(".timmesty").classList.toggle("ativo");
-  document.querySelector(".lery").classList.toggle("ativo");
+const data = {
+tipo: "sticker",
+arquivo: e.target.src,
+user: user,
+nome: nomeUsuario,
+foto: fotoUsuario,
+hora: Date.now()
+};
+
+renderMensagem(data);
+enviarSeguro(data);
+
+document.querySelector(".timmesty")?.classList.toggle("ativo");
+document.querySelector(".lery")?.classList.toggle("ativo");
 });
+}
 
-document.getElementById("fileInput").addEventListener("change", function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  
-  const reader = new FileReader();
-  
-  reader.onload = function() {
-    const base64 = reader.result;
-    
-    const data = {
-      tipo: "media",
-      mime: file.type,
-      arquivo: base64,
-      user: user,
-      nome: nomeUsuario,
-      foto: fotoUsuario,
-      hora: Date.now()
-    };
-    
-    renderMensagem(data);
-    enviarSeguro(data);
-  };
-  
-  reader.readAsDataURL(file);
+const fileInput = document.getElementById("fileInput");
+
+if (fileInput) {
+fileInput.addEventListener("change", function(e) {
+const file = e.target.files[0];
+if (!file) return;
+
+const reader = new FileReader();
+
+reader.onload = function() {
+const data = {
+tipo: "media",
+mime: file.type,
+arquivo: reader.result,
+user: user,
+nome: nomeUsuario,
+foto: fotoUsuario,
+hora: Date.now()
+};
+
+renderMensagem(data);
+enviarSeguro(data);
+};
+
+reader.readAsDataURL(file);
 });
-
-</script>
+}</script>
 
 </body>
 </html>
