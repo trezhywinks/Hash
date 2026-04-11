@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./chat.css">
+<link rel="stylesheet" href="../chat.css">
       <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <!--script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script-->
@@ -212,8 +213,8 @@ neurjrjr.onclick = () => {
         </div>
         <div class="JdgHhhhhhii">
           <!--img src="fig.jpeg" class="voxe" name="voce" style="width: 40px; height: 40px; border-radius: 10px;" /-->
-          <input type="file" name="" id="Gile" hidden accept="image/png, image/jpeg, image/gif, video/mp4">
-    <label class="mxnenfnTT" for="Gile" style="margin-right: 10px;">
+          <input type="file" name="" id="fileInput" hidden accept="image/png, image/jpeg, image/gif, video/mp4">
+    <label class="mxnenfnTT" for="fileInput" style="margin-right: 10px;">
     <ion-icon class="" name="add-outline" style="font-size: 35px; margin-top: -2px; fill: white;"></ion-icon>
       </label>
 
@@ -360,26 +361,65 @@ body.style.wordBreak = "break-word";
 
 body.style.background = isEu ? "#005c4b" : "#1f1f1f";
 body.style.color = "#fff";
-if (data.tipo === "texto") {
-const linkRegex = /(https?:\/\/[^\s]+)/g;
-const parts = data.mensagem.split(linkRegex);
 
-parts.forEach(part => {
-if (linkRegex.test(part)) {
-const a = document.createElement("a");
-a.href = part;
-a.textContent = part;
-a.target = "_blank";
-a.style.color = "#00DA60";
-body.appendChild(a);
-} else {
-const span = document.createElement("span");
-span.textContent = part;
-span.style.whiteSpace = "pre-line";
-body.appendChild(span);
+if (data.tipo === "texto") {
+  const linkRegex = /(https?:\/\/[^\s]+)/g;
+  const match = data.mensagem.match(linkRegex);
+  
+  const texto = document.createElement("span");
+  texto.textContent = data.mensagem;
+  texto.style.whiteSpace = "pre-line";
+  
+  body.appendChild(texto);
+  
+  if (match) {
+    const url = match[0];
+    
+    try {
+      const res = await fetch(`/preview?url=${encodeURIComponent(url)}`);
+      const prev = await res.json();
+      
+      if (!prev.erro) {
+        const preview = document.createElement("div");
+        preview.style.marginTop = "8px";
+        preview.style.borderRadius = "10px";
+        preview.style.overflow = "hidden";
+        preview.style.background = "#2a2a2a";
+        
+        if (prev.imagem) {
+          const img = document.createElement("img");
+          img.src = prev.imagem;
+          img.style.width = "100%";
+          preview.appendChild(img);
+        }
+        
+        const info = document.createElement("div");
+        info.style.padding = "8px";
+        
+        const titulo = document.createElement("p");
+        titulo.textContent = prev.titulo || "Sem título";
+        titulo.style.fontWeight = "bold";
+        titulo.style.margin = "0";
+        
+        const desc = document.createElement("p");
+        desc.textContent = prev.descricao || "";
+        desc.style.fontSize = "12px";
+        desc.style.color = "#aaa";
+        
+        info.appendChild(titulo);
+        info.appendChild(desc);
+        
+        preview.appendChild(info);
+        
+        body.appendChild(preview);
+      }
+    } catch (e) {
+      console.log("Erro preview");
+    }
+  }
 }
-});
-}
+
+
 if (data.tipo === "media" && data.mime?.startsWith("image/")) {
 const img = document.createElement("img");
 img.src = data.arquivo;
@@ -411,6 +451,83 @@ function formatarHora(ts) {
 const d = new Date(ts);
 return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
+
+
+const keqs = document.querySelector(".myfigs");
+
+keqs.addEventListener("click", function(e) {
+  if (!e.target.classList.contains("gggggggg")) return;
+  
+  const src = e.target.src;
+  
+  const data = {
+    id: Date.now(),
+    tipo: "sticker",
+    arquivo: src,
+    nome: nomeUsuario,
+    foto: fotoUsuario,
+    hora: Date.now()
+  };
+  
+  mensagensMostradas.add(data.id);
+  renderMensagem(data);
+  enviarSeguro(data);
+  document.querySelector(".timmesty").classList.toggle("ativo");
+  document.querySelector(".lery").classList.toggle("ativo");
+});
+
+//const url = "https://raw.githubusercontent.com/trezhywinks/sticker-R/refs/heads/main/sticker.json";
+
+const containyer = document.getElementById("repogitu");
+
+containyer.addEventListener("click", function(e) {
+  if (!e.target.classList.contains("gggggggg")) return;
+  
+  const src = e.target.src;
+  
+  const data = {
+    id: Date.now(),
+    tipo: "sticker",
+    arquivo: src,
+    nome: nomeUsuario,
+    foto: fotoUsuario,
+    hora: Date.now()
+  };
+  
+  mensagensMostradas.add(data.id);
+  renderMensagem(data);
+  enviarSeguro(data);
+
+  document.querySelector(".timmesty").classList.toggle("ativo");
+  document.querySelector(".lery").classList.toggle("ativo");
+});
+
+document.getElementById("fileInput").addEventListener("change", function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  
+  reader.onload = function() {
+    const base64 = reader.result;
+    
+    const data = {
+      tipo: "media",
+      mime: file.type,
+      arquivo: base64,
+      user: user,
+      nome: nomeUsuario,
+      foto: fotoUsuario,
+      hora: Date.now()
+    };
+    
+    renderMensagem(data);
+    enviarSeguro(data);
+  };
+  
+  reader.readAsDataURL(file);
+});
+
 </script>
 
 </body>
