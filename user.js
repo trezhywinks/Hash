@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("http");
 const WebSocket = require("ws");
+const { getLinkPreview } = require("link-preview-js");
 
 const app = express();
 const server = http.createServer(app);
@@ -86,6 +87,26 @@ function broadcast() {
     }
   });
 }
+
+
+app.get("/preview", async (req, res) => {
+    const url = req.query.url;
+
+    if (!url) return res.json({ erro: "sem url" });
+
+    try {
+        const data = await getLinkPreview(url);
+
+        res.json({
+            titulo: data.title,
+            descricao: data.description,
+            imagem: data.images?.[0] || null,
+            site: data.siteName
+        });
+    } catch (e) {
+        res.json({ erro: "falha preview" });
+    }
+});
 
 app.use(express.static("users"));
 
