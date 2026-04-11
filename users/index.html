@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./chat.css">
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!--script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Chat Privado</title>
-
 <style>
 body {
     font-family: Arial;
@@ -14,9 +18,7 @@ body {
 }
 
 #chat {
-    height: 300px;
     overflow-y: auto;
-    border: 1px solid #444;
     padding: 10px;
     margin-bottom: 10px;
 }
@@ -32,16 +34,250 @@ body {
 .outro {
     color: #00aaff;
 }
+
+/*.timmesty{
+  display: flex;
+  position: fixed;
+  bottom: 0;
+}*/
 </style>
 </head>
 <body>
 
 <h3>Chat privado</h3>
+<div class="chat" id="chat"></div>
+<div class="timmesty">
+          <div class="figurinhas" style="text-align: center;">
+            <div class="msmwmUuuu" style="display: flex; justify-content: space-between;">
+          <label style="width:;" for="figurinha">
+            <div class="selectFig" style="text-align: left; margin-left: 17px; background:#101010; width: 90%; padding: 10px; border-radius: 10px; display: flex;" >
+               <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/EAF1306E-B9DC-4B71-84CF-AF87B84D6CD4.gif" class="gggggggg" width="60" height="60"/>
+          <div class="Vbbbbbbb" style="margin-top: 15px;">
+          <p style="font-size: 14px; font-weight: 800;">Criar Figurinhas</p>
+          <p style="font-size: 12px;">Clique é selecione uma imagem da sua galeria.</p>
+            </div>
+            </div>
+           </label>
+           <div class="les">
+            <span class="removeds">✖</span> 
+                </div>
+           </div>
+           <br>
+           <input hidden type="file" name="" id="figurinha" accept="image/png, image/jpeg, image/gif">
+          <div class="myfigs" style="padding-bottom:; overflow-y:; height: 170px;">
+            <!--img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5606.jpeg" class="gggggggg" width="60" height="60"/>
+            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/fig.jpeg" class="gggggggg" width="60" height="60"/>
+            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5629.jpeg" class="gggggggg" width="60" height="60"/>
+            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_2545.jpeg" class="gggggggg" width="60" height="60"/>
+            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_0871.jpeg" class="gggggggg" width="60" height="60"/>
+            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_2548.jpeg" class="gggggggg" width="60" height="60"/>
+            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/whmer.gif" class="gggggggg" width="60" height="60"/>
+            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg" class="gggggggg" width="60" height="60"/>
+         <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5599.jpeg" class="gggggggg" width="60" height="60"/>
+         <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5626.jpeg" class="gggggggg" width="60" height="60"/>
+         <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5408.jpeg" class="gggggggg" width="60" height="60"/>
+         <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5409.jpeg" class="gggggggg" width="60" height="60"/-->
+           
+            <div class="repogit" id="repogitu">
+              <div class="mxkekdieueur" style="text-align:left; margin: 10px">
+               <p>Criado por trezhywinks</p>
+              </div>
+              <style>
+                .repogit{
+                 display:;
+                }
+              </style>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+            </div>
+              <script>
+               const urHl = "https://raw.githubusercontent.com/trezhywinks/sticker-R/refs/heads/main/sticker.json";
 
-<div id="chat"></div>
+fetch(urHl)
+  .then(res => res.json())
+  .then(data => {
+    const containerg = document.getElementById("repogitu");
 
+    data.makima.forEach(link => {
+      const imgt = document.createElement("img");
+      
+      imgt.className = "gggggggg";
+      imgt.style.margin = "2px";
+      imgt.src = link.imagem;
+      imgt.width = "60";
+      imgt.height = "60";
+
+      containerg.appendChild(imgt);
+    });
+  })
+  .catch(err => console.error(err));
+                            
+                 </script>
+                  <div class="mdmdmllll">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+          </div>
+          <script>
+            document.getElementById('figurinha').addEventListener('change', function(event) {
+  const figurinhas = document.querySelector(".repogit");
+  const file = event.target.files[0];
+  
+  if (file) {
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+      if (file.type.startsWith('image/')) {
+       const prikito = document.createElement("img");
+        prikito.className = "gggggggg";
+        prikito.src = e.target.result;
+        prikito.style.margin = "2px";
+        prikito.width = "60";
+        prikito.height = "60";
+        figurinhas.appendChild(prikito);
+
+      }
+    };
+    
+    reader.readAsDataURL(file);
+  }
+});
+          </script>
+          <br>
+        </div>
+
+    <div class="lery" style="display:flex;">
+        <style>
+          .lefsri{
+            margin-left: 5px;
+          }
+        </style>
+      <div class="neurjrjr">
+        <img src="https://raw.githubusercontent.com/trezhywinks/sticker-R/main/IMG_5655.jpeg" class="lefsri" width="40" height="40" />
+      </div>
+      <div class="trenzndnd" style="display:none;">
+        <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg" class="lefsri" width="40" height="40" />
+      </div>
+      <script>
+    //const neurjrjr = document.querySelector(".neurjrjr");
+ //   const trenzndnd = document.querySelector(".trenzndnd");
+    
+     trenzndnd.onclick = () => {
+       document.querySelector(".myfigs").style.display = "none";
+     document.querySelector(".repogit").style.display = "block";
+       
+     }
+neurjrjr.onclick = () => {
+       document.querySelector(".myfigs").style.display = "block";
+       document.querySelector(".repogit").style.display = "none";
+     }
+
+      </script>
+    </div>
+          <script>
+              document.querySelector(".les").addEventListener("click", () => {
+                document.querySelector(".timmesty").classList.toggle("ativo");
+                document.querySelector(".lery").classList.toggle("ativo");
+              });
+            </script>
+
+    <div class="rectopPNG">
+      <div class="voxe"></div>
+      <div class="JkwjdjdYyyh" style="text-align: left; margin-top: 10px; width: 100%;">
+        <p>Clique para enviar essa mídia para todos</p>
+        <p style="color:var(--purple); text-decoration:;" id="camcelsrPNG">Clique aqui para cancelar</p>
+      </div>
+      <button id="PNG" class="PN" onclick="piop()" style="margin: 5px;">
+  <ion-icon style="fill: white; margin-left: 2px; width:30px; height: 30px;" name="send"></ion-icon>
+</button>
+    </div>
+
+  
+
+<!--div id="chat"></div>
 <input id="msg" placeholder="Digite..." />
-<button onclick="enviar()">Enviar</button>
+<button onclick="enviar()">Enviar</button-->
+
+       <div class="recbottomshar">
+        <br>
+        <div class="ZBnsnnenBbb" style="display:none;">
+        <img class="kdnendndddja" src="./IMG_2548.jpeg" width="40" height="40" style="border-radius: 100px; border: 3px solid #101010;"/>
+        </div>
+        <div class="JdgHhhhhhii">
+          <!--img src="fig.jpeg" class="voxe" name="voce" style="width: 40px; height: 40px; border-radius: 10px;" /-->
+          <input type="file" name="" id="Gile" hidden accept="image/png, image/jpeg, image/gif, video/mp4">
+    <label class="mxnenfnTT" for="Gile" style="margin-right: 10px;">
+    <ion-icon class="" name="add-outline" style="font-size: 35px; margin-top: -2px; fill: white;"></ion-icon>
+      </label>
+
+      <!--button class="mxnenfnTT" style="text-align: left; margin-top: -6px; margin-right: 10px;">
+       </button-->
+        <div class="inoxjebHhh" style="width:;">
+          <div class="MemdjdnxnNnnnbbb" style="width: 100%;">
+            
+     <textarea class="sendMe" style="font-size: 16px;" placeholder=""></textarea>
+          </div>
+        <div class="HsjehWol" style="margin:5px; background:; ">
+          <ion-icon style="font-size:; width: 25px; height: 25px; color: #6D6D6D;" name="earth-outline"></ion-icon>
+        </div>
+        </div>
+        <button class="audioBtn" id="start" style="display: none;">
+          <ion-icon style="fill: white; margin-left: 2px; width:30px; height: 30px;" name="mic-outline"></ion-icon>
+        </button>
+<button id="stop" disabled style="display:none;">
+  <ion-icon style="fill: white; margin-left: 2px; width:30px; height: 30px;" name="send"></ion-icon>
+</button>
+        <button class="mxnenfnTTS" id="sendBtn" onclick="enviar()" style="">
+          <ion-icon style="fill: white; margin-left: 2px; width:30px; height: 30px;" name="send"></ion-icon>
+        </button>
+        <script>
+          document.querySelector(".HsjehWol").addEventListener("click", () =>{
+            document.querySelector(".timmesty").classList.toggle("ativo");
+            document.querySelector(".lery").classList.toggle("ativo");
+          });
+          document.querySelector(".MemdjdnxnNnnnbbb").addEventListener("click", () =>{
+         const timmesty = document.querySelector(".timmesty")
+            if(timmesty.classList.toggle("ativo")){
+              timmesty.classList.remove("ativo");
+
+            }
+          });
+        </script>
+              <script>
+       
+document.getElementById("camcelsrPNG").addEventListener("click", () =>{
+  document.querySelector(".voxe").innerHTML = ""
+  document.querySelector(".rectopPNG").style.display = "none";
+} );
+
+
+      </script>
+        </div>
+        <script>
+        
+          const msg = document.querySelector(".sendMe");
+const sendBtn = document.getElementById("sendBtn");
+const audioBtn = document.querySelector(".audioBtn");
+
+msg.addEventListener("input", () => {
+  if (msg.value.trim().length > 0) {
+    sendBtn.style.display = "block";
+   // audioBtn.style.display = "none";
+  } else {
+    sendBtn.style.display = "block";
+    //audioBtn.style.display = "block";
+  }
+});
+        </script>
+
+        </div>
 
 <script>
 const params = new URLSearchParams(window.location.search);
@@ -175,7 +411,6 @@ function formatarHora(ts) {
 const d = new Date(ts);
 return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
-
 </script>
 
 </body>
