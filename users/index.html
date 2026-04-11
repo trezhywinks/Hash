@@ -11,15 +11,38 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Chat Privado</title>
 <style>
+*{
+  margin: 0;
+  padding: 0;
+}
 body {
     font-family: Arial;
-    background: #111;
-    color: white;
+       color: white;
     font-size: 17px;
+    height: 100vh;
+    overflow: hidden;
+     background-position: center center;
+    box-shadow: inset 100vh 400vh #000000B0;
+/*  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5604.jpeg");
+*/
+background-image:url("https://raw.githubusercontent.com/trezhywinks/Hash/0821931a3cd898558d817b7ab4d1451819048a6d/discord/i.svg");
+background-size: auto;
+
+}
+.backeifrjjrppp{
+  position: fixed;
+ bottom: 0; left: 0; right: 0;
+ box-shadow: inset 0px 100vh 100vh #0000007D;
+ width: 100%;
+    background-size: cover;
+    overflow: hidden;
+    overflow: hidden;
+    background-position: bottom center;
+    height: 100vh;
 }
 
 #chat {
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 10px;
     margin-bottom: 10px;
 }
@@ -45,7 +68,6 @@ body {
 </head>
 <body>
 
-<h3>Chat privado</h3>
 <div class="chat" id="chat"></div>
 <div class="timmesty">
           <div class="figurinhas" style="text-align: center;">
@@ -387,7 +409,7 @@ body.style.padding = "8px";
 body.style.borderRadius = "10px";
 body.style.maxWidth = "75%";
 body.style.wordBreak = "break-word";
-body.style.background = isEu ? "#005c4b" : "#1f1f1f";
+//body.style.background = isEu ? "#005c4b" : "#1f1f1f";
 body.style.color = "#fff";
 
 if (data.tipo === "texto") {
