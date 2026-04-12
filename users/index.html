@@ -24,7 +24,7 @@ html, body {
 
 body {
   background: black;
-  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/3cc4e67aee74deea479c2ad5070b098cb22b513b/discord/i.svg");
+  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/0821931a3cd898558d817b7ab4d1451819048a6d/discord/i.svg");
 background-position: center center;
 background-size: auto;
 box-shadow: inset 100vh 100vh #000000A6;
@@ -355,8 +355,9 @@ ws.onmessage = async (event) => {
   if (data.online !== undefined) return;
   if (data.erro) return alert(data.erro);
   
-  if (mensagensMostradas.has(data.id)) return;
+  if (!data.id) return;
   
+  if (mensagensMostradas.has(data.id)) return;
   mensagensMostradas.add(data.id);
   
   renderMensagem({
@@ -368,7 +369,10 @@ ws.onmessage = async (event) => {
     mime: data.mime,
     hora: data.hora
   });
+  
+  salvarNoIndex(data.mensagem || data.texto || "Mídia");
 };
+
 function gerarId() {
   return Date.now() + "_" + Math.random().toString(36).slice(2);
 }
@@ -614,7 +618,34 @@ enviarSeguro(data);
 
 reader.readAsDataURL(file);
 });
-}</script>
+}
+
+function salvarNoIndex(mensagem) {
+
+  let chats = JSON.parse(localStorage.getItem("chats")) || [];
+
+  let nome = "Usuário";
+  let foto = "https://i.pravatar.cc/150";
+
+  let existente = chats.find(c => c.userId === to);
+
+  if (existente) {
+    existente.mensagem = mensagem;
+    chats = chats.filter(c => c.userId !== to);
+    chats.unshift(existente);
+  } else {
+    chats.unshift({
+      nome,
+      foto,
+      mensagem,
+      userId: to
+    });
+  }
+
+  localStorage.setItem("chats", JSON.stringify(chats));
+}
+
+</script>
 
 </body>
 </html>
