@@ -24,7 +24,7 @@ html, body {
 
 body {
   background: black;
-  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/0821931a3cd898558d817b7ab4d1451819048a6d/discord/i.svg");
+  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/3cc4e67aee74deea479c2ad5070b098cb22b513b/discord/i.svg");
 background-position: center center;
 background-size: auto;
 box-shadow: inset 100vh 100vh #000000A6;
@@ -84,16 +84,9 @@ padding-bottom:25%;
 <body>
   <div class="baismekdn">
   </div>
-  <div class="joga">
-        <div class="bomgsrxkemdj">
-     <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/discord/IMG_5821.png" width="40" heigh="40"/>
-    </div>
-
-    <div class="bomgsrxkemdj" style="text-align: left;">
-      <span>user</span>
-      <p style="font-size: 11px;">sair dessa conversa</p>
-    </div>
-  </div>
+  <br>
+  <br>
+  <br>
   <div id="chat">
   </div>
 <div class="timmesty">
@@ -115,19 +108,6 @@ padding-bottom:25%;
            <br>
            <input hidden type="file" name="" id="figurinha" accept="image/png, image/jpeg, image/gif">
           <div class="myfigs" style="padding-bottom:; overflow-y:; height: 170px;">
-            <!--img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5606.jpeg" class="gggggggg" width="60" height="60"/>
-            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/fig.jpeg" class="gggggggg" width="60" height="60"/>
-            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5629.jpeg" class="gggggggg" width="60" height="60"/>
-            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_2545.jpeg" class="gggggggg" width="60" height="60"/>
-            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_0871.jpeg" class="gggggggg" width="60" height="60"/>
-            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_2548.jpeg" class="gggggggg" width="60" height="60"/>
-            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/whmer.gif" class="gggggggg" width="60" height="60"/>
-            <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/IMG_5731.jpeg" class="gggggggg" width="60" height="60"/>
-         <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5599.jpeg" class="gggggggg" width="60" height="60"/>
-         <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5626.jpeg" class="gggggggg" width="60" height="60"/>
-         <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5408.jpeg" class="gggggggg" width="60" height="60"/>
-         <img src="https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5409.jpeg" class="gggggggg" width="60" height="60"/-->
-           
             <div class="repogit" id="repogitu">
               <div class="mxkekdieueur" style="text-align:left; margin: 10px">
                <p>Criado por trezhywinks</p>
@@ -329,10 +309,14 @@ msg.addEventListener("input", () => {
         </div>
 <script>
 const params = new URLSearchParams(window.location.search);
-//const mensagensMostradas = new Set();
 
 const user = params.get("user");
 const to = params.get("to");
+const nome = localStorage.getItem("chat_nome");
+const foto = localStorage.getItem("chat_foto");
+
+document.querySelector(".i-name").innerText = nome || to;
+document.querySelector(".i-imagem").src = foto || "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5629.jpeg";
 
 if (!user || !to) {
 alert("Link inválido");
@@ -369,11 +353,8 @@ ws.onmessage = async (event) => {
     mime: data.mime,
     hora: data.hora
   });
-  salvarNoIndex(
-  data.mensagem || data.texto || "Mídia",
-  data
-);
-  //salvarNoIndex(data.mensagem || data.texto || "Mídia");
+  
+  salvarNoIndex(data.mensagem || data.texto || "Mídia");
 };
 
 function gerarId() {
@@ -420,13 +401,15 @@ const isEu = data.user === user;
 
 const nomeFinal = isEu ? nomeUsuario : (data.nome || data.user);
 const fotoFinal = isEu ? fotoUsuario : (data.foto || "https://via.placeholder.com/40");
+const fotoUsuario = localStorage.getItem("fotoUsuario") || "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5629.jpeg";
+//const fotoUsuario = localStorage.getItem("fotoUsuario") || "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5629.jpeg";
 
 const msgBox = document.createElement("div");
 msgBox.style.margin = "10px";
 
 msgBox.innerHTML = `
 <div style="display:flex; align-items:center; gap:5px;">
-  <img src="${fotoFinal}" width="35" height="35" style="border-radius:100px;" />
+  <img src="${fotoUsuario}" width="35" height="35" style="border-radius:100px;" />
   <div>
     <p style="color:#fff; margin:0; font-size:13px;">${nomeFinal}</p>
     <p style="color:#aaa; margin:0; font-size:10px;">
@@ -546,31 +529,6 @@ hour: "2-digit",
 minute: "2-digit"
 });
 }
-
-//const keqs = document.querySelector(".myfigs");
-
-//if (keqs) {
-//keqs.addEventListener("click", function(e) {
-//if (!e.target.classList.contains("gggggggg")) return;
-
-//const data = {
-//  id: gerarId(),
-//tipo: "sticker",
-//arquivo: e.target.src,
-//user: user,
-//nome: nomeUsuario,
-//foto: fotoUsuario,
-//hora: Date.now()
-//};
-
-//renderMensagem(data);
-//enviarSeguro(data);
-
-//document.querySelector(".timmesty")?.classList.toggle("ativo");
-//document.querySelector(".lery")?.classList.toggle("ativo");
-//});
-//}
-
 const containyer = document.getElementById("repogitu");
 
 if (containyer) {
@@ -623,30 +581,29 @@ reader.readAsDataURL(file);
 });
 }
 
-function salvarNoIndex(mensagem, data) {
-  let chats = JSON.parse(localStorage.getItem("divsChats")) || [];
+function salvarNoIndex(mensagem) {
 
+  let chats = JSON.parse(localStorage.getItem("chats")) || [];
 
-  const nome = data.user === user ? data.to : data.user;
-  const foto = data.user === user 
-    ? (localStorage.getItem("chat_foto") || "https://i.pravatar.cc/150")
-    : (data.foto || "https://i.pravatar.cc/150");
+  let nome = "Usuário";
+  let foto = "https://i.pravatar.cc/150";
 
-  let existente = chats.find(c => c.nome === nome);
+  let existente = chats.find(c => c.userId === to);
 
   if (existente) {
     existente.mensagem = mensagem;
-    chats = chats.filter(c => c.nome !== nome);
+    chats = chats.filter(c => c.userId !== to);
     chats.unshift(existente);
   } else {
     chats.unshift({
       nome,
       foto,
-      mensagem
+      mensagem,
+      userId: to
     });
   }
 
-  localStorage.setItem("divsChats", JSON.stringify(chats));
+  localStorage.setItem("chats", JSON.stringify(chats));
 }
 
 </script>
