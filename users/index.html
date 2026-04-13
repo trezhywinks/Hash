@@ -369,8 +369,11 @@ ws.onmessage = async (event) => {
     mime: data.mime,
     hora: data.hora
   });
-  
-  salvarNoIndex(data.mensagem || data.texto || "Mídia");
+  salvarNoIndex(
+  data.mensagem || data.texto || "Mídia",
+  data
+);
+  //salvarNoIndex(data.mensagem || data.texto || "Mídia");
 };
 
 function gerarId() {
@@ -620,29 +623,30 @@ reader.readAsDataURL(file);
 });
 }
 
-function salvarNoIndex(mensagem) {
+function salvarNoIndex(mensagem, data) {
+  let chats = JSON.parse(localStorage.getItem("divsChats")) || [];
 
-  let chats = JSON.parse(localStorage.getItem("chats")) || [];
 
-  let nome = "Usuário";
-  let foto = "https://i.pravatar.cc/150";
+  const nome = data.user === user ? data.to : data.user;
+  const foto = data.user === user 
+    ? (localStorage.getItem("chat_foto") || "https://i.pravatar.cc/150")
+    : (data.foto || "https://i.pravatar.cc/150");
 
-  let existente = chats.find(c => c.userId === to);
+  let existente = chats.find(c => c.nome === nome);
 
   if (existente) {
     existente.mensagem = mensagem;
-    chats = chats.filter(c => c.userId !== to);
+    chats = chats.filter(c => c.nome !== nome);
     chats.unshift(existente);
   } else {
     chats.unshift({
       nome,
       foto,
-      mensagem,
-      userId: to
+      mensagem
     });
   }
 
-  localStorage.setItem("chats", JSON.stringify(chats));
+  localStorage.setItem("divsChats", JSON.stringify(chats));
 }
 
 </script>
