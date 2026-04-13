@@ -309,14 +309,10 @@ msg.addEventListener("input", () => {
         </div>
 <script>
 const params = new URLSearchParams(window.location.search);
+//const mensagensMostradas = new Set();
 
 const user = params.get("user");
 const to = params.get("to");
-const nome = localStorage.getItem("chat_nome");
-const foto = localStorage.getItem("chat_foto");
-
-document.querySelector(".i-name").innerText = nome || to;
-document.querySelector(".i-imagem").src = foto || "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5629.jpeg";
 
 if (!user || !to) {
 alert("Link inválido");
@@ -353,8 +349,11 @@ ws.onmessage = async (event) => {
     mime: data.mime,
     hora: data.hora
   });
-  
-  salvarNoIndex(data.mensagem || data.texto || "Mídia");
+  salvarNoIndex(
+  data.mensagem || data.texto || "Mídia",
+  data
+);
+  //salvarNoIndex(data.mensagem || data.texto || "Mídia");
 };
 
 function gerarId() {
@@ -401,15 +400,13 @@ const isEu = data.user === user;
 
 const nomeFinal = isEu ? nomeUsuario : (data.nome || data.user);
 const fotoFinal = isEu ? fotoUsuario : (data.foto || "https://via.placeholder.com/40");
-const fotoUsuario = localStorage.getItem("fotoUsuario") || "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5629.jpeg";
-//const fotoUsuario = localStorage.getItem("fotoUsuario") || "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5629.jpeg";
 
 const msgBox = document.createElement("div");
 msgBox.style.margin = "10px";
 
 msgBox.innerHTML = `
 <div style="display:flex; align-items:center; gap:5px;">
-  <img src="${fotoUsuario}" width="35" height="35" style="border-radius:100px;" />
+  <img src="${fotoFinal}" width="35" height="35" style="border-radius:100px;" />
   <div>
     <p style="color:#fff; margin:0; font-size:13px;">${nomeFinal}</p>
     <p style="color:#aaa; margin:0; font-size:10px;">
@@ -529,6 +526,31 @@ hour: "2-digit",
 minute: "2-digit"
 });
 }
+
+//const keqs = document.querySelector(".myfigs");
+
+//if (keqs) {
+//keqs.addEventListener("click", function(e) {
+//if (!e.target.classList.contains("gggggggg")) return;
+
+//const data = {
+//  id: gerarId(),
+//tipo: "sticker",
+//arquivo: e.target.src,
+//user: user,
+//nome: nomeUsuario,
+//foto: fotoUsuario,
+//hora: Date.now()
+//};
+
+//renderMensagem(data);
+//enviarSeguro(data);
+
+//document.querySelector(".timmesty")?.classList.toggle("ativo");
+//document.querySelector(".lery")?.classList.toggle("ativo");
+//});
+//}
+
 const containyer = document.getElementById("repogitu");
 
 if (containyer) {
@@ -581,29 +603,30 @@ reader.readAsDataURL(file);
 });
 }
 
-function salvarNoIndex(mensagem) {
+function salvarNoIndex(mensagem, data) {
+  let chats = JSON.parse(localStorage.getItem("divsChats")) || [];
 
-  let chats = JSON.parse(localStorage.getItem("chats")) || [];
 
-  let nome = "Usuário";
-  let foto = "https://i.pravatar.cc/150";
+  const nome = data.user === user ? data.to : data.user;
+  const foto = data.user === user 
+    ? (localStorage.getItem("chat_foto") || "https://i.pravatar.cc/150")
+    : (data.foto || "https://i.pravatar.cc/150");
 
-  let existente = chats.find(c => c.userId === to);
+  let existente = chats.find(c => c.nome === nome);
 
   if (existente) {
     existente.mensagem = mensagem;
-    chats = chats.filter(c => c.userId !== to);
+    chats = chats.filter(c => c.nome !== nome);
     chats.unshift(existente);
   } else {
     chats.unshift({
       nome,
       foto,
-      mensagem,
-      userId: to
+      mensagem
     });
   }
 
-  localStorage.setItem("chats", JSON.stringify(chats));
+  localStorage.setItem("divsChats", JSON.stringify(chats));
 }
 
 </script>
