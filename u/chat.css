@@ -13,6 +13,7 @@
 
 :root {
   --purple: #9D74FB;
+  --perple: #9331e4;
   --ndjejd: #3193e4;
   --dark: #101010;
   --red: red;
@@ -24,7 +25,7 @@
     body, .bodyf {
     color: var(--white);
     font-family: var(--wer);
-    background: #000;
+    background: #121212;
     font-weight: 500;
     width: 100vw;
     overflow-y: scroll;
@@ -324,7 +325,7 @@ z-index: 44;
   box-shadow: inset 100vh 400vh #000000B0;
 /*  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5604.jpeg");
 */
-background-image:url("https://raw.githubusercontent.com/trezhywinks/Hash/0821931a3cd898558d817b7ab4d1451819048a6d/discord/i.svg");
+background-image:url("https://raw.githubusercontent.com/trezhywinks/Hash/3cc4e67aee74deea479c2ad5070b098cb22b513b/discord/i.svg");
 background-repeat:;
 background-size: auto;
 background-position: center left;
@@ -456,7 +457,7 @@ select {
   left: 0;
   right: 0;
   height: 56px;
-  background: #000;
+  background: var(--purple);
   min-height: calc(56px + env(safe-area-inset-top));
   padding-top: env(safe-area-inset-top);
   display: flex;
