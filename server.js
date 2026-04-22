@@ -99,9 +99,8 @@ app.get("/user", (req, res) => {
   const { nome } = req.query;
 
   const user = users.find(u => u.nome === nome);
-
   if (!user) {
-    return res.json({ status: "erro" });
+    return res.json({ status: "erro", msg: "Usuário não encontrado" });
   }
 
   res.json(user);
