@@ -95,6 +95,18 @@ function checkAuth(req, res, next) {
   //  }
 }
 
+app.post("/update-user", (req, res) => {
+  const { nome, bio } = req.body;
+
+  const user = users.find(u => u.nome === nome);
+
+  if (user) {
+    user.bio = bio;
+  }
+
+  res.json({ status: "ok" });
+});
+
 const GITHUB_JSON = "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/users.json";
 
 app.use(express.json());
