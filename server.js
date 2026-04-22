@@ -94,12 +94,15 @@ function checkAuth(req, res, next) {
       //  res.redirect("/index.html");
   //  }
 }
-
 app.get("/user", (req, res) => {
   const { nome } = req.query;
 
-  const data = JSON.parse(fs.readFileSync("users.json"));
-  const user = data.find(u => u.nome === nome);
+  const file = JSON.parse(fs.readFileSync("users.json"));
+  const data = file.data;
+
+  const user = data.find(
+    u => u.nome.trim().toLowerCase() === nome.trim().toLowerCase()
+  );
 
   if (!user) {
     return res.json({ status: "erro", msg: "Usuário não encontrado" });
@@ -111,21 +114,24 @@ app.get("/user", (req, res) => {
 app.post("/update-user", (req, res) => {
   const { nome, bio } = req.body;
 
-  let data = JSON.parse(fs.readFileSync("users.json"));
-  let user = data.find(u => u.nome === nome);
+  const file = JSON.parse(fs.readFileSync("users.json"));
+  const data = file.data;
+
+  let user = data.find(
+    u => u.nome.trim().toLowerCase() === nome.trim().toLowerCase()
+  );
 
   if (!user) {
-    user = { nome, bio: bio || "", foto: "" };
+    user = { nome: nome.trim(), bio: bio || "", foto: "" };
     data.push(user);
   } else {
     if (bio !== undefined) user.bio = bio;
   }
 
-  fs.writeFileSync("users.json", JSON.stringify(data, null, 2));
+  fs.writeFileSync("users.json", JSON.stringify(file, null, 2));
 
   res.json({ status: "ok" });
 });
-
 const GITHUB_JSON = "https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/users.json";
 
 app.use(express.json());
