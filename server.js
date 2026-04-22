@@ -35,6 +35,18 @@ wss.on("connection", (ws) => {
 
     broadcast();
 
+     ws.on("message", (msg) => {
+        const data = JSON.parse(msg);
+
+
+        wss.clients.forEach(client => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(JSON.stringify(data)); 
+
+            }
+        });
+    });
+
     ws.on("close", () => {
         online--;
         console.log("❌ Saiu:", online);
