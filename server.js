@@ -98,7 +98,9 @@ function checkAuth(req, res, next) {
 app.get("/user", (req, res) => {
   const { nome } = req.query;
 
-  const user = users.find(u => u.nome === nome);
+  const data = JSON.parse(fs.readFileSync("users.json"));
+  const user = data.find(u => u.nome === nome);
+
   if (!user) {
     return res.json({ status: "erro", msg: "Usuário não encontrado" });
   }
@@ -109,11 +111,17 @@ app.get("/user", (req, res) => {
 app.post("/update-user", (req, res) => {
   const { nome, bio } = req.body;
 
-  const user = users.find(u => u.nome === nome);
+  let data = JSON.parse(fs.readFileSync("users.json"));
+  let user = data.find(u => u.nome === nome);
 
-  if (user) {
+  if (!user) {
+    user = { nome, bio: bio || "", foto: "" };
+    data.push(user);
+  } else {
     if (bio !== undefined) user.bio = bio;
   }
+
+  fs.writeFileSync("users.json", JSON.stringify(data, null, 2));
 
   res.json({ status: "ok" });
 });
