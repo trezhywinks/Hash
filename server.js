@@ -101,7 +101,7 @@ app.post("/update-user", (req, res) => {
   const user = users.find(u => u.nome === nome);
 
   if (user) {
-    user.bio = bio;
+    if (bio !== undefined) user.bio = bio;
   }
 
   res.json({ status: "ok" });
