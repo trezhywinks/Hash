@@ -95,6 +95,18 @@ function checkAuth(req, res, next) {
   //  }
 }
 
+app.get("/user", (req, res) => {
+  const { nome } = req.query;
+
+  const user = users.find(u => u.nome === nome);
+
+  if (!user) {
+    return res.json({ status: "erro" });
+  }
+
+  res.json(user);
+});
+
 app.post("/update-user", (req, res) => {
   const { nome, bio } = req.body;
 
