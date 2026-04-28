@@ -18,13 +18,14 @@
   --dark: #101010;
   --red: red;
   --white: #fff;
+  --dc: "gg sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --wer: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  
+  --gg: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
     body, .bodyf {
     color: var(--white);
-    font-family: var(--wer);
+    font-family: var(--gg);
     background: #121212;
     font-weight: 500;
     width: 100vw;
