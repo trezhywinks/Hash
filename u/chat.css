@@ -8,8 +8,17 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
+font-family: gg;
 }
+
+
+  @font-face{
+font-family:gg;
+src: url('https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/gg.ttf');
+font-style: normal;
+font-weight: 800;
+}
+
 
 :root {
   --purple: #9D74FB;
@@ -25,7 +34,7 @@
 
     body, .bodyf {
     color: var(--white);
-    font-family: var(--gg);
+    font-family:gg;
     background: #121212;
     font-weight: 500;
     width: 100vw;
