@@ -35,13 +35,17 @@ font-weight: 800;
     body, .bodyf {
     color: var(--white);
     font-family:gg;
-    background: #121212;
+    background: #1C1D23;
+  box-shadow: inset 100vh 400vh #000000B0;
     font-weight: 500;
     width: 100vw;
     margin: 0;
     padding:0;
+    overflow: hidden;
+    /* font-family: Arial, Helvetica, sans-serif;
     overflow-y: scroll;
-    /* font-family: Arial, Helvetica, sans-serif;*/
+
+    */
 }
 
   
@@ -52,6 +56,7 @@ font-weight: 800;
   left: 0;
   width: 100%;
   height: env(safe-area-inset-top);
+
   background-color: #0C0C0CDB;
   /* cor de fundo do seu site */
   z-index: -1;
@@ -334,10 +339,12 @@ z-index: 44;
   bottom: 0;
   height: 100vh;
   overflow: hidden;
+  background: #1C1D23;
   box-shadow: inset 100vh 400vh #000000B0;
 /*  background-image: url("https://raw.githubusercontent.com/trezhywinks/Hash/refs/heads/main/u/IMG_5604.jpeg");
 */
-background-image:url("https://raw.githubusercontent.com/trezhywinks/Hash/3cc4e67aee74deea479c2ad5070b098cb22b513b/discord/i.svg");
+/*background-image:url("https://raw.githubusercontent.com/trezhywinks/Hash/3cc4e67aee74deea479c2ad5070b098cb22b513b/discord/i.svg");
+*/
 background-repeat:;
 background-size: auto;
 background-position: center left;
@@ -700,6 +707,7 @@ padding-bottom: calc(10px + env(safe-area-inset-bottom));
   top: -450px;
   height: 56px;
   background: transparent;
+
   
   min-height: calc(56px + env(safe-area-inset-top));
   padding-top: env(safe-area-inset-top);
