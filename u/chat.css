@@ -35,13 +35,16 @@ font-weight: 800;
     body, .bodyf {
     color: var(--white);
     font-family:gg;
-    background: #1C1D23;
-  box-shadow: inset 100vh 400vh #000000B0;
-    font-weight: 500;
+    /*background: #1C1D23;
+    box-shadow: inset 100vh 400vh #000000B0;
+    background: #08090B;
+    */
+    background: #000000;
     width: 100vw;
     margin: 0;
     padding:0;
     overflow: hidden;
+    height: auto;
     /* font-family: Arial, Helvetica, sans-serif;
     overflow-y: scroll;
 
@@ -245,10 +248,13 @@ z-index:45;
           transition: 0.5s ease-in-out;
         }
         
-        .mxnenfnTT, .mxnenfnTTS, .mxnenfn, #start, #stop, #PNG{
+        .mxnenfnTT{
+          margin-right:0;
+        }
+        
+        .mxnenfnTTS, .mxnenfn, #start, #stop, #PNG{
           border: none;
           margin-top: -4px;
-          margin-right: 5px;
           width: 40px;
           background: transparent;
           padding: 7px;
@@ -476,10 +482,11 @@ select {
   left: 0;
   right: 0;
   height: 56px;
-  background: var(--purple);
+  background: #101010;
   min-height: calc(56px + env(safe-area-inset-top));
   padding-top: env(safe-area-inset-top);
   display: flex;
+  border-bottom: 1px solid #262626D6;
   align-items:center;
   justify-content: space-between;
   transition: 0.5s;
@@ -897,7 +904,7 @@ font-size: 14px !important;
       width: 70px;
     }
     .nefs {
-      margin-top: 10px;
+      margin-top: -10px;
     }
     .cart-pers{
       margin-top: 7px;
