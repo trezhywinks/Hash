@@ -237,6 +237,11 @@ app.get("/u", checkAuth, (req, res) => {
     res.sendFile(dashboardPath);
 });
 
+app.get("/test", checkAuth, (req, res) => {
+    const dashboardPath = path.join(__dirname, "u/teste.html");
+    res.sendFile(dashboardPath);
+});
+
 app.get("/salvas", checkAuth, (req, res) => {
     const dashboardPath = path.join(__dirname, "u/chat.html");
     res.sendFile(dashboardPath);
