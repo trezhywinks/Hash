@@ -324,29 +324,32 @@ app.get("/preview", async (req, res) => {
     };
 
     const preview = {
-      title:
-        meta("og:title") ||
-        meta("twitter:title") ||
-        $("title").first().text().trim(),
+  title:
+    meta("og:title") ||
+    meta("twitter:title") ||
+    $("title").first().text().trim(),
 
-      description:
-        meta("og:description") ||
-        meta("twitter:description") ||
-        meta("description"),
+  description:
+    meta("og:description") ||
+    meta("twitter:description") ||
+    meta("description"),
 
-      image: resolverImagem(
-        meta("og:image") ||
-        meta("og:image:secure_url") ||
-        meta("twitter:image")
-      ),
+  image: resolverImagem(
+    meta("og:image") ||
+    meta("og:image:secure_url") ||
+    meta("twitter:image") ||
+    meta("twitter:image:src") ||
+    $("link[rel='image_src']").attr("href") ||
+    $("meta[itemprop='image']").attr("content") ||
+    ""
+  ),
 
-      site:
-        meta("og:site_name") ||
-        endereco.hostname,
+  site:
+    meta("og:site_name") ||
+    endereco.hostname,
 
-      url: endereco.href
-    };
-
+  url: endereco.href
+};
     res.json(preview);
 
   } catch (err) {
