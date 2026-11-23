@@ -273,46 +273,90 @@ app.get("/chan", checkAuth, (req, res) => {
 
 //manifest.json
 
-
 app.get("/preview", async (req, res) => {
   const url = req.query.url;
 
-  if (!url) return res.json({ error: "URL missing" });
+  if (!url) {
+    return res.status(400).json({ error: "URL não informada" });
+  }
 
   try {
-    const { data } = await axios.get(url, {
+    const endereco = new URL(url);
+
+    if (!["http:", "https:"].includes(endereco.protocol)) {
+      return res.status(400).json({ error: "URL inválida" });
+    }
+
+    if (
+      ["localhost", "127.0.0.1", "::1"].includes(endereco.hostname)
+    ) {
+      return res.status(400).json({ error: "Endereço não permitido" });
+    }
+
+    const resposta = await axios.get(endereco.href, {
+      timeout: 12000,
+      maxRedirects: 5,
+      maxContentLength: 5 * 1024 * 1024,
       headers: {
-        "User-Agent": "Mozilla/5.0"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml"
       }
     });
 
-    const $ = cheerio.load(data);
+    const $ = cheerio.load(resposta.data);
 
-    const getMeta = (name) =>
-      $(`meta[property="${name}"]`).attr("content") ||
-      $(`meta[name="${name}"]`).attr("content");
+    const meta = (property) => {
+      return (
+        $(`meta[property="${property}"]`).attr("content") ||
+        $(`meta[name="${property}"]`).attr("content") ||
+        ""
+      );
+    };
+
+    const resolverImagem = (imagem) => {
+      if (!imagem) return "";
+
+      try {
+        return new URL(imagem, endereco.href).href;
+      } catch {
+        return "";
+      }
+    };
 
     const preview = {
-      title: getMeta("og:title") || $("title").text(),
-      description: getMeta("og:description"),
-      image: getMeta("og:image"),
-      site: getMeta("og:site_name"),
-      url
+      title:
+        meta("og:title") ||
+        meta("twitter:title") ||
+        $("title").first().text().trim(),
+
+      description:
+        meta("og:description") ||
+        meta("twitter:description") ||
+        meta("description"),
+
+      image: resolverImagem(
+        meta("og:image") ||
+        meta("og:image:secure_url") ||
+        meta("twitter:image")
+      ),
+
+      site:
+        meta("og:site_name") ||
+        endereco.hostname,
+
+      url: endereco.href
     };
 
     res.json(preview);
 
   } catch (err) {
-    res.json({ error: "Failed to fetch" });
+    console.error("Erro na prévia:", err.message);
+
+    res.status(500).json({
+      error: "Não foi possível gerar a prévia"
+    });
   }
 });
-
-
-app.get("/graffity", checkAuth, (req, res) => {
-    const dashboardPath = path.join(__dirname, "u/graffity.ttf");
-    res.sendFile(dashboardPath);
-});
-
 
 //graffity.ttf
 
