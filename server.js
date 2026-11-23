@@ -287,80 +287,54 @@ app.get("/preview", async (req, res) => {
       return res.status(400).json({ error: "URL inválida" });
     }
 
-    if (
-      ["localhost", "127.0.0.1", "::1"].includes(endereco.hostname)
-    ) {
-      return res.status(400).json({ error: "Endereço não permitido" });
-    }
-
     const resposta = await axios.get(endereco.href, {
-      timeout: 12000,
+      timeout: 15000,
       maxRedirects: 5,
-      maxContentLength: 5 * 1024 * 1024,
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml"
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
       }
     });
 
     const $ = cheerio.load(resposta.data);
 
-    const meta = (property) => {
-      return (
-        $(`meta[property="${property}"]`).attr("content") ||
-        $(`meta[name="${property}"]`).attr("content") ||
-        ""
-      );
-    };
+    function meta(...nomes) {
+      for (const nome of nomes) {
+        const valor =
+          $(`meta[property="${nome}"]`).attr("content") ||
+          $(`meta[name="${nome}"]`).attr("content") ||
+          $(`meta[itemprop="${nome}"]`).attr("content");
 
-    const resolverImagem = (imagem) => {
-      if (!imagem) return "";
-
-      try {
-        return new URL(imagem, endereco.href).href;
-      } catch {
-        return "";
+        if (valor) return valor;
       }
-    };
+
+      return "";
+    }
+
+    const imagem =
+      meta("og:image", "twitter:image", "image") ||
+      $("link[rel='image_src']").attr("href") ||
+      "";
 
     const preview = {
-  title:
-    meta("og:title") ||
-    meta("twitter:title") ||
-    $("title").first().text().trim(),
+      title: meta("og:title", "twitter:title") || $("title").first().text().trim(),
+      description: meta("og:description", "twitter:description", "description"),
+      image: imagem ? new URL(imagem, endereco.href).href : "",
+      site: meta("og:site_name") || endereco.hostname,
+      url: endereco.href
+    };
 
-  description:
-    meta("og:description") ||
-    meta("twitter:description") ||
-    meta("description"),
+    console.log("PRÉVIA GERADA:", preview);
 
-  image: resolverImagem(
-    meta("og:image") ||
-    meta("og:image:secure_url") ||
-    meta("twitter:image") ||
-    meta("twitter:image:src") ||
-    $("link[rel='image_src']").attr("href") ||
-    $("meta[itemprop='image']").attr("content") ||
-    ""
-  ),
-
-  site:
-    meta("og:site_name") ||
-    endereco.hostname,
-
-  url: endereco.href
-};
     res.json(preview);
 
   } catch (err) {
-    console.error("Erro na prévia:", err.message);
+    console.log("ERRO PREVIEW:", err.message);
 
     res.status(500).json({
-      error: "Não foi possível gerar a prévia"
+      error: err.message
     });
   }
 });
-
 //graffity.ttf
 
 // Logout
